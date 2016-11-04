@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-iux-navbar',
+  selector: 'iux-navbar',
   templateUrl: './iux-navbar.component.html',
   styleUrls: ['./iux-navbar.component.css']
 })

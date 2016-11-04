@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { PakouCmpComponent } from './pakou-cmp.component';
+import { PresentationComponent } from './presentation.component';
 
-describe('Component: PakouCmp', () => {
+describe('Component: Presentation', () => {
   it('should create an instance', () => {
-    let component = new PakouCmpComponent();
+    let component = new PresentationComponent();
     expect(component).toBeTruthy();
   });
 });

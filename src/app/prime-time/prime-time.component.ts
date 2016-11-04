@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-prime-time',
+  selector: 'iux-prime-time',
   templateUrl: './prime-time.component.html',
   styleUrls: ['./prime-time.component.css']
 })

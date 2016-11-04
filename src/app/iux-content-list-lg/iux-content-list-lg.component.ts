@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-iux-content-list-lg',
+  selector: 'iux-content-list-lg',
   templateUrl: './iux-content-list-lg.component.html',
   styleUrls: ['./iux-content-list-lg.component.css']
 })

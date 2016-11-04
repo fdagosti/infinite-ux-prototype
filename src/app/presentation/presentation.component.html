@@ -1,0 +1,90 @@
+<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+  <div class="container">
+    <a class="navbar-brand" href="#">Infinite UX</a>
+    <ul class="nav navbar-nav">
+      <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+    </ul>
+  </div><!-- /.container -->
+</nav><!-- /.navbar -->
+
+<div class="container">
+
+  <div class="row row-offcanvas row-offcanvas-right">
+
+    <div class="col-xs-12 col-sm-9">
+      <p class="float-xs-right hidden-sm-up">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
+      </p>
+      <div class="jumbotron">
+        <h1>Infinite UX</h1>
+        <p>This is the list of components that the Infinite UX prototype initiative is currently Using. Having these components displayed outside of an application ensures
+        that they are reused and provide a better vision of the overall design</p>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="card">
+            <h3 class="card-header">
+              Prime Time
+            </h3>
+            <div class="card-block">
+              <iux-prime-time></iux-prime-time>
+            </div>
+          </div>
+        </div><!--/span-->
+        <div class="col-xs-12">
+          <div class="card" name="toto">
+            <h3 class="card-header">
+              Horizontal List Small
+            </h3>
+            <div class="card-block">
+              <iux-content-list-sm></iux-content-list-sm>
+            </div>
+          </div>
+        </div><!--/span-->
+        <div class="col-xs-12">
+          <div class="card">
+            <h3 class="card-header">
+              Horizontal List Larg
+            </h3>
+            <div class="card-block">
+              <iux-content-list-lg></iux-content-list-lg>
+            </div>
+          </div>
+        </div><!--/span-->
+        <div class="col-xs-12">
+          <div class="card">
+            <h3 class="card-header">
+              Footer
+            </h3>
+            <div class="card-block">
+              <iux-footer></iux-footer>
+            </div>
+          </div>
+        </div><!--/span-->
+
+      </div><!--/row-->
+    </div><!--/span-->
+
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+      <div class="list-group">
+        <a href="#" class="list-group-item">Navigation Bar</a>
+        <a href="#" class="list-group-item">Prime Time</a>
+        <a href="#toto" fragment="Test" class="list-group-item">Horizontal List Small</a>
+        <a href="#" class="list-group-item">Horizontal List large</a>
+        <a href="#" class="list-group-item">Browse</a>
+        <a href="#" class="list-group-item">Details</a>
+        <a href="#" class="list-group-item">Player</a>
+
+      </div>
+    </div><!--/span-->
+  </div><!--/row-->
+
+  <hr>
+
+  <footer>
+    <p>&copy; Cisco 2016</p>
+  </footer>
+
+</div><!--/.container-->

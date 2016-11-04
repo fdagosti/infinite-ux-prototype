@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { IUXContentListSm2Component } from './iux-content-list-sm-2.component';
+import { HomeComponent } from './home.component';
 
-describe('Component: IUXContentListSm2', () => {
+describe('Component: Home', () => {
   it('should create an instance', () => {
-    let component = new IUXContentListSm2Component();
+    let component = new HomeComponent();
     expect(component).toBeTruthy();
   });
 });
