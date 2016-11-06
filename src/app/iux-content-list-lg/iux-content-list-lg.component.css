@@ -53,6 +53,10 @@ p {
   font-size: 1.5vw;
 }
 
+h2{
+  font-size: 2vw;
+}
+
 .absolute-text{
   display:none;
 }

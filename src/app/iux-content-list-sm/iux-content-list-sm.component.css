@@ -2,6 +2,7 @@
   display: block;
   margin-left: 20px;
   margin-right: 20px;
+  margin-bottom: 40px;
 }
 
 img {
@@ -16,6 +17,7 @@ p {
   font-size: .9em;
   line-height: 1.5em;
   color: #999;
+  margin-bottom: 0px;
 }
 
 .content-container {
@@ -44,7 +46,7 @@ h4 {
 }
 
 p{
-  font-size: 2vw;
+  font-size: 1.6vw;
 }
 
 .absolute-text{

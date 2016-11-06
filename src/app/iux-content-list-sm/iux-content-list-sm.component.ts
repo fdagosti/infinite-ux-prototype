@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from "@angular/core";
 
 @Component({
   selector: 'iux-content-list-sm',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['iux-content-list-sm.component.css']
 })
 export class IUXContentListSmComponent implements OnInit {
+
+  @Input() index;
 
   constructor() { }
 
