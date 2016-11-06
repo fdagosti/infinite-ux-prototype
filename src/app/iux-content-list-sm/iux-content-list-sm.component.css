@@ -1,67 +1,57 @@
-ul.rig {
-  list-style: none;
-  font-size: 0px;
-  margin-left: -2.5%; /* should match li left margin */
+:host {
+  display: block;
+  margin-left: 20px;
+  margin-right: 20px;
 }
-ul.rig li {
-  display: inline-block;
-  padding: 3px;
 
-  background: #fff;
-  font-size: 16px;
-  font-size: 1rem;
-  vertical-align: top;
-  box-shadow: 0 0 5px #ddd;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-ul.rig li img {
+img {
   max-width: 100%;
   height: auto;
 }
-ul.rig li h3 {
+
+h4 {
   margin: 0 0 5px;
 }
-ul.rig li p {
+p {
   font-size: .9em;
   line-height: 1.5em;
   color: #999;
 }
-/* class for 2 columns */
-ul.rig.columns-2 li {
-  width: 47.5%; /* this value + 2.5 should = 50% */
-}
-/* class for 3 columns */
-ul.rig.columns-3 li {
-  width: 30.83%; /* this value + 2.5 should = 33% */
-}
-/* class for 4 columns */
-ul.rig.columns-4 li {
-  width: 22.5%; /* this value + 2.5 should = 25% */
+
+.content-container {
+  font-size: 0px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
-/* class for 6 columns */
-ul.rig.columns-6 li {
-  width: 14.16%; /* this value + 2.5 should = 25% */
+.content-item{
+  padding: 3px;
+  background: #fff;
+  vertical-align: top;
+  box-shadow: 0 0 5px #ddd;
+
 }
 
-@media (max-width: 480px) {
-  ul.grid-nav li {
-    display: block;
-    margin: 0 0 5px;
-  }
-  ul.grid-nav li a {
-    display: block;
-  }
-  ul.rig {
-    margin-left: 0;
-  }
-  ul.rig li {
-    width: 100% !important; /* over-ride all li styles */
-    margin: 0 0 20px;
-  }
-}
+
 .relative{position:relative; width:600px;}
 .absolute-text{position:absolute; bottom:0; background:rgba(251,251,251,0.5); padding-left:10px; width:100%; }
 .absolute-img{width:100%; }
+
+h4 {
+  font-size: 1.4vw;
+}
+
+p{
+  font-size: 2vw;
+}
+
+.absolute-text{
+  display:none;
+}
+
+.relative:hover .absolute-text{
+  display: block;
+}
+

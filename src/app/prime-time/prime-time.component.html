@@ -1,9 +1,23 @@
-<div class="jumbotron">
-  <h1 class="display-3">Infinite UX Prime Time</h1>
-  <p class="lead">This is a simple Prime time component used to showcase an important content.</p>
-  <hr class="my-2">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-  </p>
-</div>
+<ngb-carousel>
+  <template ngbSlide>
+    <img src="http://lorempixel.com/1920/850?r=1" alt="Random first slide">
+    <div class="carousel-caption">
+      <h3>First slide label</h3>
+      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+    </div>
+  </template>
+  <template ngbSlide>
+    <img src="http://lorempixel.com/1920/850?r=2" alt="Random second slide">
+    <div class="carousel-caption">
+      <h3>Second slide label</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+  </template>
+  <template ngbSlide>
+    <img src="http://lorempixel.com/1920/850?r=3" alt="Random third slide">
+    <div class="carousel-caption">
+      <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </div>
+  </template>
+</ngb-carousel>
