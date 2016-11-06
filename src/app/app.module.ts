@@ -14,6 +14,7 @@ import {PresentationComponent} from "./presentation/presentation.component";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SpyDirective } from './spy.directive';
 import { BrowseComponent } from './browse/browse.component';
+import { PlayerComponent } from './player/player.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { BrowseComponent } from './browse/browse.component';
     HomeComponent,
     PresentationComponent,
     SpyDirective,
-    BrowseComponent
+    BrowseComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { BrowseComponent } from './browse/browse.component';
     HttpModule,
     RouterModule.forRoot([
       {path: "presentation", component: PresentationComponent},
+      {path: "video", component: PlayerComponent},
       {path: "", component: HomeComponent},
     ]),
     NgbModule.forRoot()
