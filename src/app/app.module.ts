@@ -13,6 +13,7 @@ import {HomeComponent} from "./home/home.component";
 import {PresentationComponent} from "./presentation/presentation.component";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SpyDirective } from './spy.directive';
+import { BrowseComponent } from './browse/browse.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SpyDirective } from './spy.directive';
     IUXContentListSmComponent,
     HomeComponent,
     PresentationComponent,
-    SpyDirective
+    SpyDirective,
+    BrowseComponent
   ],
   imports: [
     BrowserModule,

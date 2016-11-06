@@ -1,0 +1,23 @@
+:host{
+  font-size: 12px;
+  width: 970px;
+  display: block;
+}
+
+.col-xs-2, .col-xs-3{
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.row{
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+#first{
+  border-right-width: 2px;
+  border-right-color: black;
+  border-right-style: solid;
+  margin-right: 9px;
+
+}
