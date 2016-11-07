@@ -15,9 +15,12 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SpyDirective } from './spy.directive';
 import { BrowseComponent } from './browse/browse.component';
 import { PlayerComponent } from './player/player.component';
+import { ContentCarouselComponent, IuxSlide } from './content-carousel/content-carousel.component';
 
 @NgModule({
   declarations: [
+    ContentCarouselComponent,
+    IuxSlide,
     AppComponent,
     PrimeTimeComponent,
     IUXNavbarComponent,
