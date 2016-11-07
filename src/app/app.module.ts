@@ -11,11 +11,13 @@ import {IUXFooterComponent} from "./iux-footer/iux-footer.component";
 import {IUXContentListSmComponent} from "./iux-content-list-sm/iux-content-list-sm.component";
 import {HomeComponent} from "./home/home.component";
 import {PresentationComponent} from "./presentation/presentation.component";
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { SpyDirective } from './spy.directive';
-import { BrowseComponent } from './browse/browse.component';
-import { PlayerComponent } from './player/player.component';
-import { ContentCarouselComponent, IuxSlide } from './content-carousel/content-carousel.component';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {SpyDirective} from "./spy.directive";
+import {BrowseComponent} from "./browse/browse.component";
+import {PlayerComponent} from "./player/player.component";
+import {ContentCarouselComponent, IuxSlide} from "./content-carousel/content-carousel.component";
+import {CtapService} from "./ctap.service";
+import {StoreComponent} from "./store/store.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { ContentCarouselComponent, IuxSlide } from './content-carousel/content-c
     PresentationComponent,
     SpyDirective,
     BrowseComponent,
-    PlayerComponent
+    PlayerComponent,
+    StoreComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,9 @@ import { ContentCarouselComponent, IuxSlide } from './content-carousel/content-c
     ]),
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    CtapService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
