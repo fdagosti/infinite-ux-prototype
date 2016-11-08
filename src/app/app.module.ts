@@ -18,6 +18,8 @@ import {PlayerComponent} from "./player/player.component";
 import {ContentCarouselComponent, IuxSlide} from "./content-carousel/content-carousel.component";
 import {CtapService} from "./ctap.service";
 import {StoreComponent} from "./store/store.component";
+import { LoginComponent } from './login/login.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {StoreComponent} from "./store/store.component";
     SpyDirective,
     BrowseComponent,
     PlayerComponent,
-    StoreComponent
+    StoreComponent,
+    LoginComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
