@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from "@angular/core";
+import {CtapService} from "../ctap.service";
 
 @Component({
   selector: 'iux-content-list-sm',
@@ -8,10 +9,19 @@ import {Component, OnInit, Input} from "@angular/core";
 export class IUXContentListSmComponent implements OnInit {
 
   @Input() index;
+  @Input() category = {name:"toto",id:0};
+  private content = [];
 
-  constructor() { }
+  private errorMessage;
+
+  constructor(public ctap:CtapService) { }
 
   ngOnInit() {
+    this.ctap.getContent(this.category)
+      .subscribe(
+        content => this.content = content,
+        error => this.errorMessage = <any>error
+      );
   }
 
 }

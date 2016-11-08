@@ -1,7 +1,8 @@
-import 'rxjs/add/operator/map';
+import 'rxjs/Rx';
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs/Observable"
-import {Http, Response} from "@angular/http";
+import {Observable} from 'rxjs/Rx';
+import {Http, Response, Headers, RequestOptions, URLSearchParams} from "@angular/http";
+import {AuthenticationService} from "./authentication.service";
 
 export class Category{
 
@@ -13,18 +14,31 @@ export class CtapService {
   private ctapUrl = "https://apx.cisco.com/spvss/infinitehome/infinitetoolkit/v_sandbox_2/";
 
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private auth:AuthenticationService) { }
 
   getCategories(): Observable<any[]>{
-    return this.http.get(this.ctapUrl+"categories")
-                    .map(this.extractData)
+
+    let options = new RequestOptions({ headers: this.getHeadersWithAuth()});
+
+    return this.http.get(this.ctapUrl+"categories", options)
+                    .map(this.extractCategories)
                     .catch(this.handleError);
   }
 
-  private extractData(res: Response){
-    let body = res.json();
+  private getHeadersWithAuth(){
+    return new Headers({
+      "Authorization":"Bearer "+this.auth.getAccessToken()
+    });
+  }
 
-    return body.data || { };
+  private extractCategories(res: Response){
+    let body = res.json();
+    return body.categories || { };
+  }
+
+  private extractContent(res: Response){
+    let body = res.json();
+    return body || { };
   }
 
   private handleError (error: Response | any) {
@@ -43,6 +57,19 @@ export class CtapService {
 
   getContent(category){
 
+    let params = new URLSearchParams();
+    params.set('categoryId', category.id); // the user's search value
+    params.set('limit', "6"); // the user's search value
+
+    let options = new RequestOptions({
+      headers: this.getHeadersWithAuth(),
+      search: params
+
+    });
+
+    return this.http.get(this.ctapUrl+"agg/content/", options)
+      .map(this.extractContent)
+      .catch(this.handleError);
   }
 
   getSuggestions(keyword){

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CtapService} from "../ctap.service";
+import {AuthenticationService} from "../authentication.service";
 
 @Component({
   selector: 'iux-store',
@@ -8,9 +9,25 @@ import {CtapService} from "../ctap.service";
 })
 export class StoreComponent implements OnInit {
 
-  constructor(public ctap:CtapService) { }
+  private errorMessage;
+  private categories;
+  private currentlyLoggedIn;
 
-  ngOnInit() {
+  constructor(public ctap:CtapService, private auth:AuthenticationService) {
+    this.auth.loginStateChanged$.subscribe(login => this.updateLogStatus());
+    this.updateLogStatus();
+  }
+
+  updateLogStatus(){
+    this.currentlyLoggedIn = this.auth.isLoggedIn();
+  }
+
+  ngOnInit(){
+    this.ctap.getCategories()
+      .subscribe(
+        cats => this.categories = cats,
+        error => this.errorMessage = <any>error
+      );
 
   }
 

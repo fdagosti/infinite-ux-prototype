@@ -10,7 +10,7 @@ describe('Service: Authentication', () => {
     });
   });
 
-  it('should ...', inject([AuthenticationService], (service: AuthenticationService) => {
+  it('should store the login token on the local storage', inject([AuthenticationService], (service: AuthenticationService) => {
     expect(service).toBeTruthy();
   }));
 });

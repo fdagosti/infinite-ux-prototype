@@ -20,6 +20,7 @@ import {CtapService} from "./ctap.service";
 import {StoreComponent} from "./store/store.component";
 import { LoginComponent } from './login/login.component';
 import { SearchComponent } from './search/search.component';
+import {AuthenticationService} from "./authentication.service";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { SearchComponent } from './search/search.component';
     NgbModule.forRoot()
   ],
   providers: [
-    CtapService
+    CtapService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

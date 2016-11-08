@@ -1,3 +1,9 @@
-<iux-content-list-sm *ngFor="let item of [0,1,2,3]" [index]="item"></iux-content-list-sm>
-<iux-content-list-lg></iux-content-list-lg>
-<iux-content-list-sm *ngFor="let item of [4,5,6,7,8,9,10,11]" [index]="item"></iux-content-list-sm>
+<div *ngIf="currentlyLoggedIn">
+  <iux-content-list-sm *ngFor="let cat of categories" [category]="cat"  [index]="1"></iux-content-list-sm>
+  <iux-content-list-lg></iux-content-list-lg>
+<!--<iux-content-list-sm *ngFor="let item of [4,5,6,7,8,9,10,11]" [index]="item"></iux-content-list-sm>-->
+</div>
+<div *ngIf="!currentlyLoggedIn">
+
+  <p class="lead text-white">Please login</p>
+</div>
