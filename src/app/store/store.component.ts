@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {CtapService} from "../ctap.service";
 import {AuthenticationService} from "../authentication.service";
 
@@ -12,6 +12,7 @@ export class StoreComponent implements OnInit {
   private errorMessage;
   private categories;
   private currentlyLoggedIn;
+  @Input() category;
 
   constructor(public ctap:CtapService, private auth:AuthenticationService) {
     this.auth.loginStateChanged$.subscribe(login => this.updateLogStatus());
@@ -23,7 +24,7 @@ export class StoreComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.ctap.getCategories()
+    this.ctap.getCategories(this.category?this.category.id:"")
       .subscribe(
         cats => this.categories = cats,
         error => this.errorMessage = <any>error

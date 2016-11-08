@@ -16,11 +16,11 @@ export class CtapService {
 
   constructor(private http: Http, private auth:AuthenticationService) { }
 
-  getCategories(): Observable<any[]>{
-
+  getCategories(categoryId): Observable<any[]>{
+    if (!categoryId){categoryId="";}
     let options = new RequestOptions({ headers: this.getHeadersWithAuth()});
 
-    return this.http.get(this.ctapUrl+"categories", options)
+    return this.http.get(this.ctapUrl+"categories/"+categoryId, options)
                     .map(this.extractCategories)
                     .catch(this.handleError);
   }

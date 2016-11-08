@@ -1,7 +1,8 @@
 <div *ngIf="currentlyLoggedIn">
-  <iux-content-list-sm *ngFor="let cat of categories" [category]="cat"  [index]="1"></iux-content-list-sm>
-  <iux-content-list-lg></iux-content-list-lg>
-<!--<iux-content-list-sm *ngFor="let item of [4,5,6,7,8,9,10,11]" [index]="item"></iux-content-list-sm>-->
+  <div *ngFor="let cat of categories" >
+    <iux-content-list-sm *ngIf="cat.leaf"  [category]="cat"  [index]="1"></iux-content-list-sm>
+    <iux-store *ngIf="!cat.leaf"  [category]="cat"></iux-store>
+  </div>
 </div>
 <div *ngIf="!currentlyLoggedIn">
 

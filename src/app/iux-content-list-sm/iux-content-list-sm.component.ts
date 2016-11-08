@@ -10,7 +10,9 @@ export class IUXContentListSmComponent implements OnInit {
 
   @Input() index;
   @Input() category = {name:"toto",id:0};
-  private content = [];
+  private content;
+  private pageNum;
+  private pages;
 
   private errorMessage;
 
@@ -19,7 +21,11 @@ export class IUXContentListSmComponent implements OnInit {
   ngOnInit() {
     this.ctap.getContent(this.category)
       .subscribe(
-        content => this.content = content,
+        content => {
+          this.content = content;
+          this.pageNum = Math.ceil(this.content.total/6);
+          this.pages = Array(this.pageNum);
+        },
         error => this.errorMessage = <any>error
       );
   }
