@@ -1,4 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-  background-color: #222222;
+body, html{
+	background-color: #141414;
+	line-height: 1.5;
+	font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+	-webkit-font-smoothing: antialiased;
+	color: #fff;
+	user-select: none;
+	font-size: 1vw;
+	margin: 0;
+}
+
+h2{
+	font-size: 1.5em;
+	font-weight: bold;
 }

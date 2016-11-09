@@ -16,6 +16,9 @@ import { SpyDirective } from './spy.directive';
 import { BrowseComponent } from './browse/browse.component';
 import { PlayerComponent } from './player/player.component';
 import { ContentCarouselComponent, IuxSlide } from './content-carousel/content-carousel.component';
+import { LolomoComponent } from './lolomo/lolomo.component';
+import { LolomoCodePenComponent } from './lolomo-code-pen/lolomo-code-pen.component';
+import { Lolomo2Component } from './lolomo2/lolomo2.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { ContentCarouselComponent, IuxSlide } from './content-carousel/content-c
     PresentationComponent,
     SpyDirective,
     BrowseComponent,
-    PlayerComponent
+    PlayerComponent,
+    LolomoComponent,
+    LolomoCodePenComponent,
+    Lolomo2Component
   ],
   imports: [
     BrowserModule,

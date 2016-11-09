@@ -1,0 +1,20 @@
+CodePen<div class="contain">
+
+<h1>Pure CSS Netflix Video Carousel</h1>
+
+<div class="row">
+<div class="row__inner">
+		<div class="tile" *ngFor="let item of [1,2,3,4,5,6]">
+			<div class="tile__media">
+				<img class="tile__img" src="{{'http://lorempixel.com/229/128?r='+(index*6+item)}}" alt=""  />
+			</div>
+			<div class="tile__details">
+				<div class="tile__title">
+					Title
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
