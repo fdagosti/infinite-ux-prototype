@@ -6,6 +6,7 @@ import {AppComponent} from "./app.component";
 import {RouterModule} from "@angular/router";
 import {PrimeTimeComponent} from "./prime-time/prime-time.component";
 import {IUXNavbarComponent} from "./iux-navbar/iux-navbar.component";
+import {Lolomo2Component} from "./lolomo2/lolomo2.component";
 import {IUXContentListLgComponent} from "./iux-content-list-lg/iux-content-list-lg.component";
 import {IUXFooterComponent} from "./iux-footer/iux-footer.component";
 import {IUXContentListSmComponent} from "./iux-content-list-sm/iux-content-list-sm.component";
@@ -29,6 +30,7 @@ import {AuthenticationService} from "./authentication.service";
     AppComponent,
     PrimeTimeComponent,
     IUXNavbarComponent,
+    Lolomo2Component,
     IUXContentListLgComponent,
     IUXFooterComponent,
     IUXContentListSmComponent,
