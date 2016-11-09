@@ -11,14 +11,16 @@ import {IUXFooterComponent} from "./iux-footer/iux-footer.component";
 import {IUXContentListSmComponent} from "./iux-content-list-sm/iux-content-list-sm.component";
 import {HomeComponent} from "./home/home.component";
 import {PresentationComponent} from "./presentation/presentation.component";
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { SpyDirective } from './spy.directive';
-import { BrowseComponent } from './browse/browse.component';
-import { PlayerComponent } from './player/player.component';
-import { ContentCarouselComponent, IuxSlide } from './content-carousel/content-carousel.component';
-import { LolomoComponent } from './lolomo/lolomo.component';
-import { LolomoCodePenComponent } from './lolomo-code-pen/lolomo-code-pen.component';
-import { Lolomo2Component } from './lolomo2/lolomo2.component';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {SpyDirective} from "./spy.directive";
+import {BrowseComponent} from "./browse/browse.component";
+import {PlayerComponent} from "./player/player.component";
+import {ContentCarouselComponent, IuxSlide} from "./content-carousel/content-carousel.component";
+import {CtapService} from "./ctap.service";
+import {StoreComponent} from "./store/store.component";
+import { LoginComponent } from './login/login.component';
+import { SearchComponent } from './search/search.component';
+import {AuthenticationService} from "./authentication.service";
 
 @NgModule({
   declarations: [
@@ -35,9 +37,9 @@ import { Lolomo2Component } from './lolomo2/lolomo2.component';
     SpyDirective,
     BrowseComponent,
     PlayerComponent,
-    LolomoComponent,
-    LolomoCodePenComponent,
-    Lolomo2Component
+    StoreComponent,
+    LoginComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,10 @@ import { Lolomo2Component } from './lolomo2/lolomo2.component';
     ]),
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    CtapService,
+    AuthenticationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,7 +13,6 @@ export class IuxSlide {
    */
   @Input() id = `iux-slide-${nextId++}`;
   constructor(public tplRef: TemplateRef<any>) {
-    console.log("constructor of slide")
   }
 }
 
@@ -38,7 +37,6 @@ export class ContentCarouselComponent implements AfterContentChecked,
   @Input() activeId: string;
 
   ngAfterContentChecked() {
-    console.log("slides ",this.slides);
     let activeSlide = this._getSlideById(this.activeId);
     this.activeId = activeSlide ? activeSlide.id : (this.slides.length ? this.slides.first.id : null);
   }

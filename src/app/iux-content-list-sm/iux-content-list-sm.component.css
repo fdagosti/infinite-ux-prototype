@@ -38,7 +38,7 @@ p {
 
 
 .relative{position:relative; width:600px;}
-.absolute-text{position:absolute; bottom:0; background:rgba(251,251,251,0.5); padding-left:10px; width:100%; }
+.absolute-text{position:absolute; bottom:0; background:rgba(251,251,251,0.5); color: black; padding-left:10px; width:100%; }
 .absolute-img{width:100%; }
 
 h4 {

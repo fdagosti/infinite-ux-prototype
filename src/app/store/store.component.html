@@ -1,0 +1,10 @@
+<div *ngIf="currentlyLoggedIn">
+  <div *ngFor="let cat of categories" >
+    <iux-content-list-sm *ngIf="cat.leaf"  [category]="cat"  [index]="1"></iux-content-list-sm>
+    <iux-store *ngIf="!cat.leaf"  [category]="cat"></iux-store>
+  </div>
+</div>
+<div *ngIf="!currentlyLoggedIn">
+
+  <p class="lead text-white">Please login</p>
+</div>

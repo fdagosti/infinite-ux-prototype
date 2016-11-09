@@ -6,8 +6,8 @@
       <ul class="dropdown-menu" role="menu">
         <li>
           <iux-browse ></iux-browse>
-          </li>
-        </ul>
+        </li>
+      </ul>
 
 
     </li>
@@ -17,16 +17,14 @@
     <li class="nav-item" routerLinkActive="active">
       <a class="nav-link" href="#" routerLink="/presentation" >Docs<span class="sr-only">(current)</span></a>
     </li>
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" href="#" routerLink="/video" >Player<span class="sr-only">(current)</span></a>
+    <li class="nav-item dropdown float-xs-right">
+      <iux-login></iux-login>
     </li>
   </ul>
 
-
-  <form class="form-inline float-xs-right">
-    <input class="form-control" type="text" placeholder="Search">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-  </form>
+  <div [hidden]="!currentlyLoggedIn" class="form-inline float-xs-right">
+    <iux-search></iux-search>
+  </div>
 
 
 
