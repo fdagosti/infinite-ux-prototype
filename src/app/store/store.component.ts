@@ -26,7 +26,7 @@ export class StoreComponent implements OnInit {
     }
   }
 
-ngOnInit(){
+  ngOnInit(){
     this.updateLogStatus();
   }
 

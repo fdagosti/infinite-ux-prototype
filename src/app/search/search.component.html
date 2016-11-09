@@ -1,4 +1,5 @@
-<form class="form-group">
-  <input class="form-control" type="text" placeholder="Search">
-  <button class="btn btn-outline-success" type="submit">Search</button>
-</form>
+<div class="form-group" [class.has-danger]="searchFailed">
+  <span *ngIf="searching" class="text-white">searching...  </span>
+  <input type="text" class="form-control" [(ngModel)]="model" [inputFormatter]="format" [resultFormatter]="format" [ngbTypeahead]="search" placeholder="IVP Search" />
+  <div class="form-control-feedback" *ngIf="searchFailed">No Results.</div>
+</div>

@@ -22,7 +22,7 @@
     </li>
   </ul>
 
-  <div class="form-inline float-xs-right">
+  <div [hidden]="!currentlyLoggedIn" class="form-inline float-xs-right">
     <iux-search></iux-search>
   </div>
 

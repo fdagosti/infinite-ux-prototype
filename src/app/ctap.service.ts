@@ -42,6 +42,7 @@ export class CtapService {
   }
 
   private handleError (error: Response | any) {
+    console.log("ERROR ",error);
     // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {
@@ -73,7 +74,28 @@ export class CtapService {
   }
 
   getSuggestions(keyword){
+    if (keyword == ""){
+      return Observable.of([]);
+    }
 
+    let params = new URLSearchParams();
+    params.set('q', keyword); // the user's search value
+    params.set('limit', "10"); // the user's search value
+
+    let options = new RequestOptions({
+      headers: this.getHeadersWithAuth(),
+      search: params
+
+    });
+
+
+    return this.http.get(this.ctapUrl+"keywords/suggest/", options)
+      .map((res:Response) =>{
+        let body = res.json();
+        return body.suggestions || [];
+    })
+      .catch(this.handleError);
   }
+
 
 }
