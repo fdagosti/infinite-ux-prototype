@@ -22,6 +22,7 @@ import {StoreComponent} from "./store/store.component";
 import { LoginComponent } from './login/login.component';
 import { SearchComponent } from './search/search.component';
 import {AuthenticationService} from "./authentication.service";
+import { ContentPageComponent } from './content-page/content-page.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {AuthenticationService} from "./authentication.service";
     PlayerComponent,
     StoreComponent,
     LoginComponent,
-    SearchComponent
+    SearchComponent,
+    ContentPageComponent
   ],
   imports: [
     BrowserModule,

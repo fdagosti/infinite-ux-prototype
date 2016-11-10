@@ -25,6 +25,9 @@ export class IUXContentListSmComponent implements OnInit {
           this.content = content;
           this.pageNum = Math.ceil(this.content.total/6);
           this.pages = Array(this.pageNum);
+          for (let i = 0; i < this.pages.length;i++){
+            this.pages[i] = i*6;
+          }
         },
         error => this.errorMessage = <any>error
       );
