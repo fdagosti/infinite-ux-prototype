@@ -1,59 +1,21 @@
-body, html{
-  padding: 0 10px;
-  margin: 0;
-  background: #0E0F11;
-  color: #ecf0f1;
-  font-family: 'Open Sans', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-}
-
 * { 
   box-sizing: border-box ;
 }
 
-h1, p{
-  text-align: center;
-}
-
-p{
-  width: 100%;
-  max-width: 500px;
-  margin: auto;
-}
-
-a:link,
-a:hover,
-a:active,
-a:visited{
-  transition: color 150ms;
-  color: #95a5a6;
-  text-decoration: none;
-}
-
-a:hover{
- color: #7f8c8d;
- text-decoration: underline;
-}
-
 .contain{
   width: 100%;
+  overflow: hidden;
 }
 
 .row{ 
-  overflow: scroll;
   width: 100%
 }
 
-.row__inner
-{ transition: 450ms transform;
- font-size: 0;
+.row__inner{
+ transition: 400ms transform;
+ transition-timing-function: cubic-bezier(0.5,0,0.1,1);
  white-space: nowrap;
  margin: 70px 0;
- padding-bottom: 10px;
 }
 
 .tile{ 
@@ -61,17 +23,15 @@ a:hover{
   display: inline-block;
   width: 250px;
   height: 140px;
-  margin-right: 10px;
-  font-size: 20px;
   cursor: pointer;
-  transition: 450ms all;
+  transition: 400ms all;
+  transition-timing-function: cubic-bezier(0.5,0,0.1,1);
   transform-origin: center left;
 }
 
 .tile__img{
   width: 250px;
   height: 140px;
-  object-fit: cover;
 }
 
 .tile__details{
@@ -83,7 +43,8 @@ a:hover{
   font-size: 10px;
   opacity: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-  transition: 450ms opacity;
+  transition: 400ms opacity;
+  transition-timing-function: cubic-bezier(0.5,0,0.1,1);
 }
 
 .tile__details:after,.tile__details:before{
@@ -106,8 +67,6 @@ a:hover{
   background: rgba(0,0,0,0.5);
   z-index: 1;
 }
-
-
 
 .tile__details:before{
   content: '▶';
@@ -136,6 +95,7 @@ a:hover{
 First, move the whole row towards the left*/
 .row__inner:hover{
   transform: translate3d(-125px, 0, 0);
+  /*transition-delay: .3s;*/
 }
 
 .row__inner:hover .tile{
@@ -147,11 +107,12 @@ First, move the whole row towards the left*/
 .row__inner:hover .tile:hover {
   transform: scale(2);
   opacity: 1;
+  /*transition-delay: .3s;*/
 }
 
 /*And finally move all tiles right of the current tile to the right,
 o its flush against the hovered tile*/
 .tile:hover ~ .tile{
   transform: translate3d(250px, 0, 0);
+  /*transition-delay: .3s;*/
 }
-
