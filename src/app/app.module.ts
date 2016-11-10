@@ -22,6 +22,8 @@ import {StoreComponent} from "./store/store.component";
 import { LoginComponent } from './login/login.component';
 import { SearchComponent } from './search/search.component';
 import {AuthenticationService} from "./authentication.service";
+import { PeterPlaygroundComponent } from './peter-playground/peter-playground.component';
+import { DagoPlaygroundComponent } from './dago-playground/dago-playground.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import {AuthenticationService} from "./authentication.service";
     PlayerComponent,
     StoreComponent,
     LoginComponent,
-    SearchComponent
+    SearchComponent,
+    PeterPlaygroundComponent,
+    DagoPlaygroundComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +54,8 @@ import {AuthenticationService} from "./authentication.service";
     RouterModule.forRoot([
       {path: "presentation", component: PresentationComponent},
       {path: "video", component: PlayerComponent},
+      {path: "peter", component: PeterPlaygroundComponent},
+      {path: "dago", component: DagoPlaygroundComponent},
       {path: "", component: HomeComponent},
     ]),
     NgbModule.forRoot()
