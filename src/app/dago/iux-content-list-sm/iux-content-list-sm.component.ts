@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {CtapService} from "../ctap.service";
+import {CtapService} from "../../ctap.service";
 
 @Component({
   selector: 'iux-content-list-sm',
