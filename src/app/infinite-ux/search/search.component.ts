@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
+import "rxjs/add/operator/debounceTime";
 import {CtapService} from "../../ctap.service";
 
 @Component({

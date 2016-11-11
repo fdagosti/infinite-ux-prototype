@@ -56,11 +56,12 @@ export class CtapService {
     return Observable.throw(errMsg);
   }
 
-  getContent(category){
+  getContent(category, offset?){
 
     let params = new URLSearchParams();
     params.set('categoryId', category.id); // the user's search value
     params.set('limit', "6"); // the user's search value
+    if (offset) params.set('offset', offset); // the user's search value
 
     let options = new RequestOptions({
       headers: this.getHeadersWithAuth(),

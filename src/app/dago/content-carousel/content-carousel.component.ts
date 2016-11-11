@@ -1,20 +1,6 @@
-import { Component, Directive, Input, TemplateRef, ContentChildren, QueryList, OnInit, AfterContentChecked, OnDestroy } from '@angular/core';
-
-let nextId = 0;
-
-/**
- * Represents an individual slide to be used within a carousel.
- */
-@Directive({selector: 'template[iuxSlide]'})
-export class IuxSlide {
-  /**
-   * Unique slide identifier. Must be unique for the entire document for proper accessibility support.
-   * Will be auto-generated if not provided.
-   */
-  @Input() id = `iux-slide-${nextId++}`;
-  constructor(public tplRef: TemplateRef<any>) {
-  }
-}
+import {Component, Input, OnInit, AfterContentChecked, OnDestroy, QueryList, ViewChildren} from "@angular/core";
+import {CtapService} from "../../ctap.service";
+import {ContentRowComponent} from "../content-row/content-row.component";
 
 
 @Component({
@@ -26,33 +12,56 @@ export class IuxSlide {
   }
 })
 export class ContentCarouselComponent implements AfterContentChecked,
-  OnDestroy, OnInit {
-  @ContentChildren(IuxSlide) slides: QueryList<IuxSlide>;
+  OnDestroy, OnInit{
 
+
+  @Input() category;
+  private content;
+  private pageNum;
+  private pages;
+
+  private errorMessage;
+
+
+  @ViewChildren(ContentRowComponent) rows : QueryList<ContentRowComponent>;
 
   wrap = true;
   /**
    * The active slide id.
    */
-  @Input() activeId: string;
+  activeId: number = 0;
 
   ngAfterContentChecked() {
-    let activeSlide = this._getSlideById(this.activeId);
-    this.activeId = activeSlide ? activeSlide.id : (this.slides.length ? this.slides.first.id : null);
   }
+
+
 
   ngOnDestroy(): void {
   }
 
-  constructor() { }
+  constructor(public ctap:CtapService) {
+  }
 
   ngOnInit() {
+    this.ctap.getContent(this.category)
+      .subscribe(
+        content => {
+          this.content = content;
+          this.pageNum = Math.ceil(this.content.total/6);
+          this.pages = Array(this.pageNum);
+          for (let i = 0; i < this.pages.length;i++){
+            this.pages[i] = i*6;
+          }
+        },
+        error => this.errorMessage = <any>error
+      );
   }
 
   /**
    * Navigate to the next slide.
    */
   prev() {
+
     this.cycleToPrev();
   }
 
@@ -60,6 +69,7 @@ export class ContentCarouselComponent implements AfterContentChecked,
    * Navigate to the next slide.
    */
   next() {
+
     this.cycleToNext();
   }
 
@@ -67,11 +77,11 @@ export class ContentCarouselComponent implements AfterContentChecked,
 
   cycleToPrev() { this.cycleToSelected(this._getPrevSlide(this.activeId)); }
 
-  cycleToSelected(slideIdx: string) {
-    let selectedSlide = this._getSlideById(slideIdx);
-    if (selectedSlide) {
-      this.activeId = selectedSlide.id;
-    }
+  cycleToSelected(slideIdx: number) {
+
+      this.activeId = slideIdx;
+    let rows = this.rows.toArray();
+    rows[this.activeId].fetchContent();
   }
 
   keyPrev() {
@@ -82,33 +92,24 @@ export class ContentCarouselComponent implements AfterContentChecked,
     this.next();
   }
 
-  private _getNextSlide(currentSlideId: string): string {
-    const slideArr = this.slides.toArray();
-    const currentSlideIdx = this._getSlideIdxById(currentSlideId);
-    const isLastSlide = currentSlideIdx === slideArr.length - 1;
+  private _getNextSlide(currentSlideId: number): number {
+    const isLastSlide = currentSlideId === this.pages.length - 1;
 
-    return isLastSlide ? (this.wrap ? slideArr[0].id : slideArr[slideArr.length - 1].id) :
-      slideArr[currentSlideIdx + 1].id;
+    return isLastSlide ? (this.wrap ? 0 : this.pages.length - 1) :
+      currentSlideId + 1;
   }
 
-  private _getSlideIdxById(slideId: string): number {
-    return this.slides.toArray().indexOf(this._getSlideById(slideId));
-  }
 
-  private _getPrevSlide(currentSlideId: string): string {
-    const slideArr = this.slides.toArray();
-    const currentSlideIdx = this._getSlideIdxById(currentSlideId);
-    const isFirstSlide = currentSlideIdx === 0;
+  private _getPrevSlide(currentSlideId: number): number {
+    const isFirstSlide = currentSlideId === 0;
 
-    return isFirstSlide ? (this.wrap ? slideArr[slideArr.length - 1].id : slideArr[0].id) :
-      slideArr[currentSlideIdx - 1].id;
+    return isFirstSlide ? (this.wrap ? this.pages.length - 1 : 0) :
+
+    currentSlideId - 1;
   }
 
 
 
-  private _getSlideById(slideId: string): IuxSlide {
-    let slideWithId: IuxSlide[] = this.slides.filter(slide => slide.id === slideId);
-    return slideWithId.length ? slideWithId[0] : null;
-  }
+
 
 }

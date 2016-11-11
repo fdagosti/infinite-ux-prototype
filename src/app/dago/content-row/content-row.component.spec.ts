@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { IUXContentListLgComponent } from './iux-content-list-lg.component';
+import { ContentRowComponent } from './content-row.component';
 
-describe('Component: IUXContentListLg', () => {
+describe('Component: ContentRow', () => {
   it('should create an instance', () => {
-    let component = new IUXContentListLgComponent();
+    let component = new ContentRowComponent();
     expect(component).toBeTruthy();
   });
 });

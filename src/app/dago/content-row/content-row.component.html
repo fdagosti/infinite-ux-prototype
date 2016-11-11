@@ -1,0 +1,8 @@
+<div class="content-container">
+  <div class="relative content-item" *ngFor="let singleContent of content.content">
+    <img src="{{singleContent.content.media[0].url}}" alt="" class="absolute-img">
+    <div class="absolute-text">
+      <h4>{{singleContent.content.title}}</h4>
+    </div>
+  </div>
+</div>
