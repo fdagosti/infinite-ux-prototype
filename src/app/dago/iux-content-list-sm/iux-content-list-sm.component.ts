@@ -8,8 +8,7 @@ import {CtapService} from "../../ctap.service";
 })
 export class IUXContentListSmComponent implements OnInit {
 
-  @Input() index;
-  @Input() category = {name:"toto",id:0};
+  @Input() category;
 
 
   constructor() { }

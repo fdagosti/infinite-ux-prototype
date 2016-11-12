@@ -14,10 +14,13 @@ export class ContentRowComponent implements OnInit {
   @Input() private content;
   @Input() private category;
   @Input() private offset;
+  @Input() private rowSize;
 
   private errorMessage;
+  private dummyArray;
 
   ngOnInit() {
+    this.dummyArray = new Array(this.rowSize);
   }
 
   fetchContent(){

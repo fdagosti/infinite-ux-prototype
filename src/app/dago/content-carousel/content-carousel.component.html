@@ -7,6 +7,7 @@
     class="carousel-item"
     [category]="category"
     [offset]="page"
+    [rowSize]="numberOfItemsPerPage"
     [class.active]="i === activeId"
     [content]="page==0?content:{content:[]}">
   </iux-content-row>

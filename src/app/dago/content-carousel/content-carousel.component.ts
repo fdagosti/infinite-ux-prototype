@@ -22,6 +22,8 @@ export class ContentCarouselComponent implements AfterContentChecked,
 
   private errorMessage;
 
+  @Input() private numberOfItemsPerPage = 6;
+
 
   @ViewChildren(ContentRowComponent) rows : QueryList<ContentRowComponent>;
 
@@ -47,14 +49,18 @@ export class ContentCarouselComponent implements AfterContentChecked,
       .subscribe(
         content => {
           this.content = content;
-          this.pageNum = Math.ceil(this.content.total/6);
-          this.pages = Array(this.pageNum);
-          for (let i = 0; i < this.pages.length;i++){
-            this.pages[i] = i*6;
-          }
+          this.computePageSize();
         },
         error => this.errorMessage = <any>error
       );
+  }
+
+  computePageSize(){
+    this.pageNum = Math.ceil(this.content.total/this.numberOfItemsPerPage);
+    this.pages = Array(this.pageNum);
+    for (let i = 0; i < this.pages.length;i++){
+      this.pages[i] = i*this.numberOfItemsPerPage;
+    }
   }
 
   /**
