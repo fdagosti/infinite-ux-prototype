@@ -1,15 +1,11 @@
-:host {
-  display: block;
-  margin-left: 20px;
-  margin-right: 20px;
-}
+
 
 img {
   max-width: 100%;
   height: auto;
-  margin: 0 0 10px;
 }
-h3 {
+
+h4 {
   margin: 0 0 5px;
 }
 p {
@@ -21,6 +17,7 @@ p {
 
 .content-container {
   font-size: 0px;
+
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -34,8 +31,13 @@ p {
 
 }
 
-.absolute-text,h3 {
-  font-size: 1.5vw;
+
+.relative{position:relative; width:600px;}
+.absolute-text{position:absolute; bottom:0; background:rgba(251,251,251,0.5); color: black; padding-left:10px; width:100%; }
+.absolute-img{width:100%; }
+
+h4 {
+  font-size: 1.4vw;
 }
 
 p{
@@ -50,6 +52,3 @@ p{
   display: block;
 }
 
-.relative{position:relative; width:600px;}
-.absolute-text{position:absolute; bottom:0; background:rgba(251,251,251,0.5); padding:10px 20px; width:100%; }
-.absolute-img{width:100%; }

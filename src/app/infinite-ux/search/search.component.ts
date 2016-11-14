@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
-import {CtapService} from "../ctap.service";
+import "rxjs/add/operator/debounceTime";
+import {CtapService} from "../../ctap.service";
 
 @Component({
   selector: 'iux-search',

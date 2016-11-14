@@ -1,10 +1,17 @@
 <ol class="iux-carousel-indicators">
-  <li *ngFor="let slide of slides" [id]="slide.id" [class.active]="slide.id === activeId" (click)="cycleToSelected(slide.id)"></li>
+  <li *ngFor="let page of pages; let i = index;" [id]="i" [class.active]="i === activeId" (click)="cycleToSelected(i)"></li>
 </ol>
 <div class="carousel-inner" role="listbox">
-  <div *ngFor="let slide of slides" class="carousel-item" [class.active]="slide.id === activeId">
-    <template [ngTemplateOutlet]="slide.tplRef"></template>
-  </div>
+  <iux-content-row
+    *ngFor="let page of pages; let i = index;"
+    class="carousel-item"
+    [category]="category"
+    [offset]="page"
+    [rowSize]="numberOfItemsPerPage"
+    [class.active]="i === activeId"
+    [content]="page==0?content:{content:[]}">
+  </iux-content-row>
+
 </div>
 <a class="left carousel-control" role="button" (click)="cycleToPrev()">
   <span class="icon-prev" aria-hidden="true"></span>
