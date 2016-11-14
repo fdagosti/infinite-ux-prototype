@@ -1,4 +1,4 @@
-import { Component, OnInit, Input  } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
 	selector: 'iux-lolomo2',
@@ -10,7 +10,6 @@ export class Lolomo2Component implements OnInit {
 
 	@Input() index;
 	constructor() { }
-
 	ngOnInit() {
 	}
 
