@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import {AuthenticationService} from "../../authentication.service";
+import {AuthenticationService} from "../../authentication.service";
 
 @Component({
 	selector: 'iux-navbar-peter',
@@ -9,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarPeterComponent implements OnInit {
 	private currentlyLoggedIn;
 
-	// constructor(private auth: AuthenticationService) { }
+	constructor(private auth: AuthenticationService) { }
 
 	ngOnInit() {
-		// this.auth.loginStateChanged$.subscribe(login => this.currentlyLoggedIn = this.auth.isLoggedIn());
-		// this.currentlyLoggedIn = this.auth.isLoggedIn();
+		this.auth.loginStateChanged$.subscribe(login => this.currentlyLoggedIn = this.auth.isLoggedIn());
+		this.currentlyLoggedIn = this.auth.isLoggedIn();
 	}
 }

@@ -27,7 +27,10 @@ import {BrowseComponent} from "./browse/browse.component";
   ],
   exports: [
     IUXNavbarComponent,
-    IUXFooterComponent
+    IUXFooterComponent,
+    SearchComponent,
+    BrowseComponent,
+    LoginComponent
   ]
 })
 export class InfiniteUxModule { }
