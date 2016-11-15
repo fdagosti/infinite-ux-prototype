@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body, html{
 	background-color: #141414;
+	/*background-color: #f00;*/
 	line-height: 1.5;
 	font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -10,7 +11,13 @@ body, html{
 	margin: 0;
 }
 
+
 h2{
+	display: block;
 	font-size: 1.5em;
+	-webkit-margin-before: 0.83em;
+	-webkit-margin-after: 0.83em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
 	font-weight: bold;
 }
