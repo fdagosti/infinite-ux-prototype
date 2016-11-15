@@ -30,7 +30,8 @@ import {BrowseComponent} from "./browse/browse.component";
     IUXFooterComponent,
     SearchComponent,
     BrowseComponent,
-    LoginComponent
+    LoginComponent,
+    RouterModule,
   ]
 })
 export class InfiniteUxModule { }

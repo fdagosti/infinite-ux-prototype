@@ -5,7 +5,7 @@
     <!--<li><a href="#" (click)="logout()">Logout</a></li>-->
   <!--</ul>-->
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-    <a class="dropdown-item" href="#" (click)="logout()">Logout</a>
+    <a class="dropdown-item" routerLink="./" (click)="logout()">Logout</a>
   </div>
 </div>
 
@@ -15,8 +15,9 @@
   <li class="dropdown-item" id="login-form">
 
       <h3>Log In </h3>
-      <small>Or use <a href="#" (click)="submitWithDefaultCredentials()">default credentials</a></small>
-      <form (submit)="submit()">
+      <small>Or use <a routerLink="./"  (click)="submitWithDefaultCredentials()">default credentials</a></small>
+
+    <form (submit)="submit()">
         <div class="form-group">
           <label for="clientid">Client Id</label>
           <input type="text" class="form-control" id="clientid" required>
