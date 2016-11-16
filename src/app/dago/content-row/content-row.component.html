@@ -1,14 +1,9 @@
 <div class="content-container">
 
   <div class="relative content-item" *ngFor="let toto of dummyArray;let i = index">
-    <div *ngIf="content.content[i]">
-      <img src="{{content.content[i].content.media[0].url}}" alt="" class="absolute-img">
-      <div class="absolute-text">
+      <img [src]="getContentImage(i)" alt="" class="absolute-img">
+      <div *ngIf="content.content[i]" class="absolute-text">
         <h4>{{content.content[i].content.title}}</h4>
       </div>
-    </div>
-    <div *ngIf="!content.content[i]">
-      <img src="http://placehold.it/255x144" alt="" class="absolute-img">
-    </div>
   </div>
 </div>

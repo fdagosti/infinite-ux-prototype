@@ -23,6 +23,14 @@ export class ContentRowComponent implements OnInit {
     this.dummyArray = new Array(this.rowSize);
   }
 
+  getContentImage(index){
+    if (this.content && this.content.content[index]){
+      return this.content.content[index].content.media[0].url;
+    }else{
+      return "http://placehold.it/255x144";
+    }
+  }
+
   fetchContent(){
 
     if (this.content.content.length >0){
