@@ -26,7 +26,7 @@
 
 }
 
-.input, .feedback{
+.input {
 	color: #fff;
 	display: inline-block;
 	background: 0 0;
@@ -36,12 +36,23 @@
 	box-sizing: border-box;
 	padding: 7px 14px 7px 7px;
 	font-size: 14px;
-	width: 212px;
+	width: auto;
 	outline: 0;
 }
 
+.feedback, .searching{
+	color: #fff;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 10px;
+	width: auto;
+	margin-right: 4px;
+	vertical-align: middle;
+}
+
 .searchInput input:focus {
-	outline: 0
+	outline: 0;
+	    box-shadow:none;
 }
 .searchInput input::-webkit-input-placeholder {
 	color: #999;
