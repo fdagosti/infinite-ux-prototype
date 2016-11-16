@@ -5,7 +5,7 @@
 
 			<input type="text" class="form-control sear input" [(ngModel)]="model" [inputFormatter]="format" [resultFormatter]="format" [ngbTypeahead]="search" placeholder="Titles, persons, genres" />
 			<span *ngIf="searching" class="text-white searching">searching...</span>
-			<div class="form-control-feedback feedback" *ngIf="searchFailed">No Results.</div>
+			<div class="form-control-feedback feedback" *ngIf="searchFailed">No Results</div>
 		</div>
 		
 	</div>
