@@ -1,0 +1,69 @@
+.searchBox{
+	display: inline-block;
+	vertical-align: middle;
+	/* padding-left: 4px; */
+}
+
+.icon-search {
+	/* font-size: 12px; */
+	font-weight: 700;
+	margin-right: 10px;
+}
+.searchInput{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-moz-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	background: rgba(0,0,0,.75);
+	border: 1px solid rgba(255,255,255,.85);
+	padding-left: 4px;
+
+}
+
+.input, .feedback{
+	color: #fff;
+	display: inline-block;
+	background: 0 0;
+	border: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 7px 14px 7px 7px;
+	font-size: 14px;
+	width: 212px;
+	outline: 0;
+}
+
+.searchInput input:focus {
+	outline: 0
+}
+.searchInput input::-webkit-input-placeholder {
+	color: #999;
+	font-weight: 400;
+	font-size: 14px;
+	opacity: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale
+}
+.searchInput input::-moz-placeholder {
+	color: #999;
+	font-weight: 400;
+	font-size: 14px;
+	opacity: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale
+}
+.searchInput input:-ms-input-placeholder {
+	color: #999;
+	font-weight: 400;
+	font-size: 14px;
+	opacity: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale
+}

@@ -1,5 +1,13 @@
 <div class="form-group" [class.has-danger]="searchFailed">
-  <span *ngIf="searching" class="text-white">searching...  </span>
-  <input type="text" class="form-control" [(ngModel)]="model" [inputFormatter]="format" [resultFormatter]="format" [ngbTypeahead]="search" placeholder="IVP Search" />
-  <div class="form-control-feedback" *ngIf="searchFailed">No Results.</div>
+	<div class="searchBox">
+		<div class="searchInput">
+			<span class="fa fa-search icon-search"></span>
+
+			<input type="text" class="form-control sear input" [(ngModel)]="model" [inputFormatter]="format" [resultFormatter]="format" [ngbTypeahead]="search" placeholder="Titles, persons, genres" />
+			<span *ngIf="searching" class="text-white">searching...</span>
+			<div class="form-control-feedback feedback" *ngIf="searchFailed">No Results.</div>
+		</div>
+		
+	</div>
+	
 </div>
