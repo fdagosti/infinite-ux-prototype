@@ -13,6 +13,84 @@ body{
 	margin: 0;
 }
 
+.splash-loading-progress{
+	background-image: url(./assets/site-spinner.png);
+	width: 6.942em;
+	height: 6.942em;
+	background-size: 100%;
+	animation: load_spinner .9s linear infinite;
+	left: 50%;
+	top: 50%;
+	position: absolute;
+}
+
+@-webkit-keyframes load_spinner_webkit {
+	0% {
+		-webkit-transform: rotateZ(0)
+	}
+	50% {
+		-webkit-transform: rotateZ(180deg)
+	}
+	100% {
+		-webkit-transform: rotateZ(360deg)
+	}
+}
+@-webkit-keyframes load_spinner {
+	0% {
+		-webkit-transform: rotateZ(0);
+		transform: rotateZ(0)
+	}
+	50% {
+		-webkit-transform: rotateZ(180deg);
+		transform: rotateZ(180deg)
+	}
+	100% {
+		-webkit-transform: rotateZ(360deg);
+		transform: rotateZ(360deg)
+	}
+}
+@-moz-keyframes load_spinner {
+	0% {
+		-moz-transform: rotateZ(0);
+		transform: rotateZ(0)
+	}
+	50% {
+		-moz-transform: rotateZ(180deg);
+		transform: rotateZ(180deg)
+	}
+	100% {
+		-moz-transform: rotateZ(360deg);
+		transform: rotateZ(360deg)
+	}
+}
+@-o-keyframes load_spinner {
+	0% {
+		transform: rotateZ(0)
+	}
+	50% {
+		transform: rotateZ(180deg)
+	}
+	100% {
+		transform: rotateZ(360deg)
+	}
+}
+@keyframes load_spinner {
+	0% {
+		-webkit-transform: rotateZ(0);
+		-moz-transform: rotateZ(0);
+		transform: rotateZ(0)
+	}
+	50% {
+		-webkit-transform: rotateZ(180deg);
+		-moz-transform: rotateZ(180deg);
+		transform: rotateZ(180deg)
+	}
+	100% {
+		-webkit-transform: rotateZ(360deg);
+		-moz-transform: rotateZ(360deg);
+		transform: rotateZ(360deg)
+	}
+}
 
 h2{
 	display: block;
@@ -41,5 +119,5 @@ h2{
 }
 
 .dropdown-item:hover {
-background-color: rgba(0,0,0,0) ;
+	background-color: rgba(0,0,0,0) ;
 }
