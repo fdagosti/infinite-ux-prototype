@@ -2,6 +2,25 @@
   font-size: 12px;
   width: 970px;
   display: block;
+  /* top: 71px;
+  background-color: rgba(0,0,0,.9);
+  border-radius: 0;
+  color: #fff; */
+  line-height: 21px;
+}
+.dropdown-menu{
+  top: 71px;
+  background-color: rgba(0,0,0,.9);
+  border-radius: 0;
+}
+
+.topbar {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #e5e5e5;
 }
 
 .col-xs-2, .col-xs-3{
@@ -15,9 +34,10 @@
 }
 
 #first{
-  border-right-width: 2px;
-  border-right-color: black;
+  font-weight: 700;
+  border-right-width: 1px;
+  border-right-color: #4d4d4d;
   border-right-style: solid;
-  margin-right: 9px;
+  margin-right: 5px;
 
 }
