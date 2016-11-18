@@ -5,6 +5,8 @@ import {PeterPlaygroundComponent} from "./peter-playground/peter-playground.comp
 import {InfiniteUxModule} from "../infinite-ux/infinite-ux.module";
 import { NavbarPeterComponent } from './navbar-peter/navbar-peter.component';
 import { BillboardRowComponent } from './billboard-row/billboard-row.component';
+import { SignupBasicHeaderComponent } from './signup-basic-header/signup-basic-header.component';
+import { HomeWrapperComponent } from './home-wrapper/home-wrapper.component';
 
 @NgModule({
 	imports: [
@@ -16,6 +18,8 @@ import { BillboardRowComponent } from './billboard-row/billboard-row.component';
 	Lolomo2Component,
 	NavbarPeterComponent,
 	BillboardRowComponent,
+	SignupBasicHeaderComponent,
+	HomeWrapperComponent,
 	]
 })
 export class PeterModule { }
