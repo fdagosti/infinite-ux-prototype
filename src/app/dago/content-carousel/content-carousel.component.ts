@@ -17,8 +17,8 @@ export class ContentCarouselComponent implements AfterContentChecked,
 
   @Input() category;
   private content;
-  private pageNum;
-  private pages;
+  private pageNum=0;
+  private pages=Array(1);
 
   private errorMessage;
 
