@@ -11,6 +11,7 @@ import {InfiniteUxModule} from "../infinite-ux/infinite-ux.module";
 import { ContentRowComponent } from './content-row/content-row.component';
 import {IUXContentListSmComponent} from "./iux-content-list-sm/iux-content-list-sm.component";
 import { FullContentComponent } from './full-content/full-content.component';
+import {PeterModule} from "../peter/peter.module";
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { FullContentComponent } from './full-content/full-content.component';
     FormsModule,
     HttpModule,
     InfiniteUxModule,
+    PeterModule,
     NgbModule.forRoot()
   ],
   declarations: [

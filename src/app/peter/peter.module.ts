@@ -20,6 +20,10 @@ import { HomeWrapperComponent } from './home-wrapper/home-wrapper.component';
 	BillboardRowComponent,
 	SignupBasicHeaderComponent,
 	HomeWrapperComponent,
-	]
+	],
+  exports: [
+    NavbarPeterComponent,
+    BillboardRowComponent
+  ]
 })
 export class PeterModule { }
