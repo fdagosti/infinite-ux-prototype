@@ -10,6 +10,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {InfiniteUxModule} from "../infinite-ux/infinite-ux.module";
 import { ContentRowComponent } from './content-row/content-row.component';
 import {IUXContentListSmComponent} from "./iux-content-list-sm/iux-content-list-sm.component";
+import { FullContentComponent } from './full-content/full-content.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {IUXContentListSmComponent} from "./iux-content-list-sm/iux-content-list-
     SpyDirective,
     DagoPlaygroundComponent,
     ContentRowComponent,
-    IUXContentListSmComponent
+    IUXContentListSmComponent,
+    FullContentComponent
   ],
   exports: [
     PrimeTimeComponent,

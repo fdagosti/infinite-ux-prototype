@@ -13,6 +13,7 @@ import {DagoPlaygroundComponent} from "./dago/dago-playground/dago-playground.co
 import {DagoModule} from "./dago/dago.module";
 import {PeterModule} from "./peter/peter.module";
 import {InfiniteUxModule} from "./infinite-ux/infinite-ux.module";
+import {FullContentComponent} from "./dago/full-content/full-content.component";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {InfiniteUxModule} from "./infinite-ux/infinite-ux.module";
     BrowserModule,
     RouterModule.forRoot([
       {path: "presentation", component: PresentationComponent},
+      {path: "full", component: FullContentComponent},
       {path: "video", component: PlayerComponent},
       {path: "peter", component: PeterPlaygroundComponent},
       {path: "dago", component: DagoPlaygroundComponent},

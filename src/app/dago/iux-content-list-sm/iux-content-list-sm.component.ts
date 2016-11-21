@@ -10,11 +10,20 @@ export class IUXContentListSmComponent implements OnInit {
 
   @Input() category;
 
+  showChevron = false;
 
   constructor() { }
 
   ngOnInit() {
 
+  }
+
+  mouseOver(){
+    this.showChevron = true;
+  }
+
+  mouseOut(){
+    this.showChevron = false;
   }
 
 }
