@@ -15,7 +15,7 @@ export class ContentCarouselComponent implements AfterContentChecked,
   OnDestroy, OnInit{
 
 
-  @Input() category;
+  @Input() categoryId;
   private content;
   private pageNum=0;
   private pages=Array(1);
@@ -45,7 +45,7 @@ export class ContentCarouselComponent implements AfterContentChecked,
   }
 
   ngOnInit() {
-    this.ctap.getContent(this.category)
+    this.ctap.getContent(this.categoryId)
       .subscribe(
         content => {
           this.content = content;

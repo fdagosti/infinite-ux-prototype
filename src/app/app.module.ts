@@ -30,7 +30,7 @@ import {FullContentComponent} from "./dago/full-content/full-content.component";
     BrowserModule,
     RouterModule.forRoot([
       {path: "presentation", component: PresentationComponent},
-      {path: "full", component: FullContentComponent},
+      {path: "full/:categoryId", component: FullContentComponent},
       {path: "video", component: PlayerComponent},
       {path: "peter", component: PeterPlaygroundComponent},
       {path: "dago", component: DagoPlaygroundComponent},

@@ -5,7 +5,7 @@
   <iux-content-row
     *ngFor="let page of pages; let i = index;"
     class="carousel-item"
-    [category]="category"
+    [categoryId]="categoryId"
     [offset]="page"
     [rowSize]="numberOfItemsPerPage"
     [class.active]="i === activeId"

@@ -18,6 +18,10 @@ export class IUXContentListSmComponent implements OnInit {
 
   }
 
+  getFullContentUrl(){
+    return "full/"+this.category.id;
+  }
+
   mouseOver(){
     this.showChevron = true;
   }

@@ -12,15 +12,20 @@ export class ContentRowComponent implements OnInit {
   constructor(private ctap:CtapService) { }
 
   @Input() private content;
-  @Input() private category;
+  @Input() private categoryId;
   @Input() private offset;
   @Input() private rowSize;
+  @Input() private fetchOnInit = false;
 
   private errorMessage;
   private dummyArray;
 
   ngOnInit() {
     this.dummyArray = new Array(this.rowSize);
+    if (this.fetchOnInit){
+      this.fetchContent();
+    }
+
   }
 
   getContentImage(index){
@@ -32,12 +37,11 @@ export class ContentRowComponent implements OnInit {
   }
 
   fetchContent(){
-
     if (this.content.content.length >0){
       return;
     }
 
-    this.ctap.getContent(this.category, this.offset)
+    this.ctap.getContent(this.categoryId, this.offset)
       .subscribe(
         content => {
           this.content = content;
