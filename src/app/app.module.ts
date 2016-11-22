@@ -31,6 +31,7 @@ import {FullContentComponent} from "./dago/full-content/full-content.component";
     RouterModule.forRoot([
       {path: "presentation", component: PresentationComponent},
       {path: "full/:categoryId", component: FullContentComponent},
+      {path: "video/:contentId", component: PlayerComponent},
       {path: "video", component: PlayerComponent},
       {path: "peter", component: PeterPlaygroundComponent},
       {path: "dago", component: DagoPlaygroundComponent},

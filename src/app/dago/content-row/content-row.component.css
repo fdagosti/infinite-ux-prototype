@@ -24,16 +24,28 @@ p {
 }
 
 .content-item{
-  padding: 3px;
-  background: #fff;
+  margin-left: 3px;
+  margin-right: 3px;
+  background: #000;
   vertical-align: top;
-  box-shadow: 0 0 5px #ddd;
+  /*box-shadow: 0 0 5px #ddd;*/
 
 }
 
 
 .relative{position:relative; width:600px;}
 .absolute-text{position:absolute; bottom:0; background:rgba(251,251,251,0.5); color: black; padding-left:10px; width:100%; }
+#playIcon{
+  font-size: 5.6vw;
+  position:absolute;
+  top:10%;
+  left:35%;
+  width: 30%;
+  height: 30%;
+  color: white;
+}
+
+
 .absolute-img{width:100%; }
 
 h4 {
@@ -44,11 +56,15 @@ p{
   font-size: 1.6vw;
 }
 
-.absolute-text{
+.absolute-text, #playIcon{
   display:none;
 }
 
 .relative:hover .absolute-text{
   display: block;
+}
+
+.relative:hover #playIcon{
+  display: inline-block;
 }
 

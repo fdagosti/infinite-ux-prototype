@@ -11,6 +11,7 @@ export class IUXContentListSmComponent implements OnInit {
   @Input() category;
 
   showChevron = false;
+  multiPage = false;
 
   constructor() { }
 
@@ -20,6 +21,10 @@ export class IUXContentListSmComponent implements OnInit {
 
   getFullContentUrl(){
     return "full/"+this.category.id;
+  }
+
+  hasMultiPage(multiPage){
+    this.multiPage = multiPage;
   }
 
   mouseOver(){

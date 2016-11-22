@@ -1,9 +1,12 @@
 <div class="content-container">
 
   <div class="relative content-item" *ngFor="let toto of dummyArray;let i = index">
+    <a [routerLink]="'/video'">
       <img [src]="getContentImage(i)" alt="" class="absolute-img">
+    <i id="playIcon" class="fa fa-play-circle-o" aria-hidden="true"></i>
       <div *ngIf="content.content[i]" class="absolute-text">
         <h4>{{content.content[i].content.title}}</h4>
       </div>
+    </a>
   </div>
 </div>

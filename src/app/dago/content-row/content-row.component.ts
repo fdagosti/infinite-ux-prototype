@@ -32,7 +32,7 @@ export class ContentRowComponent implements OnInit {
     if (this.content && this.content.content[index]){
       return this.content.content[index].content.media[0].url;
     }else{
-      return "http://placehold.it/255x144";
+      return "http://placehold.it/255x144/000000/ffffff?text=+";
     }
   }
 

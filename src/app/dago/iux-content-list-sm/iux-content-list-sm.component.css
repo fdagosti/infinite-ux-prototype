@@ -26,7 +26,7 @@ img {
 h4 {
   margin: 0 0 5px;
 }
-a {
+.categoryLink {
   font-size: .9em;
   line-height: 1.5em;
   color: #999;
@@ -58,7 +58,7 @@ h4 {
   font-size: 1.4vw;
 }
 
-a{
+.categoryLink{
   font-size: 1.6vw;
 }
 

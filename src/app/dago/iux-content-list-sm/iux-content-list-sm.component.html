@@ -1,5 +1,6 @@
 <div (mouseenter)="mouseOver()" (mouseleave)="mouseOut()" >
-  <a [routerLink]="getFullContentUrl()">{{category.name}} <span *ngIf="showChevron" id="chevron" class="fa fa-chevron-right"></span></a>
-  <iux-content-carousel [categoryId]="category.id" > </iux-content-carousel>
+  <a class="categoryLink" *ngIf="multiPage" [routerLink]="getFullContentUrl()">{{category.name}} <span *ngIf="showChevron && multiPage" id="chevron" class="fa fa-chevron-right"></span></a>
+  <p class="categoryLink" *ngIf="!multiPage">{{category.name}}</p>
+  <iux-content-carousel [categoryId]="category.id" (multiPage)="hasMultiPage($event)" > </iux-content-carousel>
 </div>
 

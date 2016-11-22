@@ -1,4 +1,7 @@
-import {Component, Input, OnInit, AfterContentChecked, OnDestroy, QueryList, ViewChildren} from "@angular/core";
+import {
+  Component, Input, OnInit, AfterContentChecked, OnDestroy, QueryList, ViewChildren, Output,
+  EventEmitter
+} from "@angular/core";
 import {CtapService} from "../../ctap.service";
 import {ContentRowComponent} from "../content-row/content-row.component";
 
@@ -23,7 +26,7 @@ export class ContentCarouselComponent implements AfterContentChecked,
   private errorMessage;
 
   @Input() private numberOfItemsPerPage = 6;
-
+  @Output() multiPage = new EventEmitter();
 
   @ViewChildren(ContentRowComponent) rows : QueryList<ContentRowComponent>;
 
@@ -58,6 +61,7 @@ export class ContentCarouselComponent implements AfterContentChecked,
   computePageSize(){
     this.pageNum = Math.ceil(this.content.total/this.numberOfItemsPerPage);
     this.pages = Array(this.pageNum);
+    this.multiPage.emit(this.pageNum > 1);
     for (let i = 0; i < this.pages.length;i++){
       this.pages[i] = i*this.numberOfItemsPerPage;
     }
