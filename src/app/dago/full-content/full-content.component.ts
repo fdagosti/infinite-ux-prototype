@@ -1,8 +1,7 @@
-import {Component, OnInit, Input, ViewChildren, QueryList} from '@angular/core';
-import {ContentRowComponent} from "../content-row/content-row.component";
+import {Component, OnInit, Input} from "@angular/core";
 import {CtapService} from "../../ctap.service";
-import {Router, ActivatedRoute, Params} from "@angular/router";
-import 'rxjs/add/operator/switchMap';
+import {ActivatedRoute, Params} from "@angular/router";
+import "rxjs/add/operator/switchMap";
 
 
 @Component({
@@ -22,12 +21,9 @@ export class FullContentComponent implements OnInit {
   @Input() private numberOfItemsPerPage = 6;
 
 
-  @ViewChildren(ContentRowComponent) rows : QueryList<ContentRowComponent>;
-
   constructor(
     private ctap:CtapService,
     private route:ActivatedRoute,
-    private router:Router
   ) { }
 
 
@@ -35,10 +31,8 @@ export class FullContentComponent implements OnInit {
   ngOnInit() {
 
     this.route.params
-      .switchMap((params: Params) => {
-      this.categoryId = params['categoryId'];
-      return this.ctap.getContent(this.categoryId);
-    })
+      .do((params:Params) => this.categoryId = params['categoryId'])
+      .switchMap((params: Params) => this.ctap.getContent(this.categoryId))
       .subscribe(
         content => {
           this.content = content;
@@ -50,10 +44,8 @@ export class FullContentComponent implements OnInit {
 
   computePageSize(){
     this.pageNum = Math.ceil(this.content.total/this.numberOfItemsPerPage);
-    this.pages = Array(this.pageNum);
-    for (let i = 0; i < this.pages.length;i++){
-      this.pages[i] = i*this.numberOfItemsPerPage;
-    }
+    let temporaryArray = Array(this.pageNum).fill(1);
+    this.pages = temporaryArray.map((x, i) => i*this.numberOfItemsPerPage);
   }
 
 

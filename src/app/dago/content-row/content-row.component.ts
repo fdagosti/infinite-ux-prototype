@@ -43,9 +43,7 @@ export class ContentRowComponent implements OnInit {
 
     this.ctap.getContent(this.categoryId, this.offset)
       .subscribe(
-        content => {
-          this.content = content;
-        },
+        content => this.content = content,
         error => this.errorMessage = <any>error
       );
 
