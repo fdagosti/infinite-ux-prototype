@@ -18,15 +18,15 @@
         "../node_modules/normalize.css/normalize.css",
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "../node_modules/font-awesome/css/font-awesome.css",
-        "../node_modules/video.js/dist/video-js.css",
+        "assets/videojs/video-js.css",
         "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/tether/dist/js/tether.js",
         "../node_modules/bootstrap/dist/js/bootstrap.js",
-        "../node_modules/video.js/dist/video.js",
-        "../node_modules/videojs-contrib-hls/dist/videojs-contrib-hls.js"
+        "assets/videojs/video.js",
+        "assets/videojs/videojs-contrib-hls.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

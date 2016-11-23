@@ -13,6 +13,7 @@ export class StoreComponent implements OnInit {
   private categories;
   private currentlyLoggedIn;
   @Input() category;
+  @Input() vertical = false;
 
   constructor(public ctap:CtapService, private auth:AuthenticationService) {
     this.auth.loginStateChanged$.subscribe(login => this.updateLogStatus());

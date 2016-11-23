@@ -38,11 +38,15 @@ p {
 #playIcon{
   font-size: 5.6vw;
   position:absolute;
-  top:10%;
-  left:35%;
-  width: 30%;
-  height: 30%;
+
+  width: 90px;
+  height: 90px;
   color: white;
+  top:0;
+  bottom: 0;
+  left:0;
+  right: 0;
+  margin: auto;
 }
 
 

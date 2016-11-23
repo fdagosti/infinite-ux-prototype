@@ -1,7 +1,7 @@
 <div *ngIf="currentlyLoggedIn">
   <div *ngFor="let cat of categories" >
-    <iux-content-list-sm *ngIf="cat.leaf"  [category]="cat"></iux-content-list-sm>
-    <iux-store *ngIf="!cat.leaf"  [category]="cat"></iux-store>
+    <iux-content-list-sm *ngIf="cat.leaf" [vertical]="vertical"  [category]="cat"></iux-content-list-sm>
+    <iux-store *ngIf="!cat.leaf" [vertical]="false" [category]="cat"></iux-store>
   </div>
 </div>
 <div *ngIf="!currentlyLoggedIn">

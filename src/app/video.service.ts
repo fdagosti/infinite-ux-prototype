@@ -9,19 +9,21 @@ export class VideoService {
 
   playVideo(videoSrc){
 
-
+    const PROXY = "https://cisco-itk-proxy.herokuapp.com/";
 
     let src = {
       "type": "application/x-mpegURL",
-      "src": videoSrc.href
+      "src": PROXY+videoSrc
     };
-
-    console.log("PlayVideo ",src);
 
     var player = videojs('video-background');
     player.src(src);
     player.play();
-    console.log("videojs ",player);
+  }
+
+  stopVideo(){
+    var player = videojs('video-background');
+    player.dispose();
   }
 
 }

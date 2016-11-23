@@ -1,4 +1,4 @@
-.navbar { 
+.navbar {
 	-webkit-transition: opacity .4s cubic-bezier(.665, .235, .265, .8) 0s;
 	-moz-transition: opacity .4s cubic-bezier(.665, .235, .265, .8) 0s;
 	-o-transition: opacity .4s cubic-bezier(.665, .235, .265, .8) 0s;
@@ -39,7 +39,7 @@
 	display: block;
 	width: 118px;
 	height: 62px;
-	background: url(/assets/cisco-logo.svg);
+	background: url(assets/cisco-logo.svg);
 	background-size: 118px 62px;
 }
 

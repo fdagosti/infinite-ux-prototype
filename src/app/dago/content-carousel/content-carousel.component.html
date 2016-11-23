@@ -1,4 +1,4 @@
-<ol class="iux-carousel-indicators" *ngIf="pages.length > 1">
+<ol class="iux-carousel-indicators" *ngIf="pages.length > 1 && showIndicator">
   <li *ngFor="let page of pages; let i = index;" [id]="i" [class.active]="i === activeId" (click)="cycleToSelected(i)"></li>
 </ol>
 <div class="carousel-inner" role="listbox">
@@ -9,7 +9,9 @@
     [offset]="page"
     [rowSize]="numberOfItemsPerPage"
     [class.active]="i === activeId"
-    [content]="page==0?content:{content:[]}">
+    [content]="page==0?content:{content:[]}"
+    [vertical]="vertical"
+  >
   </iux-content-row>
 
 </div>
