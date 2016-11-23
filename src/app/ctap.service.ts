@@ -98,5 +98,19 @@ export class CtapService {
       .catch(this.handleError);
   }
 
+  getPlaySession(instanceId){
+
+    let params = new URLSearchParams();
+    params.set("instanceId", instanceId);
+
+    let options = new RequestOptions({
+      headers: this.getHeadersWithAuth(),
+      search: params
+    });
+
+    return this.http.post(this.ctapUrl+"devices/me/playsessions", "", options)
+      .map((res:Response) => res.json());
+  }
+
 
 }

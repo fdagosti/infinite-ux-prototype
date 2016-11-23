@@ -6,7 +6,7 @@ import {Http, Response, Headers, RequestOptions, URLSearchParams} from "@angular
 @Injectable()
 export class AuthenticationService {
 
-  private loginUrl = "https://cisco-itk-proxy.herokuapp.com/"+"http://infinite-epg.herokuapp.com/api/login";
+  private loginUrl = "https://cloudsso.cisco.com/as/token.oauth2";
 
   private LOCAL_STORAGE:string = "InfiniteUX-proto-token-v1";
 
@@ -17,7 +17,13 @@ export class AuthenticationService {
   }
 
   login(credentials){
-    return this.http.post(this.loginUrl, credentials)
+
+    let params = new URLSearchParams();
+    params.set('client_id', "387008adab87419ca071be1f1ae86338");
+    params.set('client_secret', "0f85f3fb8cc94a01B46DB972B6236B61");
+    params.set('grant_type', "client_credentials");
+
+    return this.http.post(this.loginUrl, params)
       .map(res => this.saveToken(res))
       .catch(this.handleError);
   }

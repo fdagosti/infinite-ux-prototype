@@ -14,6 +14,7 @@ import {DagoModule} from "./dago/dago.module";
 import {PeterModule} from "./peter/peter.module";
 import {InfiniteUxModule} from "./infinite-ux/infinite-ux.module";
 import {FullContentComponent} from "./dago/full-content/full-content.component";
+import {VideoService} from "./video.service";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {FullContentComponent} from "./dago/full-content/full-content.component";
   ],
   providers: [
     CtapService,
+    VideoService,
     AuthenticationService
   ],
   bootstrap: [AppComponent]
