@@ -15,6 +15,8 @@ import {PeterModule} from "./peter/peter.module";
 import {InfiniteUxModule} from "./infinite-ux/infinite-ux.module";
 import {FullContentComponent} from "./dago/full-content/full-content.component";
 import {VideoService} from "./video.service";
+import {BusyModule} from "angular2-busy";
+
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import {VideoService} from "./video.service";
   ],
   imports: [
     DagoModule,
+    BusyModule,
     PeterModule,
     InfiniteUxModule,
     BrowserModule,

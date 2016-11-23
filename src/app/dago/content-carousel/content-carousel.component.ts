@@ -4,6 +4,7 @@ import {
 } from "@angular/core";
 import {CtapService} from "../../ctap.service";
 import {ContentRowComponent} from "../content-row/content-row.component";
+import {Observable, Subscription} from "rxjs";
 
 
 @Component({
@@ -26,6 +27,7 @@ export class ContentCarouselComponent implements AfterContentChecked,
   private pages=Array(1);
 
   private errorMessage;
+  private busy:Subscription;
 
   @Input() private numberOfItemsPerPage = 6;
   @Output() multiPage = new EventEmitter();
@@ -50,7 +52,7 @@ export class ContentCarouselComponent implements AfterContentChecked,
   }
 
   ngOnInit() {
-    this.ctap.getContent(this.categoryId)
+    this.busy = this.ctap.getContent(this.categoryId)
       .subscribe(
         content => {
           this.content = content;

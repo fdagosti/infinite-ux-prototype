@@ -1,5 +1,6 @@
 import {Component, OnInit, Input} from "@angular/core";
 import {CtapService} from "../../ctap.service";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -18,6 +19,7 @@ export class ContentRowComponent implements OnInit {
   @Input() private fetchOnInit = false;
   @Input() private vertical = false;
   private imageSize;
+  @Input() busy: Subscription;
 
   private errorMessage;
   private dummyArray;
@@ -52,7 +54,7 @@ export class ContentRowComponent implements OnInit {
       return;
     }
 
-    this.ctap.getContent(this.categoryId, this.offset)
+    this.busy = this.ctap.getContent(this.categoryId, this.offset)
       .subscribe(
         content => this.content = content,
         error => this.errorMessage = <any>error

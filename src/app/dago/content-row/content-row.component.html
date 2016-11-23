@@ -1,5 +1,5 @@
+<div [ngBusy]="busy"></div>
 <div class="content-container">
-
   <div class="relative content-item" *ngFor="let toto of dummyArray;let i = index">
     <a [routerLink]="content.content[i]?'/video/'+content.content[i].id:'./'">
       <img [src]="getContentImage(i)" alt="" class="absolute-img">
