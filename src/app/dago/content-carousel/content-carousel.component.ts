@@ -1,6 +1,6 @@
 import {
   Component, Input, OnInit, AfterContentChecked, OnDestroy, QueryList, ViewChildren, Output,
-  EventEmitter
+  EventEmitter, trigger, state, style, transition, animate
 } from "@angular/core";
 import {CtapService} from "../../ctap.service";
 import {ContentRowComponent} from "../content-row/content-row.component";
@@ -13,7 +13,19 @@ import {Observable, Subscription} from "rxjs";
   styleUrls: ['./content-carousel.component.css'],
   host: {
     'class': 'carousel slide',
-  }
+  },
+  animations: [
+    trigger("signal", [
+      state('go', style({
+        "background-color": "green",
+        "left": "-100%"
+      })),
+      state('stop', style({
+        "background-color": "red"
+      })),
+      transition("* => *", animate(500))
+    ])
+  ]
 })
 export class ContentCarouselComponent implements AfterContentChecked,
   OnDestroy, OnInit{
@@ -25,6 +37,8 @@ export class ContentCarouselComponent implements AfterContentChecked,
   private content;
   private pageNum=0;
   private pages=Array(1);
+
+  private signal;
 
   private errorMessage;
   private busy:Subscription;
@@ -49,6 +63,13 @@ export class ContentCarouselComponent implements AfterContentChecked,
   }
 
   constructor(public ctap:CtapService) {
+  }
+
+  onGoClick(){
+    this.signal = "go";
+  }
+  onStopClick(){
+    this.signal = "stop";
   }
 
   ngOnInit() {
