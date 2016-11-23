@@ -21,7 +21,7 @@ export class CtapService {
     let options = new RequestOptions({ headers: this.getHeadersWithAuth()});
 
     return this.http.get(this.ctapUrl+"categories/"+categoryId, options)
-                    .map(this.extractCategories)
+                    .map((res:Response) => res.json().categories)
                     .catch(this.handleError);
   }
 
@@ -31,15 +31,6 @@ export class CtapService {
     });
   }
 
-  private extractCategories(res: Response){
-    let body = res.json();
-    return body.categories || { };
-  }
-
-  private extractContent(res: Response){
-    let body = res.json();
-    return body || { };
-  }
 
   private handleError (error: Response | any) {
     console.log("ERROR ",error);
@@ -70,7 +61,7 @@ export class CtapService {
     });
 
     return this.http.get(this.ctapUrl+"agg/content/", options)
-      .map(this.extractContent)
+      .map((res:Response) => res.json())
       .catch(this.handleError);
   }
 
