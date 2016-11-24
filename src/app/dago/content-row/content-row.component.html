@@ -1,6 +1,6 @@
 <div [ngBusy]="busy"></div>
 <div class="content-container">
-  <div class="relative content-item" *ngFor="let toto of dummyArray;let i = index">
+  <div class="relative content-item" [class.zoom-item]="content.content[i] && zoom" *ngFor="let toto of dummyArray;let i = index">
     <a [routerLink]="content.content[i]?'/video/'+content.content[i].id:'./'">
       <img [src]="getContentImage(i)" alt="" class="absolute-img">
     <i *ngIf="content.content[i]" id="playIcon" class="fa fa-play-circle-o" aria-hidden="true"></i>

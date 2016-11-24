@@ -1,6 +1,8 @@
 :host{
   display: block;
   padding-top: 70px;
+  padding-left: 4%;
+  padding-right: 4%;
 }
 
 iux-content-row{

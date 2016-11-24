@@ -6,7 +6,8 @@ import {Subscription} from "rxjs";
 @Component({
   selector: 'iux-content-row',
   templateUrl: './content-row.component.html',
-  styleUrls: ['./content-row.component.css']
+  styleUrls: ['./content-row.component.css'],
+
 })
 export class ContentRowComponent implements OnInit {
 
@@ -18,6 +19,8 @@ export class ContentRowComponent implements OnInit {
   @Input() private rowSize;
   @Input() private fetchOnInit = false;
   @Input() private vertical = false;
+  @Input() zoom = true;
+
   private imageSize;
   @Input() busy: Subscription;
 

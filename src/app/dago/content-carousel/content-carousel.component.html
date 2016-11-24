@@ -16,15 +16,18 @@
     [content]="page==0?content:{content:[]}"
     [vertical]="vertical"
     [busy]="busy"
+
   >
   </iux-content-row>
 
+  <a *ngIf="pages.length > 1" class="left carousel-control" role="button" (click)="cycleToPrev()">
+    <span class="icon-prev" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a *ngIf="pages.length > 1" class="right carousel-control" role="button" (click)="cycleToNext()">
+    <span class="icon-next" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
 </div>
-<a *ngIf="pages.length > 1" class="left carousel-control" role="button" (click)="cycleToPrev()">
-  <span class="icon-prev" aria-hidden="true"></span>
-  <span class="sr-only">Previous</span>
-</a>
-<a *ngIf="pages.length > 1" class="right carousel-control" role="button" (click)="cycleToNext()">
-  <span class="icon-next" aria-hidden="true"></span>
-  <span class="sr-only">Next</span>
-</a>
+

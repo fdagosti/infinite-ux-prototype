@@ -31,22 +31,27 @@ p {
   margin-right: 3px;
   background: #000;
   vertical-align: top;
-  /*box-shadow: 0 0 5px #ddd;*/
+  z-index: 0;
+  transition: all .2s ease-in-out;
 
+}
+
+.zoom-item:hover{
+  transform: scale(1.4);
+  z-index: 5;
 }
 
 
 .relative{position:relative; width:600px;}
 .absolute-text{position:absolute; bottom:0; background:rgba(251,251,251,0.5); color: black; padding-left:10px; width:100%; }
-#playIcon{
-  font-size: 5.6vw;
-  position:absolute;
 
-  width: 90px;
-  height: 90px;
+#playIcon{
+  font-size: 4.6vw;
+  position:absolute;
+  text-align: center;
+  width: auto;
   color: white;
-  top:0;
-  bottom: 0;
+  bottom: 35%;
   left:0;
   right: 0;
   margin: auto;

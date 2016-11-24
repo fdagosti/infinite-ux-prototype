@@ -1,8 +1,8 @@
 :host {
   display: block;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 40px;
+  margin: 3vw 0;
+  padding-left: 4%;
+  padding-right: 4%;
 }
 
 a{

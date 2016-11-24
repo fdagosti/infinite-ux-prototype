@@ -12,7 +12,7 @@ import {Observable, Subscription} from "rxjs";
   templateUrl: './content-carousel.component.html',
   styleUrls: ['./content-carousel.component.css'],
   host: {
-    'class': 'carousel slide',
+    'class': 'carousel slide ',
   },
 
 })
