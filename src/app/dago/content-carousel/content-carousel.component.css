@@ -21,13 +21,14 @@
   height: 5px;
   margin: 1px;
   text-indent: -999px;
-  cursor: pointer;
+  cursor: auto;
   background-color: grey;
 }
 
 .iux-carousel-indicators .active {
   background-color: #fff;
 }
+
 
 .carousel-control:focus, .carousel-control:hover {
   color: #fff;
@@ -47,6 +48,8 @@
   right:0;
 
 }
+
+
 
 .carousel-control {
   position: absolute;

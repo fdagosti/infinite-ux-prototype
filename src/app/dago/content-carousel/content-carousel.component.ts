@@ -14,18 +14,7 @@ import {Observable, Subscription} from "rxjs";
   host: {
     'class': 'carousel slide',
   },
-  animations: [
-    trigger("signal", [
-      state('go', style({
-        "background-color": "green",
-        "left": "-100%"
-      })),
-      state('stop', style({
-        "background-color": "red"
-      })),
-      transition("* => *", animate(500))
-    ])
-  ]
+
 })
 export class ContentCarouselComponent implements AfterContentChecked,
   OnDestroy, OnInit{
@@ -37,8 +26,6 @@ export class ContentCarouselComponent implements AfterContentChecked,
   private content;
   private pageNum=0;
   private pages=Array(1);
-
-  private signal;
 
   private errorMessage;
   private busy:Subscription;
@@ -52,7 +39,9 @@ export class ContentCarouselComponent implements AfterContentChecked,
   /**
    * The active slide id.
    */
-  activeId: number = 0;
+  private activeId: number = 0;
+  private leftId:number;
+  private rightId:number;
 
   ngAfterContentChecked() {
   }
@@ -63,13 +52,6 @@ export class ContentCarouselComponent implements AfterContentChecked,
   }
 
   constructor(public ctap:CtapService) {
-  }
-
-  onGoClick(){
-    this.signal = "go";
-  }
-  onStopClick(){
-    this.signal = "stop";
   }
 
   ngOnInit() {
@@ -85,11 +67,11 @@ export class ContentCarouselComponent implements AfterContentChecked,
 
   computePageSize(){
     this.pageNum = Math.ceil(this.content.total/this.numberOfItemsPerPage);
-    this.pages = Array(this.pageNum);
+    this.pages = Array(this.pageNum).fill(1).map((_,i)=>i*this.numberOfItemsPerPage);
+    this.setIndexes(this.activeId);
     this.multiPage.emit(this.pageNum > 1);
-    for (let i = 0; i < this.pages.length;i++){
-      this.pages[i] = i*this.numberOfItemsPerPage;
-    }
+
+
   }
 
   /**
@@ -113,10 +95,21 @@ export class ContentCarouselComponent implements AfterContentChecked,
   cycleToPrev() { this.cycleToSelected(this._getPrevSlide(this.activeId)); }
 
   cycleToSelected(slideIdx: number) {
+      this.setIndexes(slideIdx)
 
-      this.activeId = slideIdx;
     let rows = this.rows.toArray();
     rows[this.activeId].fetchContent();
+  }
+
+  private setIndexes(currentSlideIdx:number){
+    this.activeId = currentSlideIdx;
+    if (this.pages.length >1) {
+      this.rightId = (currentSlideIdx + 1) % this.pages.length;
+      this.leftId = (currentSlideIdx - 1 + this.pages.length) % this.pages.length;
+    }else{
+      this.rightId = -1;
+      this.leftId = -1;
+    }
   }
 
   keyPrev() {

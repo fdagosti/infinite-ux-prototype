@@ -1,7 +1,7 @@
 
 
 <ol class="iux-carousel-indicators" *ngIf="pages.length > 1 && showIndicator">
-  <li *ngFor="let page of pages; let i = index;" [id]="i" [class.active]="i === activeId" (click)="cycleToSelected(i)"></li>
+  <li *ngFor="let page of pages; let i = index;" [id]="i" [class.active]="i === activeId" ></li>
 </ol>
 <div class="carousel-inner" role="listbox">
   <iux-content-row
@@ -11,10 +11,11 @@
     [offset]="page"
     [rowSize]="numberOfItemsPerPage"
     [class.active]="i === activeId"
+    [class.prev]="i === leftId"
+    [class.next]="i === rightId"
     [content]="page==0?content:{content:[]}"
     [vertical]="vertical"
     [busy]="busy"
-    [@signal]="signal"
   >
   </iux-content-row>
 
@@ -27,6 +28,3 @@
   <span class="icon-next" aria-hidden="true"></span>
   <span class="sr-only">Next</span>
 </a>
-
-<button (click)="onGoClick()" class="btn"> GOOOOOOOOOOOOOOOO </button>
-<button (click)="onStopClick()" class="btn"> STOOOOOP </button>
