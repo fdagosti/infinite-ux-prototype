@@ -39,6 +39,7 @@ p {
 .zoom-item:hover{
   transform: scale(1.4);
   z-index: 5;
+  transition-delay: 0.4s;
 }
 
 
