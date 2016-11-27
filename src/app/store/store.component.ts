@@ -11,28 +11,20 @@ export class StoreComponent implements OnInit {
 
   private errorMessage;
   private categories;
-  private currentlyLoggedIn;
   @Input() category;
   @Input() vertical = false;
 
-  constructor(public ctap:CtapService, private auth:AuthenticationService) {
-    this.auth.loginStateChanged$.subscribe(login => this.updateLogStatus());
+  constructor(public ctap:CtapService, ) {
 
-  }
-
-  updateLogStatus(){
-    this.currentlyLoggedIn = this.auth.isLoggedIn();
-    if (this.currentlyLoggedIn){
-      this.getCategories();
-    }
   }
 
   ngOnInit(){
-    this.updateLogStatus();
+    this.getCategories();
   }
 
   private getCategories(){
     this.ctap.getCategories(this.category?this.category.id:"")
+      .do(cats => console.log("CATEGORIES ",cats))
       .subscribe(
         cats => this.categories = cats,
         error => this.errorMessage = <any>error

@@ -4,7 +4,6 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {RouterModule} from "@angular/router";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {LoginComponent} from "./login/login.component";
 import {SearchComponent} from "./search/search.component";
 import {IUXNavbarComponent} from "./iux-navbar/iux-navbar.component";
 import {IUXFooterComponent} from "./iux-footer/iux-footer.component";
@@ -19,7 +18,6 @@ import {BrowseComponent} from "./browse/browse.component";
     NgbModule
   ],
   declarations: [
-    LoginComponent,
     SearchComponent,
     IUXNavbarComponent,
     IUXFooterComponent,
@@ -30,7 +28,6 @@ import {BrowseComponent} from "./browse/browse.component";
     IUXFooterComponent,
     SearchComponent,
     BrowseComponent,
-    LoginComponent,
     RouterModule,
   ]
 })

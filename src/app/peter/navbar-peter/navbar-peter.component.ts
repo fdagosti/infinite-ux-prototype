@@ -7,12 +7,9 @@ import {AuthenticationService} from "../../authentication.service";
 	styleUrls: ['./navbar-peter.component.css']
 })
 export class NavbarPeterComponent implements OnInit {
-	private currentlyLoggedIn;
 
-	constructor(private auth: AuthenticationService) { }
+	constructor() { }
 
 	ngOnInit() {
-		this.auth.loginStateChanged$.subscribe(login => this.currentlyLoggedIn = this.auth.isLoggedIn());
-		this.currentlyLoggedIn = this.auth.isLoggedIn();
 	}
 }

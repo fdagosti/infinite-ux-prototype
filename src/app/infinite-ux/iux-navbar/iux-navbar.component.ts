@@ -7,13 +7,10 @@ import {AuthenticationService} from "../../authentication.service";
   styleUrls: ['./iux-navbar.component.css']
 })
 export class IUXNavbarComponent implements OnInit {
-  private currentlyLoggedIn;
 
-  constructor(private auth: AuthenticationService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.auth.loginStateChanged$.subscribe(login => this.currentlyLoggedIn = this.auth.isLoggedIn());
-    this.currentlyLoggedIn = this.auth.isLoggedIn();
   }
 
 

@@ -1,7 +1,7 @@
-import 'rxjs/Rx';
-import {Injectable, EventEmitter} from '@angular/core';
-import {Observable} from 'rxjs/Rx';
-import {Http, Response, Headers, RequestOptions, URLSearchParams} from "@angular/http";
+import "rxjs/Rx";
+import {Injectable, EventEmitter} from "@angular/core";
+import {Observable} from "rxjs/Rx";
+import {Http, Response, URLSearchParams} from "@angular/http";
 
 @Injectable()
 export class AuthenticationService {
@@ -16,7 +16,7 @@ export class AuthenticationService {
     this.loginStateChanged$ = new EventEmitter<string>();
   }
 
-  login(credentials){
+  private login(){
 
     let params = new URLSearchParams();
     params.set('client_id', "387008adab87419ca071be1f1ae86338");
@@ -24,16 +24,13 @@ export class AuthenticationService {
     params.set('grant_type', "client_credentials");
 
     return this.http.post(this.loginUrl, params)
-      .map(res => this.saveToken(res))
+      .map(res => this.saveToken(res).access_token)
       .catch(this.handleError);
   }
 
-  logout(){
-    window.localStorage.removeItem(this.LOCAL_STORAGE);
-    this.loginStateChanged$.emit("logout");
-  }
 
-  isLoggedIn = function(){
+
+  private _isLoggedIn = function(){
     var token = this.getToken();
     if (token) {
       return token.exp > Date.now() / 1000;
@@ -42,19 +39,17 @@ export class AuthenticationService {
     }
   }
 
-  currentUser() {
-    if (this.isLoggedIn()) {
-      var token = this.getToken();
-      return {
-        client_id: token.client_id,
-      };
+  private loginIfRequired(){
+    if (!this._isLoggedIn()){
+      return this.login();
+    }else{
+      return Observable.of(this.getToken().access_token);
     }
   }
 
-  getAccessToken = function(){
-    let t = this.getToken();
 
-    return t?this.getToken().access_token:"";
+  getAccessToken = function(){
+    return this.loginIfRequired();
   }
 
 

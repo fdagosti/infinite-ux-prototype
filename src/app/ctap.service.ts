@@ -18,17 +18,17 @@ export class CtapService {
 
   getCategories(categoryId): Observable<any[]>{
     if (!categoryId){categoryId="";}
-    let options = new RequestOptions({ headers: this.getHeadersWithAuth()});
 
-    return this.http.get(this.ctapUrl+"categories/"+categoryId, options)
-                    .map((res:Response) => res.json().categories)
-                    .catch(this.handleError);
+    return this.getHttpCall(null, "categories/"+categoryId)
+      .map(cats => cats.categories);
   }
 
   private getHeadersWithAuth(){
-    return new Headers({
-      "Authorization":"Bearer "+this.auth.getAccessToken()
-    });
+    return this.auth.getAccessToken()
+      .do((token)=>console.log("GET ACCESS TOKEN ",token))
+      .map((token) => "Bearer "+token)
+      .map((auth) => new Headers({"Authorization": auth}))
+
   }
 
 
@@ -54,13 +54,15 @@ export class CtapService {
     params.set('limit', limit); // the user's search value
     if (offset) params.set('offset', offset); // the user's search value
 
-    let options = new RequestOptions({
-      headers: this.getHeadersWithAuth(),
-      search: params
+    return this.getHttpCall(params, "agg/content/");
+  }
 
-    });
-
-    return this.http.get(this.ctapUrl+"agg/content/", options)
+  private getHttpCall(params, urls){
+    return this.getHeadersWithAuth()
+      .map((headers) => new RequestOptions({
+        headers: headers,
+        search: params
+      })).switchMap((options) => this.http.get(this.ctapUrl+urls, options))
       .map((res:Response) => res.json())
       .catch(this.handleError);
   }
@@ -74,19 +76,11 @@ export class CtapService {
     params.set('q', keyword); // the user's search value
     params.set('limit', "10"); // the user's search value
 
-    let options = new RequestOptions({
-      headers: this.getHeadersWithAuth(),
-      search: params
 
-    });
-
-
-    return this.http.get(this.ctapUrl+"keywords/suggest/", options)
-      .map((res:Response) =>{
-        let body = res.json();
-        return body.suggestions || [];
-    })
-      .catch(this.handleError);
+    return this.getHttpCall(params, "keywords/suggest/")
+      .map((json) =>{
+        return json.suggestions || [];
+      });
   }
 
   getPlaySession(instanceId){
@@ -94,13 +88,10 @@ export class CtapService {
     let params = new URLSearchParams();
     params.set("instanceId", instanceId);
 
-    let options = new RequestOptions({
-      headers: this.getHeadersWithAuth(),
-      search: params
-    });
 
-    return this.http.post(this.ctapUrl+"devices/me/playsessions", "", options)
-      .map((res:Response) => res.json());
+    return this.getHttpCall(params, "devices/me/playsessions");
+
+
   }
 
 
