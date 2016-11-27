@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from "@angular/core";
 import {CtapService} from "../ctap.service";
-import {AuthenticationService} from "../authentication.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'iux-store',
@@ -11,6 +11,7 @@ export class StoreComponent implements OnInit {
 
   private errorMessage;
   private categories;
+  private busy:Subscription;
   @Input() category;
   @Input() vertical = false;
 
@@ -23,8 +24,7 @@ export class StoreComponent implements OnInit {
   }
 
   private getCategories(){
-    this.ctap.getCategories(this.category?this.category.id:"")
-      .do(cats => console.log("CATEGORIES ",cats))
+    this.busy = this.ctap.getCategories(this.category?this.category.id:"")
       .subscribe(
         cats => this.categories = cats,
         error => this.errorMessage = <any>error

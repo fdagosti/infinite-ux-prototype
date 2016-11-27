@@ -25,7 +25,6 @@ export class CtapService {
 
   private getHeadersWithAuth(){
     return this.auth.getAccessToken()
-      .do((token)=>console.log("GET ACCESS TOKEN ",token))
       .map((token) => "Bearer "+token)
       .map((auth) => new Headers({"Authorization": auth}))
 

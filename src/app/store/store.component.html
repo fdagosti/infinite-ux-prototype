@@ -1,5 +1,7 @@
+<div [ngBusy]="busy"></div>
 <div *ngFor="let cat of categories" >
   <iux-content-list-sm
+
     *ngIf="cat.leaf"
     [vertical]="vertical"
     [category]="cat"
