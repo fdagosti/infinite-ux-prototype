@@ -10,10 +10,8 @@ export class AuthenticationService {
 
   private LOCAL_STORAGE:string = "InfiniteUX-proto-token-v1";
 
-  public loginStateChanged$: EventEmitter<string>;
 
   constructor(private http: Http) {
-    this.loginStateChanged$ = new EventEmitter<string>();
   }
 
   private login(){
@@ -39,17 +37,12 @@ export class AuthenticationService {
     }
   }
 
-  private loginIfRequired(){
+  getAccessToken = function(){
     if (!this._isLoggedIn()){
       return this.login();
     }else{
       return Observable.of(this.getToken().access_token);
     }
-  }
-
-
-  getAccessToken = function(){
-    return this.loginIfRequired();
   }
 
 
@@ -64,7 +57,6 @@ export class AuthenticationService {
     let token = res.json();
     token.exp = Date.now()/1000 + token.expires_in;
     window.localStorage[this.LOCAL_STORAGE] = JSON.stringify(token);
-    this.loginStateChanged$.emit("login");
     return token || { };
   }
 

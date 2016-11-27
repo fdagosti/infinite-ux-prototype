@@ -4,15 +4,10 @@ import {Observable} from 'rxjs/Rx';
 import {Http, Response, Headers, RequestOptions, URLSearchParams} from "@angular/http";
 import {AuthenticationService} from "./authentication.service";
 
-export class Category{
-
-}
-
 @Injectable()
 export class CtapService {
 
   private ctapUrl = "https://apx.cisco.com/spvss/infinitehome/infinitetoolkit/v_sandbox_2/";
-
 
   constructor(private http: Http, private auth:AuthenticationService) { }
 
@@ -23,13 +18,52 @@ export class CtapService {
       .map(cats => cats.categories);
   }
 
-  private getHeadersWithAuth(){
-    return this.auth.getAccessToken()
-      .map((token) => "Bearer "+token)
-      .map((auth) => new Headers({"Authorization": auth}))
+  getContent(categoryId, offset?, limit="6"){
 
+    let params = new URLSearchParams();
+    params.set('categoryId', categoryId); // the user's search value
+    params.set('limit', limit); // the user's search value
+    if (offset) params.set('offset', offset); // the user's search value
+
+    return this.getHttpCall(params, "agg/content/");
   }
 
+  getSuggestions(keyword){
+    if (keyword == ""){
+      return Observable.of([]);
+    }
+
+    let params = new URLSearchParams();
+    params.set('q', keyword); // the user's search value
+    params.set('limit', "10"); // the user's search value
+
+    return this.getHttpCall(params, "keywords/suggest/")
+      .map(json => json.suggestions);
+  }
+
+  getPlaySession(instanceId){
+
+    let params = new URLSearchParams();
+    params.set("instanceId", instanceId);
+
+    return this.getHttpCall(params, "devices/me/playsessions");
+  }
+
+  private getHttpCall(params, urls){
+    return this.getHeadersWithAuth()
+      .map((headers) => new RequestOptions({
+        headers: headers,
+        search: params
+      })).switchMap((options) => this.http.get(this.ctapUrl+urls, options))
+      .map((res:Response) => res.json())
+      .catch(this.handleError);
+  }
+
+  private getHeadersWithAuth(){
+    return this.auth.getAccessToken()
+      .map((token) => new Headers({"Authorization": "Bearer "+token}))
+
+  }
 
   private handleError (error: Response | any) {
     console.log("ERROR ",error);
@@ -44,53 +78,6 @@ export class CtapService {
     }
     console.error(errMsg);
     return Observable.throw(errMsg);
-  }
-
-  getContent(categoryId, offset?, limit="6"){
-
-    let params = new URLSearchParams();
-    params.set('categoryId', categoryId); // the user's search value
-    params.set('limit', limit); // the user's search value
-    if (offset) params.set('offset', offset); // the user's search value
-
-    return this.getHttpCall(params, "agg/content/");
-  }
-
-  private getHttpCall(params, urls){
-    return this.getHeadersWithAuth()
-      .map((headers) => new RequestOptions({
-        headers: headers,
-        search: params
-      })).switchMap((options) => this.http.get(this.ctapUrl+urls, options))
-      .map((res:Response) => res.json())
-      .catch(this.handleError);
-  }
-
-  getSuggestions(keyword){
-    if (keyword == ""){
-      return Observable.of([]);
-    }
-
-    let params = new URLSearchParams();
-    params.set('q', keyword); // the user's search value
-    params.set('limit', "10"); // the user's search value
-
-
-    return this.getHttpCall(params, "keywords/suggest/")
-      .map((json) =>{
-        return json.suggestions || [];
-      });
-  }
-
-  getPlaySession(instanceId){
-
-    let params = new URLSearchParams();
-    params.set("instanceId", instanceId);
-
-
-    return this.getHttpCall(params, "devices/me/playsessions");
-
-
   }
 
 
