@@ -1,0 +1,13 @@
+<input type="text" #searchQuery>
+<button (click)="toutou.next()">SEARCH</button>
+
+<iux-content-row
+  class="carousel-item active"
+  [categoryId]="searchQuery.value"
+  [offset]="0"
+  [rowSize]="6"
+  [content]="{content:[]}"
+  [fetchOnInit]="true"
+  [titi]="toutou"
+>
+</iux-content-row>

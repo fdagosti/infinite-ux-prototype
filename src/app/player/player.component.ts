@@ -29,7 +29,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
       this.route.params
         .filter((params:Params) => params['contentId'] != null)
         .switchMap((params:Params) => this.ctap.getPlaySession(params['contentId']))
-          .map(content => content._links.playUrl.href),
+          .map((content:any) => content._links.playUrl.href),
       this.route.params
         .filter((params:Params) => params['contentId'] == null)
         .map(content => this.fakeVideo)
