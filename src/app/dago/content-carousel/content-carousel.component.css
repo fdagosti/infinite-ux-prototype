@@ -2,34 +2,28 @@
   display: block;
 }
 
-
 .iux-carousel-indicators{
   position: absolute;
+  top: 0px;
   right: 0%;
   width: 90%;
   padding-left: 0;
-  margin-left: -30%;
+  margin-top: -24px;
   text-align: right;
   list-style: none;
-  top: -20px;
 }
 
 .iux-carousel-indicators li {
   display: inline-block;
-  width: 15px;
-  height: 5px;
-  margin: 1px;
-  text-indent: -999px;
-  cursor: auto;
-  background-color: grey;
+  width: 12px;
+  height: 2px;
+  background-color: #4d4d4d;
+  margin-left: 1px;
 }
 
 .iux-carousel-indicators .active {
-  background-color: #fff;
+  background-color: #aaa;
 }
-
-
-
 
 .carousel-control:focus, .carousel-control:hover {
   color: #fff;
@@ -41,17 +35,14 @@
 
 .carousel-control.left {
   left:-5%;
-
 }
 
 .carousel-control.right {
   right:-5%;
-
 }
 
 .carousel-inner{
   overflow: visible;
-
 }
 
 .carousel-item{

@@ -1,8 +1,19 @@
+.dark {
+	background-color: rgba(0,0,0,.7);
+
+
+}
 .navbar {
-	-webkit-transition: opacity .4s cubic-bezier(.665, .235, .265, .8) 0s;
+	/*-webkit-transition: opacity .4s cubic-bezier(.665, .235, .265, .8) 0s;
 	-moz-transition: opacity .4s cubic-bezier(.665, .235, .265, .8) 0s;
 	-o-transition: opacity .4s cubic-bezier(.665, .235, .265, .8) 0s;
 	transition: opacity .4s cubic-bezier(.665, .235, .265, .8) 0s;
+*/
+	/*-webkit-transition: background .4s cubic-bezier(.665, .235, .265, .8) 0s;
+	-moz-transition: background .4s cubic-bezier(.665, .235, .265, .8) 0s;
+	-o-transition: background .4s cubic-bezier(.665, .235, .265, .8) 0s;
+	transition: background .4s cubic-bezier(.665, .235, .265, .8) 0s;*/
+	
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -31,6 +42,8 @@
 	-ms-flex-align: center;
 	align-items: center
 }
+
+
 
 .logo {
 	display: inline-block;
