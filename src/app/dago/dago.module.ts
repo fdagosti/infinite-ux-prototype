@@ -8,11 +8,13 @@ import {SpyDirective} from "./spy.directive";
 import {DagoPlaygroundComponent} from "./dago-playground/dago-playground.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {InfiniteUxModule} from "../infinite-ux/infinite-ux.module";
-import { ContentRowComponent } from './content-row/content-row.component';
+import {ContentRowComponent} from "./content-row/content-row.component";
 import {IUXContentListSmComponent} from "./iux-content-list-sm/iux-content-list-sm.component";
-import { FullContentComponent } from './full-content/full-content.component';
+import {FullContentComponent} from "./full-content/full-content.component";
 import {PeterModule} from "../peter/peter.module";
 import {BusyModule} from "angular2-busy";
+import {TwitterService} from "../twitter.service";
+import {TwitterTweetsComponent} from "./twitter-tweets/twitter-tweets.component";
 
 @NgModule({
   imports: [
@@ -22,7 +24,7 @@ import {BusyModule} from "angular2-busy";
     InfiniteUxModule,
     PeterModule,
     BusyModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
   ],
   declarations: [
     ContentCarouselComponent,
@@ -31,12 +33,16 @@ import {BusyModule} from "angular2-busy";
     DagoPlaygroundComponent,
     ContentRowComponent,
     IUXContentListSmComponent,
-    FullContentComponent
+    FullContentComponent,
+    TwitterTweetsComponent
   ],
   exports: [
     PrimeTimeComponent,
     DagoPlaygroundComponent,
     IUXContentListSmComponent
+  ],
+  providers: [
+    TwitterService
   ]
 })
 export class DagoModule { }

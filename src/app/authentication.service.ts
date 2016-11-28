@@ -6,22 +6,13 @@ import {Http, Response, URLSearchParams} from "@angular/http";
 @Injectable()
 export class AuthenticationService {
 
-  private loginUrl = "https://cloudsso.cisco.com/as/token.oauth2";
-
   private LOCAL_STORAGE:string = "InfiniteUX-proto-token-v1";
-
 
   constructor(private http: Http) {
   }
 
   private login(){
-
-    let params = new URLSearchParams();
-    params.set('client_id', "387008adab87419ca071be1f1ae86338");
-    params.set('client_secret', "0f85f3fb8cc94a01B46DB972B6236B61");
-    params.set('grant_type', "client_credentials");
-
-    return this.http.post(this.loginUrl, params)
+    return this.http.post("/api/login_ivp", null)
       .map(res => this.saveToken(res).access_token)
       .catch(this.handleError);
   }

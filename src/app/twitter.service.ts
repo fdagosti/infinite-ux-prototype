@@ -14,49 +14,31 @@ export class TwitterService {
   public loginStateChanged$: EventEmitter<string>;
 
   constructor(private http: Http) {
-    this.loginStateChanged$ = new EventEmitter<string>();
   }
 
-  login(credentials){
-
-    let params = new URLSearchParams();
-    params.set('client_id', "zbn2ZXUkIXBJBnRccbNVrUSxd");
-    params.set('client_secret', "X2koMxUPzRIMagCHkPaU4Fp4W1B3oJEDyLFQ1aFbhyD7TJDado");
-    params.set('grant_type', "client_credentials");
-
-    return this.http.post(this.LOGINURL, params)
-      .do(res => console.log("res ",res))
-      .map(res => this.saveToken(res))
+  private login(){
+    return this.http.post("/api/login_twitter", null)
+      .map(res => this.saveToken(res).access_token)
       .catch(this.handleError);
   }
 
-  logout(){
-    window.localStorage.removeItem(this.LOCAL_STORAGE);
-    this.loginStateChanged$.emit("logout");
-  }
 
-  isLoggedIn = function(){
+
+  private _isLoggedIn = function(){
     var token = this.getToken();
     if (token) {
-      return !token.exp || (token.exp > Date.now() / 1000);
+      return token.exp > Date.now() / 1000;
     } else {
       return false;
     }
   }
 
-  currentUser() {
-    if (this.isLoggedIn()) {
-      var token = this.getToken();
-      return {
-        client_id: token.client_id,
-      };
-    }
-  }
-
   getAccessToken = function(){
-    let t = this.getToken();
-
-    return t?this.getToken().access_token:"";
+    if (!this._isLoggedIn()){
+      return this.login();
+    }else{
+      return Observable.of(this.getToken().access_token);
+    }
   }
 
 
@@ -69,11 +51,8 @@ export class TwitterService {
 
   private saveToken(res: Response){
     let token = res.json();
-    if (token.expires_in) {
-      token.exp = Date.now() / 1000 + token.expires_in;
-    }
+    token.exp = Date.now()/1000 + token.expires_in;
     window.localStorage[this.LOCAL_STORAGE] = JSON.stringify(token);
-    this.loginStateChanged$.emit("login");
     return token || { };
   }
 
@@ -91,13 +70,24 @@ export class TwitterService {
     return Observable.throw(errMsg);
   }
 
-  private getHeadersWithAuth(){
-    return new Headers({
-      "Authorization":"Bearer "+this.getAccessToken()
-    });
+  private getHttpCall(params, urls){
+    return this.getHeadersWithAuth()
+      .map((headers) => new RequestOptions({
+        headers: headers,
+        search: params
+      })).switchMap((options) => this.http.get(this.PROXY+this.TWITTERURL+urls, options))
+      .map((res:Response) => res.json())
+      .catch(this.handleError);
   }
 
-  getContent(search, offset){
+  private getHeadersWithAuth(){
+    return this.getAccessToken()
+      .map((token) => new Headers({"Authorization": "Bearer "+token}))
+
+  }
+
+
+getContent(search, offset){
     return this.search(`${search} filter:images`);
   }
 
@@ -122,15 +112,8 @@ export class TwitterService {
     params.set('q', query);
     params.set('result_type', "recent");
 
-    let options = new RequestOptions({
-      headers: this.getHeadersWithAuth(),
-      search: params
-
-    });
-
-    return this.http.get(this.PROXY+this.TWITTERURL+"search/tweets.json", options)
-      .map((res:Response) => res.json())
-      .map(this.fromTwitterToRowComp)
+    return this.getHttpCall(params, "search/tweets.json")
+      .map(this.fromTwitterToRowComp);
   }
 
 }
