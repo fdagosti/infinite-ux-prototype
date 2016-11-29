@@ -1,13 +1,11 @@
 <input type="text" #searchQuery>
-<button (click)="toutou.next()">SEARCH</button>
-
+<button (click)="toutou.next(searchQuery.value)">SEARCH</button>
+<div [ngBusy]="busy"></div>
 <iux-content-row
   class="carousel-item active"
-  [categoryId]="searchQuery.value"
-  [offset]="0"
   [rowSize]="6"
   [content]="{content:[]}"
   [fetchOnInit]="true"
-  [titi]="toutou"
+  [contentSource]="twitter.getContent('puppies')"
 >
 </iux-content-row>

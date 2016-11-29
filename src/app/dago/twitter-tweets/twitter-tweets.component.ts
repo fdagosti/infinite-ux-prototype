@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {TwitterService} from "../../twitter.service";
-import {Subject} from "rxjs";
+import {Subject, Observable} from "rxjs";
+import {switchMap} from "rxjs/operator/switchMap";
 
 @Component({
   selector: 'iux-twitter-tweets',
@@ -8,9 +9,18 @@ import {Subject} from "rxjs";
   styleUrls: ['./twitter-tweets.component.css']
 })
 export class TwitterTweetsComponent implements OnInit {
-  private result;
-  toutou=new Subject();
-  constructor(private twitter: TwitterService) { }
+
+  private toutou = new Subject();
+
+  private tweet$ = Observable.empty();
+  constructor(private twitter: TwitterService) {
+    this.toutou
+      .do(value=>console.log("value",value))
+      .subscribe(
+        value => this.tweet$ = this.twitter.getContent(value, 0)
+      )
+
+  }
 
   ngOnInit() {
   }

@@ -7,8 +7,6 @@
   <iux-content-row
     *ngFor="let page of pages; let i = index;"
     class="carousel-item"
-    [categoryId]="categoryId"
-    [offset]="page"
     [rowSize]="numberOfItemsPerPage"
     [class.active]="i === activeId"
     [class.prev]="i === leftId"
@@ -16,7 +14,7 @@
     [content]="page==0?content:{content:[]}"
     [vertical]="vertical"
     [busy]="busy"
-
+    [contentSource]="ctap.getContent(categoryId, page)"
   >
   </iux-content-row>
 

@@ -1,7 +1,12 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {CtapService} from "../../ctap.service";
-import {Subscription} from "rxjs";
+import {Subscription, Observable} from "rxjs";
 
+
+class ContentRow{
+  content:{
+    media
+  }
+}
 
 @Component({
   selector: 'iux-content-row',
@@ -11,7 +16,7 @@ import {Subscription} from "rxjs";
 })
 export class ContentRowComponent implements OnInit {
 
-  constructor(private ctap:CtapService) { }
+  constructor() { }
 
   @Input() private content;
   @Input() private categoryId;
@@ -19,7 +24,8 @@ export class ContentRowComponent implements OnInit {
   @Input() private rowSize;
   @Input() private fetchOnInit = false;
   @Input() private vertical = false;
-  @Input() zoom = true;
+  @Input() private zoom = true;
+  @Input() private contentSource:Observable<any>;
 
   private imageSize;
   @Input() busy: Subscription;
@@ -28,6 +34,7 @@ export class ContentRowComponent implements OnInit {
   private dummyArray;
 
   ngOnInit() {
+
     this.dummyArray = new Array(this.rowSize);
     if (this.fetchOnInit){
       this.fetchContent();
@@ -57,10 +64,11 @@ export class ContentRowComponent implements OnInit {
       return;
     }
 
-    this.busy = this.ctap.getContent(this.categoryId, this.offset)
+    this.busy = this.contentSource
       .subscribe(
         content => this.content = content,
-        error => this.errorMessage = <any>error
+        error => this.errorMessage = <any>error,
+        () => console.log("stream complete")
       );
 
   }
