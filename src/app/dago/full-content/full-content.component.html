@@ -1,14 +1,18 @@
 <iux-navbar-peter></iux-navbar-peter>
+<div class="galleryHeader">
+	<div class="title">
+		{{category.name | lowercase}}
+	</div>
+</div>
 
 <iux-content-row
-  *ngFor="let page of pages; let i = index;"
-  class="carousel-item active"
-  [categoryId]="categoryId"
-  [offset]="page"
-  [rowSize]="numberOfItemsPerPage"
-  [content]="page==0?content:{content:[]}"
-  [fetchOnInit]="true"
-  [vertical]="true"
-  [zoom]="false"
+*ngFor="let page of pages; let i = index;"
+class="carousel-item active"
+[rowSize]="4"
+[content]="page==0?content:{content:[]}"
+[fetchOnInit]="true"
+[vertical]="false"
+[zoom]="false"
+[contentSource]="ctap.getContent(categoryId, page)"
 >
 </iux-content-row>

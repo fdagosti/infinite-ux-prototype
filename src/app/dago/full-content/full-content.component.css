@@ -1,11 +1,24 @@
 :host{
-  display: block;
-  padding-top: 70px;
-  padding-left: 4%;
-  padding-right: 4%;
+	display: block;
+	padding-top: 70px;
+	padding-left: 4%;
+	padding-right: 4%;
 }
 
 iux-content-row{
-  display: block;
-  padding-top: 20px;
+	display: block;
+	padding-top: 20px;
+}
+
+.galleryHeader {
+    padding: 36px 0 72px;
+    min-height: 44px;
+    /*margin: 0 4%;*/
+}
+
+.title{
+	display: inline-block;
+	margin-right: 20px;
+	line-height: 36px;
+	font-size: 36px;
 }

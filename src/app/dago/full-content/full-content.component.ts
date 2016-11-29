@@ -1,7 +1,8 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {CtapService} from "../../ctap.service";
+import {CtapService, Category} from "../../ctap.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import "rxjs/add/operator/switchMap";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -15,6 +16,7 @@ export class FullContentComponent implements OnInit {
   private pageNum=0;
   private pages=Array(1);
   private categoryId;
+  private category:Category=new Category();
 
   private errorMessage;
 
@@ -32,10 +34,13 @@ export class FullContentComponent implements OnInit {
 
     this.route.params
       .do((params:Params) => this.categoryId = params['categoryId'])
-      .switchMap((params: Params) => this.ctap.getContent(this.categoryId))
+      .switchMap((params: Params) => Observable.forkJoin(
+        this.ctap.getContent(this.categoryId),
+        this.ctap.getCategories(this.categoryId)))
       .subscribe(
-        content => {
-          this.content = content;
+        result => {
+          this.content = result[0];
+          this.category = result[1];
           this.computePageSize();
         },
         error => this.errorMessage = <any>error

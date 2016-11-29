@@ -25,6 +25,7 @@ export class StoreComponent implements OnInit {
 
   private getCategories(){
     this.busy = this.ctap.getCategories(this.category?this.category.id:"")
+      .map((result:any)=> result.categories)
       .subscribe(
         cats => this.categories = cats,
         error => this.errorMessage = <any>error

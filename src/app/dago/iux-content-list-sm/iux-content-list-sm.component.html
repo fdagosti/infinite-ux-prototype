@@ -4,9 +4,9 @@
     *ngIf="multiPage"
     [routerLink]="getFullContentUrl()"
   >
-    {{category.name}} <span *ngIf="showChevron && multiPage" id="chevron" class="fa fa-chevron-right"></span>
+    {{category.name | lowercase}} <span *ngIf="showChevron && multiPage" id="chevron" class="fa fa-chevron-right"></span>
   </a>
-  <p class="categoryLink" *ngIf="!multiPage">{{category.name}}</p>
+  <p class="categoryLink" *ngIf="!multiPage">{{category.name | lowercase}}</p>
   <iux-content-carousel
     [vertical]="vertical"
     [showIndicator]="showChevron"

@@ -1,20 +1,32 @@
-<div [ngBusy]="busy"></div>
+<div [ngBusy]="busy">
+</div>
 <div class="content-container">
-  <div
-    class="relative content-item"
-    [class.zoom-item]="content.content[i] && zoom"
-    *ngFor="let toto of dummyArray;let i = index"
-  >
-    <a [routerLink]="content.content[i]?'/video/'+content.content[i].id:'./'">
+  <div class="relative content-item" [class.zoom-item]="content.content[i] && zoom" *ngFor="let toto of dummyArray;let i = index;">
+    <a [routerLink]="content.content[i]?'/video/'+content.content[i].id:'./'" >
       <img [src]="getContentImage(i)" alt="" class="absolute-img">
-      <i
-        *ngIf="content.content[i]"
-        id="playIcon"
-        class="fa fa-play-circle-o"
-        aria-hidden="true"
-      ></i>
-      <div *ngIf="content.content[i]" class="absolute-text">
-        <h4>{{content.content[i].content.title}}</h4>
+      <div class="overlay">
+        <i *ngIf="content.content[i]" id="playIcon" class="fa fa-play-circle-o" aria-hidden="true"></i>
+        <div class="info">
+          <div class="info-main" *ngIf="content.content[i]" >
+            <div class="text">
+              <div class="title">{{content.content[i].content.title}}</div>
+              <div class="meta">
+                <span class="year">2016</span>
+                <span class="maturity-rating"> - </span>
+                <span class="duration">1 saison</span>
+              </div>
+              <div class="synopsis">{{content.content[i].content.synopsis.shortSynopsis}}</div>
+            </div>
+            <div class="last-content">
+              <div class="mylist-wrapper">
+                <a class="icon fa fa-plus" role="link" href=""></a>
+              </div>
+            </div>
+          </div>
+          <div class="info-bottom">
+            <div class="icon fa fa-chevron-down"></div>
+          </div>
+        </div>
       </div>
     </a>
   </div>

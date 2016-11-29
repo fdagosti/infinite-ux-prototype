@@ -4,6 +4,13 @@ import {Observable} from 'rxjs/Rx';
 import {Http, Response, Headers, RequestOptions, URLSearchParams} from "@angular/http";
 import {AuthenticationService} from "./authentication.service";
 
+export class Category{
+  constructor(public id:string="",public name="",public _links=""){
+
+  }
+
+}
+
 @Injectable()
 export class CtapService {
 
@@ -14,8 +21,8 @@ export class CtapService {
   getCategories(categoryId): Observable<any[]>{
     if (!categoryId){categoryId="";}
 
-    return this.getHttpCall(null, "categories/"+categoryId)
-      .map(cats => cats.categories);
+    return this.getHttpCall(null, "categories/"+categoryId);
+
   }
 
   getContent(categoryId, offset?, limit="6"){

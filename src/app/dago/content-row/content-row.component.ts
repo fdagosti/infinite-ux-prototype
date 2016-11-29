@@ -68,7 +68,6 @@ export class ContentRowComponent implements OnInit {
       .subscribe(
         content => this.content = content,
         error => this.errorMessage = <any>error,
-        () => console.log("stream complete")
       );
 
   }
