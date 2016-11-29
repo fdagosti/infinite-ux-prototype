@@ -1,6 +1,12 @@
+/*We temporary use netflix font for some icons*/
+@font-face {
+    font-family: nf-icon;
+    src: url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-66.eot);
+    src: url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-66.eot?#iefix) format('embedded-opentype'), url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-66.woff) format('woff'), url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-66.ttf) format('truetype'), url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-66.svg#nf-icon-v1-66) format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
 
-
-/* You can add global styles to this file, and also import other style files */
 body{
 	background-color: #141414;
 	/*background-color: #f00;*/
@@ -120,4 +126,8 @@ h2{
 
 .dropdown-item:hover {
 	background-color: rgba(0,0,0,0) ;
+}
+
+section{
+	display: block;
 }
