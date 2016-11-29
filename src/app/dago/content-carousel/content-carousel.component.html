@@ -12,14 +12,14 @@
   [vertical]="vertical"
   [busy]="busy">
 </iux-content-row>
-<ol class="iux-carousel-indicators" *ngIf="pages.length > 1 && showIndicator">
+<ol class="iux-carousel-indicators" *ngIf="pages.length > 1 && showIndicator" [class.hidden]="firstSlide">
   <li *ngFor="let page of pages; let i = index;" [id]="i" [class.active]="i === activeId" ></li>
 </ol>
-<div class="handle handlePrevious" *ngIf="pages.length > 1"  >
-  <b class="indicator-icon icon-leftCaret" role="button" (click)="cycleToPrev()"></b>
+<div class="handle handlePrevious" *ngIf="pages.length > 1"  role="button" (click)="cycleToPrev()">
+  <b class="indicator-icon icon-leftCaret" ></b>
 </div>
-<div class="handle handleNext" *ngIf="pages.length > 1"  >
-  <b class="indicator-icon icon-rightCaret" role="button" (click)="cycleToNext()"></b>
+<div class="handle handleNext" *ngIf="pages.length > 1"  role="button" (click)="cycleToNext()" >
+  <b class="indicator-icon icon-rightCaret"></b>
 </div>
 </div>
 

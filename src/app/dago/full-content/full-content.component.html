@@ -1,14 +1,20 @@
 <iux-navbar-peter></iux-navbar-peter>
+<div class="galleryHeader">
+	<div class="title">
+		<!-- {{categoryID}} -->
+		Toto de tata de titi
+	</div>
+</div>
 
 <iux-content-row
-  *ngFor="let page of pages; let i = index;"
-  class="carousel-item active"
-  [categoryId]="categoryId"
-  [offset]="page"
-  [rowSize]="numberOfItemsPerPage"
-  [content]="page==0?content:{content:[]}"
-  [fetchOnInit]="true"
-  [vertical]="true"
-  [zoom]="false"
+*ngFor="let page of pages; let i = index;"
+class="carousel-item active"
+[categoryId]="categoryId"
+[offset]="page"
+[rowSize]="4"
+[content]="page==0?content:{content:[]}"
+[fetchOnInit]="true"
+[vertical]="false"
+[zoom]="false"
 >
 </iux-content-row>
