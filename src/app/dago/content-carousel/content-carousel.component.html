@@ -18,10 +18,10 @@
 <ol class="iux-carousel-indicators" *ngIf="pages.length > 1 && showIndicator" [class.hidden]="firstSlide">
   <li *ngFor="let page of pages; let i = index;" [id]="i" [class.active]="i === activeId" ></li>
 </ol>
-<div class="handle handlePrevious" *ngIf="pages.length > 1"  role="button" (click)="cycleToPrev()">
+<div class="handle handlePrevious" *ngIf="pages.length > 1  && showIndicator"  role="button" (click)="cycleToPrev()">
   <b class="indicator-icon icon-leftCaret" ></b>
 </div>
-<div class="handle handleNext" *ngIf="pages.length > 1"  role="button" (click)="cycleToNext()" >
+<div class="handle handleNext" *ngIf="pages.length > 1  && showIndicator"  role="button" (click)="cycleToNext()" >
   <b class="indicator-icon icon-rightCaret"></b>
 </div>
 
