@@ -15,6 +15,7 @@ import {PeterModule} from "../peter/peter.module";
 import {BusyModule} from "angular2-busy";
 import {TwitterService} from "../twitter.service";
 import {TwitterTweetsComponent} from "./twitter-tweets/twitter-tweets.component";
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   imports: [
@@ -34,10 +35,11 @@ import {TwitterTweetsComponent} from "./twitter-tweets/twitter-tweets.component"
     ContentRowComponent,
     IUXContentListSmComponent,
     FullContentComponent,
-    TwitterTweetsComponent
+    TwitterTweetsComponent,
+    SettingsComponent
   ],
   exports: [
-    PrimeTimeComponent,
+    SettingsComponent,
     DagoPlaygroundComponent,
     IUXContentListSmComponent
   ],

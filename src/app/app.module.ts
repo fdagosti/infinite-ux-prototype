@@ -3,7 +3,6 @@ import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
-import {PresentationComponent} from "./presentation/presentation.component";
 import {PlayerComponent} from "./player/player.component";
 import {CtapService} from "./ctap.service";
 import {StoreComponent} from "./store/store.component";
@@ -18,13 +17,13 @@ import {VideoService} from "./video.service";
 import {BusyModule} from "angular2-busy";
 import {ProfilesGateComponent} from "./peter/profiles-gate/profiles-gate.component";
 import {UsersService} from "./users.service";
+import {SettingsComponent} from "./dago/settings/settings.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PresentationComponent,
     PlayerComponent,
     StoreComponent,
   ],
@@ -35,7 +34,6 @@ import {UsersService} from "./users.service";
     InfiniteUxModule,
     BrowserModule,
     RouterModule.forRoot([
-      {path: "presentation", component: PresentationComponent},
       {path: "full/:categoryId", component: FullContentComponent},
       {path: "video/:contentId", component: PlayerComponent},
       {path: "video", component: PlayerComponent},
@@ -43,6 +41,7 @@ import {UsersService} from "./users.service";
       {path: "profiles/manage", component: ProfilesGateComponent},
       {path: "peter", component: PeterPlaygroundComponent},
       {path: "dago", component: DagoPlaygroundComponent},
+      {path: "settings", component: SettingsComponent},
       {path: "", component: HomeComponent},
     ]),
 
