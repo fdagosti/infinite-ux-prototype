@@ -7,6 +7,7 @@ import { NavbarPeterComponent } from './navbar-peter/navbar-peter.component';
 import { BillboardRowComponent } from './billboard-row/billboard-row.component';
 import { SignupBasicHeaderComponent } from './signup-basic-header/signup-basic-header.component';
 import { HomeWrapperComponent } from './home-wrapper/home-wrapper.component';
+import { ProfilesGateComponent } from './profiles-gate/profiles-gate.component';
 
 @NgModule({
 	imports: [
@@ -20,6 +21,7 @@ import { HomeWrapperComponent } from './home-wrapper/home-wrapper.component';
 	BillboardRowComponent,
 	SignupBasicHeaderComponent,
 	HomeWrapperComponent,
+	ProfilesGateComponent,
 	],
   exports: [
     NavbarPeterComponent,
