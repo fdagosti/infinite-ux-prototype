@@ -1,0 +1,54 @@
+:host{
+	width: 10vw;
+	max-width: 200px;
+	min-width: 84px;
+};
+.avatar-wrapper{
+	position: relative;
+}
+.addProfileIcon, .profile-icon, li.profile {
+	width: 10vw;
+	max-width: 200px;
+	min-width: 84px;
+}
+
+.profile-icon{
+	background-image:url(./assets/avatar.png);
+	height: 10vw;
+	max-height: 200px;
+	min-height: 84px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: relative;
+	text-decoration: none;
+	border: .3em solid rgba(0,0,0,.4);
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-color: #333;
+}
+
+.profile-name{
+	color: grey;
+	display: block;
+	text-align: center;
+	font-size: 1.3vw;
+	margin: .8em 0;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+a:focus,a:hover {
+	cursor: pointer;
+	outline: 0;
+}
+a:focus .profile-name, a:hover .profile-name {
+	color: #e5e5e5;
+}
+a:focus .profile-icon, a:hover .profile-icon {
+	border-color: #e5e5e5;
+}
