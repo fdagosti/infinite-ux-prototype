@@ -25,14 +25,14 @@ export class CtapService {
 
   }
 
-  getContent(categoryId, offset?, limit="6"){
+  getContent(categoryId, offset?, limit="6",delay=0){
 
     let params = new URLSearchParams();
     params.set('categoryId', categoryId); // the user's search value
     params.set('limit', limit); // the user's search value
     if (offset) params.set('offset', offset); // the user's search value
 
-    return this.getHttpCall(params, "agg/content/");
+    return this.getHttpCall(params, "agg/content/",delay);
   }
 
   getSuggestions(keyword){
@@ -56,12 +56,14 @@ export class CtapService {
     return this.getHttpCall(params, "devices/me/playsessions");
   }
 
-  private getHttpCall(params, urls){
+  private getHttpCall(params, urls, delay=0){
     return this.getHeadersWithAuth()
       .map((headers) => new RequestOptions({
         headers: headers,
         search: params
-      })).switchMap((options) => this.http.get(this.ctapUrl+urls, options))
+      }))
+      .delay(delay)
+      .switchMap((options) => this.http.get(this.ctapUrl+urls, options))
       .map((res:Response) => res.json())
       .catch(this.handleError);
   }
