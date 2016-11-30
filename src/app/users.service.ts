@@ -6,10 +6,18 @@ export class UsersService {
 
 
   private users = [
-    {name: "francois",
-    image: "françois.png"},
-    {name: "peter",
-      image: "peter.png"}
+    {
+      name: "francois",
+      image: "françois.png",
+      language:"english",
+      restricted:"false"
+    },
+    {
+      name: "peter",
+      image: "peter.png",
+      language:"english",
+      restricted:"false"
+    }
   ];
 
   constructor() { }

@@ -4,7 +4,12 @@
 	font-size: 1.3vw;
 }
 
- a {
+@media screen and (max-width: 800px){
+	:host {
+		font-size: 13px;
+	}
+}
+a {
 	border: 1px solid grey;
 	color: grey;
 	text-transform: uppercase;

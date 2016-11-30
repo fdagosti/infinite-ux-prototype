@@ -8,9 +8,7 @@
 	font-size: 3.5vw;
 }
 
-ul {
-	
-}
+
 
 .choose-profile{
 	margin: 2em 0;
@@ -81,4 +79,34 @@ li a:focus .addProfileIcon, li a:hover .addProfileIcon {
 
 .icon-tvuiAdd:before {
 	content: '\e716';
+}
+
+a:focus .profile-name, a:hover .profile-name {
+	color: #e5e5e5;
+}
+
+.profile-name{
+	color: grey;
+	display: block;
+	text-align: center;
+	font-size: 1.3vw;
+	margin: .8em 0;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+@media screen and (max-width: 800px){
+	.label {
+		font-size: 30px;
+	}
+	.profile-name {
+		font-size: 12px;
+	}
+}
+
+@media screen and (max-width: 865px){
+	.addProfileIcon {
+		font-size: 50px;
+	}
 }
