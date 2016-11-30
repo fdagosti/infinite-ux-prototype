@@ -1,0 +1,15 @@
+:host{
+  padding-top: 30px;
+  display: block;
+}
+
+p{
+  font-size: 1rem;
+}
+
+
+.row{
+  border-top-style: solid;
+  border-top-width: 2px;
+  padding-top: 20px;
+}
