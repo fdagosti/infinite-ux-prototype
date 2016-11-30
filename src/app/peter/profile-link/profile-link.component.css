@@ -2,7 +2,8 @@
 	width: 10vw;
 	max-width: 200px;
 	min-width: 84px;
-};
+}
+
 .avatar-wrapper{
 	position: relative;
 }
@@ -13,7 +14,6 @@
 }
 
 .profile-icon{
-	background-image:url(./assets/avatar.png);
 	height: 10vw;
 	max-height: 200px;
 	min-height: 84px;
@@ -23,12 +23,6 @@
 	position: relative;
 	text-decoration: none;
 	border: .3em solid rgba(0,0,0,.4);
-	background-repeat: no-repeat;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	background-color: #333;
 }
 
 .profile-name{

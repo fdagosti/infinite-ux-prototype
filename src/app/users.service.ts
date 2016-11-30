@@ -7,9 +7,9 @@ export class UsersService {
 
   private users = [
     {name: "francois",
-    image: "avatar.png"},
+    image: "françois.png"},
     {name: "peter",
-      image: "avatar.png"}
+      image: "peter.png"}
   ];
 
   constructor() { }

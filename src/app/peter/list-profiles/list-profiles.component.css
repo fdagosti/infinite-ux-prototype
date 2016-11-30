@@ -9,11 +9,12 @@
 }
 
 ul {
-	padding: 0;
+	
 }
 
 .choose-profile{
 	margin: 2em 0;
+	padding: 0;
 }
 
 li {
@@ -22,59 +23,13 @@ li {
 	position: relative;
 }
 
-.profile{
-	width: 10vw;
-	max-width: 200px;
-	min-width: 84px;
-}
-
-li.profile:not(:last-child) {
-	margin: 0 2vw 0 0
+li:not(:last-child) {
+	margin: 0 2vw 0 0;
 }
 
 a {
 	cursor: pointer;
 	text-decoration: none;
-}
-
-
-.avatar-wrapper{
-	position: relative;
-}
-.addProfileIcon, .profile-icon, li.profile {
-	width: 10vw;
-	max-width: 200px;
-	min-width: 84px;
-}
-
-.profile-icon{
-	background-image:url(./assets/avatar.png);
-	height: 10vw;
-	max-height: 200px;
-	min-height: 84px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	position: relative;
-	text-decoration: none;
-	border: .3em solid rgba(0,0,0,.4);
-	background-repeat: no-repeat;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	background-color: #333;
-}
-
-.profile-name{
-	color: grey;
-	display: block;
-	text-align: center;
-	font-size: 1.3vw;
-	margin: .8em 0;
-	-o-text-overflow: ellipsis;
-	text-overflow: ellipsis;
-	overflow: hidden;
 }
 
 .addProfileIcon {
@@ -96,6 +51,9 @@ a {
 	height: 10vw;
 	max-height: 200px;
 	min-height: 84px;
+	width: 10vw;
+	max-width: 200px;
+	min-width: 84px;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -113,14 +71,6 @@ a {
 	justify-content: center;
 }
 
-.icon-tvuiAdd:before {
-	content: '\e716';
-}
-
-a:focus,a:hover {
-	cursor: pointer;
-	outline: 0;
-}
 li a {
 	text-decoration: none;
 }
@@ -129,31 +79,6 @@ li a:focus .addProfileIcon, li a:hover .addProfileIcon {
 	background-color: #e5e5e5;
 }
 
-.activeProfile, li a:focus .profile-icon, li a:hover .profile-icon {
-	border-color: #e5e5e5;
-}
-
-li a:focus .profile-name, li a:hover .profile-name {
-	color: #e5e5e5;
-}
-
-.profile-button {
-	display: block;
-	margin: 2em 0 1em;
-	font-size: 1.3vw;
-}
-
-.profile-button a {
-	border: 1px solid grey;
-	color: grey;
-	text-transform: uppercase;
-	padding: .5em 1.5em;
-	letter-spacing: 2px;
-	cursor: pointer;
-	font-size: .9em;
-}
-
-.profile-button a:hover{
-	color: #fff;
-	border: 1px solid #fff;
+.icon-tvuiAdd:before {
+	content: '\e716';
 }
