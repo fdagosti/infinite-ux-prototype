@@ -1,4 +1,4 @@
-<div [ngBusy]="busy">
+<div [ngBusy]="{busy: busy,template: ''}">
 </div>
 <div class="content-container">
   <div class="relative content-item" [class.zoom-item]="content.content[i] && zoom" *ngFor="let toto of dummyArray;let i = index;">
