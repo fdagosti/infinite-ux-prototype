@@ -1,0 +1,21 @@
+:host{
+	display: block;
+	margin: 2em 0 1em;
+	font-size: 1.3vw;
+}
+
+ a {
+	border: 1px solid grey;
+	color: grey;
+	text-transform: uppercase;
+	padding: .5em 1.5em;
+	letter-spacing: 2px;
+	cursor: pointer;
+	font-size: .9em;
+	text-decoration: none;
+}
+
+a:hover{
+	color: #fff;
+	border: 1px solid #fff;
+}

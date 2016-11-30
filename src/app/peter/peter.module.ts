@@ -8,6 +8,9 @@ import { BillboardRowComponent } from './billboard-row/billboard-row.component';
 import { SignupBasicHeaderComponent } from './signup-basic-header/signup-basic-header.component';
 import { HomeWrapperComponent } from './home-wrapper/home-wrapper.component';
 import { ProfilesGateComponent } from './profiles-gate/profiles-gate.component';
+import { ProfilesActionContainerComponent } from './profiles-action-container/profiles-action-container.component';
+import { ListProfilesComponent } from './list-profiles/list-profiles.component';
+import { ManageProfileButtonComponent } from './manage-profile-button/manage-profile-button.component';
 
 @NgModule({
 	imports: [
@@ -22,6 +25,9 @@ import { ProfilesGateComponent } from './profiles-gate/profiles-gate.component';
 	SignupBasicHeaderComponent,
 	HomeWrapperComponent,
 	ProfilesGateComponent,
+	ProfilesActionContainerComponent,
+	ListProfilesComponent,
+	ManageProfileButtonComponent,
 	],
   exports: [
     NavbarPeterComponent,
