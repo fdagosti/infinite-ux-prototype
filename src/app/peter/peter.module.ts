@@ -25,7 +25,8 @@ import { ProfilesGateComponent } from './profiles-gate/profiles-gate.component';
 	],
   exports: [
     NavbarPeterComponent,
-    BillboardRowComponent
+    BillboardRowComponent,
+    ProfilesGateComponent
   ]
 })
 export class PeterModule { }

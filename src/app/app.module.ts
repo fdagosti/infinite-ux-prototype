@@ -16,6 +16,7 @@ import {InfiniteUxModule} from "./infinite-ux/infinite-ux.module";
 import {FullContentComponent} from "./dago/full-content/full-content.component";
 import {VideoService} from "./video.service";
 import {BusyModule} from "angular2-busy";
+import {ProfilesGateComponent} from "./peter/profiles-gate/profiles-gate.component";
 
 
 @NgModule({
@@ -37,6 +38,8 @@ import {BusyModule} from "angular2-busy";
       {path: "full/:categoryId", component: FullContentComponent},
       {path: "video/:contentId", component: PlayerComponent},
       {path: "video", component: PlayerComponent},
+      {path: "profiles", component: ProfilesGateComponent},
+      {path: "profiles/manage", component: ProfilesGateComponent},
       {path: "peter", component: PeterPlaygroundComponent},
       {path: "dago", component: DagoPlaygroundComponent},
       {path: "", component: HomeComponent},
