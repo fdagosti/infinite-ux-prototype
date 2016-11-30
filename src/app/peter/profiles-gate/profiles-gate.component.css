@@ -1,4 +1,3 @@
-
 .profiles-gate-container{
 	position: fixed;
 	top: 0;
@@ -10,13 +9,11 @@
 }
 
 .centered-div{
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	text-align: center;
-	background: #141414;
+	-webkit-animation: fadein 450ms; 
+	-moz-animation: fadein 450ms;
+	-ms-animation: fadein 450ms;
+	-o-animation: fadein 450ms;
+	animation: fadein 450ms;
 
 	z-index: 100;
 	position: absolute;
@@ -47,6 +44,19 @@
 	-ms-flex-direction: column;
 	flex-direction: column;
 	/* opacity: 0; */
+}
+
+@keyframes fadein {
+	from { 
+		opacity: 0;
+		transform: scale(1.25);
+        -webkit-transform: scale(1.25);
+	}
+	to   {
+		opacity: 1;
+		transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+		 }
 }
 
 .label{
