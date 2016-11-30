@@ -65,6 +65,7 @@ export class ContentRowComponent implements OnInit {
     }
 
     this.busy = this.contentSource
+      .do(content =>console.log("content = ",content))
       .subscribe(
         content => this.content = content,
         error => this.errorMessage = <any>error,
