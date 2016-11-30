@@ -1,8 +1,7 @@
-import 'rxjs/Rx';
-import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Rx';
+import "rxjs/Rx";
+import {Injectable} from "@angular/core";
+import {Observable} from "rxjs/Rx";
 import {Http, Response, Headers, RequestOptions, URLSearchParams} from "@angular/http";
-import {AuthenticationService} from "./authentication.service";
 
 export class Category{
   constructor(public id:string="",public name="",public _links=""){
@@ -15,18 +14,15 @@ export class Category{
 export class CtapService {
 
   private ctapUrl = "https://apx.cisco.com/spvss/infinitehome/infinitetoolkit/v_sandbox_2/";
+  private LOCAL_STORAGE:string = "InfiniteUX-proto-token-v1";
 
-  constructor(private http: Http, private auth:AuthenticationService) { }
+  constructor(private http: Http) { }
 
-  getCategories(categoryId): Observable<any[]>{
-    if (!categoryId){categoryId="";}
-
+  getCategories(categoryId =""): Observable<any[]>{
     return this.getHttpCall(null, "categories/"+categoryId);
-
   }
 
   getContent(categoryId, offset?, limit="6",delay=0){
-
     let params = new URLSearchParams();
     params.set('categoryId', categoryId); // the user's search value
     params.set('limit', limit); // the user's search value
@@ -56,6 +52,10 @@ export class CtapService {
     return this.getHttpCall(params, "devices/me/playsessions");
   }
 
+  getSettings(){
+    return this.getHttpCall(undefined, "userProfiles/me/settings");
+  }
+
   private getHttpCall(params, urls, delay=0){
     return this.getHeadersWithAuth()
       .map((headers) => new RequestOptions({
@@ -69,9 +69,45 @@ export class CtapService {
   }
 
   private getHeadersWithAuth(){
-    return this.auth.getAccessToken()
+    return this.getAccessToken()
       .map((token) => new Headers({"Authorization": "Bearer "+token}))
 
+  }
+
+  private login(){
+    return this.http.post("/api/login_ivp", null)
+      .map(res => this.saveToken(res.json()).access_token)
+      .catch(this.handleError);
+  }
+
+  private _isLoggedIn = function(){
+    var token = this.getToken();
+    if (token) {
+      return token.exp > Date.now() / 1000;
+    } else {
+      return false;
+    }
+  }
+
+  private getAccessToken = function(){
+    if (!this._isLoggedIn()){
+      return this.login();
+    }else{
+      return Observable.of(this.getToken().access_token);
+    }
+  }
+
+  private getToken(){
+    let t = window.localStorage[this.LOCAL_STORAGE];
+    if(t){
+      return JSON.parse(t);
+    }
+  }
+
+  private saveToken(token){
+    token.exp = Date.now()/1000 + token.expires_in;
+    window.localStorage[this.LOCAL_STORAGE] = JSON.stringify(token);
+    return token || { };
   }
 
   private handleError (error: Response | any) {

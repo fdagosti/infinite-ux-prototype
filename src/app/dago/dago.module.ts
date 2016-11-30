@@ -16,6 +16,9 @@ import {BusyModule} from "angular2-busy";
 import {TwitterService} from "../twitter.service";
 import {TwitterTweetsComponent} from "./twitter-tweets/twitter-tweets.component";
 import { SettingsComponent } from './settings/settings.component';
+import { SettingsSectionComponent } from './settings-section/settings-section.component';
+import {CtapSettingsPipe} from "./ctap-settings.pipe";
+import { KeysPipe } from './keys.pipe';
 
 @NgModule({
   imports: [
@@ -36,7 +39,10 @@ import { SettingsComponent } from './settings/settings.component';
     IUXContentListSmComponent,
     FullContentComponent,
     TwitterTweetsComponent,
-    SettingsComponent
+    SettingsComponent,
+    SettingsSectionComponent,
+    CtapSettingsPipe,
+    KeysPipe
   ],
   exports: [
     SettingsComponent,

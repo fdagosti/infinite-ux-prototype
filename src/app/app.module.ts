@@ -6,7 +6,6 @@ import {HomeComponent} from "./home/home.component";
 import {PlayerComponent} from "./player/player.component";
 import {CtapService} from "./ctap.service";
 import {StoreComponent} from "./store/store.component";
-import {AuthenticationService} from "./authentication.service";
 import {PeterPlaygroundComponent} from "./peter/peter-playground/peter-playground.component";
 import {DagoPlaygroundComponent} from "./dago/dago-playground/dago-playground.component";
 import {DagoModule} from "./dago/dago.module";
@@ -49,7 +48,6 @@ import {SettingsComponent} from "./dago/settings/settings.component";
   providers: [
     CtapService,
     VideoService,
-    AuthenticationService,
     UsersService
   ],
   bootstrap: [AppComponent]

@@ -1,6 +1,5 @@
-import { Component, OnInit, HostListener, Inject} from '@angular/core';
-import {AuthenticationService} from "../../authentication.service";
-import { DOCUMENT } from "@angular/platform-browser";
+import {Component, OnInit, HostListener, Inject} from "@angular/core";
+import {DOCUMENT} from "@angular/platform-browser";
 
 
 @Component({
