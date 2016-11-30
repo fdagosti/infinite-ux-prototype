@@ -1,10 +1,7 @@
 <div class="label">Who are you?</div>
 <ul class="choose-profile">
-	<li class="profile">
-		<iux-profile-link></iux-profile-link>
-	</li>
-	<li class="profile">
-		<iux-profile-link></iux-profile-link>
+	<li class="profile" *ngFor="let user of users">
+		<iux-profile-link [user]="user"></iux-profile-link>
 	</li>
 	<li>
 		<a role="link">

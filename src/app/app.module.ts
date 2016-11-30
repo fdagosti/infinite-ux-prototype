@@ -17,6 +17,7 @@ import {FullContentComponent} from "./dago/full-content/full-content.component";
 import {VideoService} from "./video.service";
 import {BusyModule} from "angular2-busy";
 import {ProfilesGateComponent} from "./peter/profiles-gate/profiles-gate.component";
+import {UsersService} from "./users.service";
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {ProfilesGateComponent} from "./peter/profiles-gate/profiles-gate.compone
   providers: [
     CtapService,
     VideoService,
-    AuthenticationService
+    AuthenticationService,
+    UsersService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UsersService} from "../../users.service";
 
 @Component({
   selector: 'iux-list-profiles',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListProfilesComponent implements OnInit {
 
-  constructor() { }
+  private users;
+
+  constructor(private usersSource:UsersService) { }
 
   ngOnInit() {
+    this.usersSource.getUsers()
+      .do(c=>console.log("Users = ",c))
+      .subscribe(content => this.users=content);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'iux-profile-link',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-link.component.css']
 })
 export class ProfileLinkComponent implements OnInit {
+
+  @Input() user
 
   constructor() { }
 
