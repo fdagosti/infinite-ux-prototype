@@ -9,7 +9,7 @@ import {CtapService} from "../../ctap.service";
 export class IUXContentListSmComponent implements OnInit {
 
   @Input() category;
-  @Input() vertical=false;
+  @Input() portrait=false;
 
   showChevron = false;
   multiPage = false;

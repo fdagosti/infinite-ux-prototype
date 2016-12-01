@@ -2,12 +2,12 @@
   <iux-content-list-sm
 
     *ngIf="cat.leaf"
-    [vertical]="vertical"
+    [portrait]="portrait"
     [category]="cat"
   ></iux-content-list-sm>
   <iux-store
     *ngIf="!cat.leaf"
-    [vertical]="false"
+    [portrait]="false"
     [category]="cat"
   ></iux-store>
 </div>

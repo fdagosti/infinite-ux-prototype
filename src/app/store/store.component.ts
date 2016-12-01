@@ -13,7 +13,7 @@ export class StoreComponent implements OnInit {
   private categories;
   private busy:Subscription;
   @Input() category;
-  @Input() vertical = false;
+  @Input() portrait = false;
 
   constructor(public ctap:CtapService, ) {
 

@@ -22,6 +22,7 @@ import { KeysPipe } from './keys.pipe';
 import { SettingsCtapComponent } from './settings-ctap/settings-ctap.component';
 import { SettingsDebugComponent } from './settings-debug/settings-debug.component';
 import { SettingsAdsuiteComponent } from './settings-adsuite/settings-adsuite.component';
+import { OverlayComponent } from './overlay/overlay.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { SettingsAdsuiteComponent } from './settings-adsuite/settings-adsuite.co
     KeysPipe,
     SettingsCtapComponent,
     SettingsDebugComponent,
-    SettingsAdsuiteComponent
+    SettingsAdsuiteComponent,
+    OverlayComponent
   ],
   exports: [
     SettingsComponent,

@@ -21,7 +21,7 @@ export class ContentCarouselComponent implements AfterContentChecked,
 
 
   @Input() categoryId;
-  @Input() vertical;
+  @Input() portrait;
   @Input() showIndicator;
   private content;
   private pageNum=0;
