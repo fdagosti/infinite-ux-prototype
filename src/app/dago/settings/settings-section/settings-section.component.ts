@@ -1,5 +1,4 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'iux-settings-section',
@@ -8,15 +7,11 @@ import {Observable} from "rxjs";
 })
 export class SettingsSectionComponent implements OnInit {
 
-  @Input() source:Observable<any>
-
-  private data;
+  @Input() title;
 
   constructor() { }
 
   ngOnInit() {
-    this.source
-      .subscribe(settings=>this.data = settings);
   }
 
 }

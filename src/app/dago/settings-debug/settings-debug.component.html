@@ -1,0 +1,18 @@
+<iux-settings-section title="Debugging" >
+  <div class="col-sm-8">
+    <div class="form-group">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" > Enable Fake Videos
+        </label>
+      </div>
+    </div>
+    <p class="help-block">Switch the real videos by fake videos coming from the following list: </p>
+    <ul class="list-unstyled">
+      <li *ngFor="let fakeVideo of ['blablabla', 'bliblibli','blobloblo'] ">
+        {{fakeVideo}}
+      </li>
+    </ul>
+  </div>
+
+</iux-settings-section>

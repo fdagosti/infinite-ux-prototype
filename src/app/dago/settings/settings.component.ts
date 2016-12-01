@@ -1,6 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {Observable} from "rxjs";
-import {CtapService} from "../../ctap.service";
+import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: 'iux-settings',
@@ -11,7 +9,7 @@ export class SettingsComponent implements OnInit {
 
 
 
-  constructor(private ctap:CtapService) { }
+  constructor() { }
 
   ngOnInit() {
 

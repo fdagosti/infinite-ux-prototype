@@ -1,0 +1,13 @@
+<iux-settings-section *ngIf="data" title="IVP Profile" >
+  <div class="col-sm-4">
+    <p *ngFor="let key of data | keys">
+      {{key | ctapSettings}}:
+    </p>
+  </div>
+  <div style="text-align: right" class="col-sm-4">
+    <p *ngFor="let key of data | keys">
+      {{data[key] | ctapSettings:"value"}}
+    </p>
+
+  </div>
+</iux-settings-section>

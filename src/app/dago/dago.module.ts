@@ -16,9 +16,12 @@ import {BusyModule} from "angular2-busy";
 import {TwitterService} from "../twitter.service";
 import {TwitterTweetsComponent} from "./twitter-tweets/twitter-tweets.component";
 import { SettingsComponent } from './settings/settings.component';
-import { SettingsSectionComponent } from './settings-section/settings-section.component';
-import {CtapSettingsPipe} from "./ctap-settings.pipe";
+import { SettingsSectionComponent } from './settings/settings-section/settings-section.component';
+import {CtapSettingsPipe} from "./settings-ctap/ctap-settings.pipe";
 import { KeysPipe } from './keys.pipe';
+import { SettingsCtapComponent } from './settings-ctap/settings-ctap.component';
+import { SettingsDebugComponent } from './settings-debug/settings-debug.component';
+import { SettingsAdsuiteComponent } from './settings-adsuite/settings-adsuite.component';
 
 @NgModule({
   imports: [
@@ -42,7 +45,10 @@ import { KeysPipe } from './keys.pipe';
     SettingsComponent,
     SettingsSectionComponent,
     CtapSettingsPipe,
-    KeysPipe
+    KeysPipe,
+    SettingsCtapComponent,
+    SettingsDebugComponent,
+    SettingsAdsuiteComponent
   ],
   exports: [
     SettingsComponent,
