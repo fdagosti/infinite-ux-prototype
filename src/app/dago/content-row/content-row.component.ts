@@ -53,7 +53,7 @@ export class ContentRowComponent implements OnInit {
   getContentImage(index){
 
     if (this.content && this.content.content[index]){
-      return this.content.content[index].content.media[this.vertical?5:2].url;
+      return this.content.content[index].content.media[this.vertical?5:1].url;
     }else{
       return `http://placehold.it/${this.imageSize.w}x${this.imageSize.h}/000000/ffffff?text=+`;
     }

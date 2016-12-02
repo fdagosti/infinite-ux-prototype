@@ -49,7 +49,14 @@ export class CtapService {
     let params = new URLSearchParams();
     params.set("instanceId", instanceId);
 
-    return this.getHttpCall(params, "devices/me/playsessions");
+    return this.getHeadersWithAuth()
+      .map((headers) => new RequestOptions({
+        headers: headers,
+        search: params
+      }))
+      .switchMap((options) => this.http.post(this.ctapUrl+"devices/me/playsessions", null,options))
+      .map((res:Response) => res.json())
+      .catch(this.handleError);
   }
 
   getSettings(){
