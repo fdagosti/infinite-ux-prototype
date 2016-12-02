@@ -50,6 +50,13 @@ export class ContentRowComponent implements OnInit {
     }
   }
 
+  private getPlayLink(program){
+    if (!program) return "./";
+    if (!program._links.playSession) return "./";
+
+    return '/video/'+program.id;
+  }
+
   getContentImage(index){
 
     if (this.content && this.content.content[index] && this.content.content[index].content.media){
@@ -65,7 +72,7 @@ export class ContentRowComponent implements OnInit {
     }
 
     return this.busy = this.contentSource
-      // .do(content =>console.log("content = ",content))
+       //.do(content =>console.log("content = ",content))
       .subscribe(
         content => this.content = content,
         error => this.errorMessage = <any>error,

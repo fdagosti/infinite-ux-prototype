@@ -1,5 +1,5 @@
 <div class="overlay">
-  <i *ngIf="program" id="playIcon" class="fa fa-play-circle-o" aria-hidden="true"></i>
+  <i *ngIf="program && program._links.playSession" id="playIcon" class="fa fa-play-circle-o" aria-hidden="true"></i>
   <div class="info">
     <div class="info-main" *ngIf="program" >
       <div class="text">

@@ -19,7 +19,12 @@ export class CtapService {
   constructor(private http: Http) { }
 
   getCategories(categoryId =""): Observable<any[]>{
-    return this.getHttpCall(null, "categories/"+categoryId);
+    return this.getHttpCall(null, "categories/"+categoryId)
+      .map(cats => {
+        cats.categories.length = Math.min(cats.categories.length, 7);
+        return cats;
+      })
+
   }
 
   getContentFromSearchedTerm(term, offset?, limit="6", delay=0){

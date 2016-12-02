@@ -2,7 +2,7 @@
 </div>
 <div class="content-container">
   <div class="relative content-item" [class.zoom-item]="content.content[i] && zoom" *ngFor="let toto of dummyArray;let i = index;">
-    <a [routerLink]="content.content[i]?'/video/'+content.content[i].id:'./'" >
+    <a [routerLink]="getPlayLink(content.content[i])" >
       <img [src]="getContentImage(i)" alt="" class="absolute-img">
       <iux-overlay [program]="content.content[i]"></iux-overlay>
     </a>
