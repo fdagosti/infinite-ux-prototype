@@ -42,7 +42,8 @@ export class CtapService {
     params.set('limit', limit); // the user's search value
     if (offset) params.set('offset', offset); // the user's search value
 
-    return this.getHttpCall(params, "agg/content/",delay);
+    return this.getHttpCall(params, "agg/content/",delay)
+      .do(content=>console.log("content ",content));
   }
 
   getSuggestions(keyword){
