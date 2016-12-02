@@ -8,6 +8,9 @@ class ContentRow{
   }
 }
 
+const PORTRAIT_SIZE = {w:213,h:318};
+const LANDSCAPE_SIZE = {w:399,h:225};
+
 @Component({
   selector: 'iux-content-row',
   templateUrl: './content-row.component.html',
@@ -23,7 +26,7 @@ export class ContentRowComponent implements OnInit {
   @Input() private offset;
   @Input() private rowSize;
   @Input() private fetchOnInit = false;
-  @Input() private vertical = false;
+  @Input() private portrait = false;
   @Input() private zoom = true;
   @Input() private contentSource:Observable<any>;
 
@@ -39,14 +42,14 @@ export class ContentRowComponent implements OnInit {
     if (this.fetchOnInit){
       this.fetchContent();
     }
-    this.imageSize = this.getImageSize(this.vertical);
+    this.imageSize = this.getImageSize(this.portrait);
   }
 
-  private getImageSize(vertical){
-    if (vertical){
-      return {w:228,h:341};
+  private getImageSize(portrait){
+    if (portrait){
+      return PORTRAIT_SIZE;
     }else {
-      return {w:255,h:144};
+      return LANDSCAPE_SIZE;
     }
   }
 
@@ -60,7 +63,7 @@ export class ContentRowComponent implements OnInit {
   getContentImage(index){
 
     if (this.content && this.content.content[index] && this.content.content[index].content.media){
-      return this.content.content[index].content.media[this.vertical?5:1].url;
+      return this.content.content[index].content.media[this.portrait?5:1].url;
     }else{
       return `http://placehold.it/${this.imageSize.w}x${this.imageSize.h}/000000/ffffff?text=+`;
     }

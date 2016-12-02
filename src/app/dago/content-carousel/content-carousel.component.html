@@ -8,7 +8,7 @@
     [class.prev]="i === leftId"
     [class.next]="i === rightId"
     [content]="page==0?content:{content:[]}"
-    [vertical]="portrait"
+    [portrait]="portrait"
     [contentSource]="ctap.getContent(categoryId, page, undefined, 250)"
   >
   </iux-content-row>
