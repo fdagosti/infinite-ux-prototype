@@ -97,10 +97,18 @@ getContent(search, offset){
       .filter(status=>status.entities.media)
       .map((status)=> {
       let medias = new Array(6).fill(1).map(()=>({url: status.entities.media[0].media_url}));
-      return {"content": {
-        "title": status.text,
-        "media": medias
-      }}
+      return {
+        "content": {
+        "title": "",
+        "media": medias,
+          "synopsis": {
+            "shortSynopsis" : status.text
+          }
+        },
+        _links:{
+
+        }
+      }
     });
     return {content: res};
 

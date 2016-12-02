@@ -12,6 +12,8 @@ export class TwitterTweetsComponent implements OnInit {
 
   private toutou = new Subject();
 
+  private queries = [0];
+
   private tweet$ = Observable.empty();
   constructor(private twitter: TwitterService) {
     this.toutou

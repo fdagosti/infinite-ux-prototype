@@ -1,11 +1,15 @@
-<input type="text" #searchQuery>
-<button (click)="toutou.next(searchQuery.value)">SEARCH</button>
+<form class="form-group" (submit)="queries[0]=searchQuery.value">
+  <p >put any search term to display it on our horizontal list</p>
+  <input id="twitter" value="puppies" type="text" #searchQuery content="puppies">
+  <button>SEARCH</button>
+</form>
 <div [ngBusy]="busy"></div>
 <iux-content-row
+  *ngFor="let query of queries"
   class="carousel-item active"
   [rowSize]="6"
   [content]="{content:[]}"
   [fetchOnInit]="true"
-  [contentSource]="twitter.getContent('puppies')"
+  [contentSource]="twitter.getContent(searchQuery.value)"
 >
 </iux-content-row>
