@@ -43,7 +43,6 @@ export class CtapService {
     if (offset) params.set('offset', offset); // the user's search value
 
     return this.getHttpCall(params, "agg/content/",delay)
-      .do(content=>console.log("content ",content));
   }
 
   getSuggestions(keyword){
