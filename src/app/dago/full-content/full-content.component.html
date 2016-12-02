@@ -1,7 +1,7 @@
 <iux-navbar-peter></iux-navbar-peter>
 <div class="galleryHeader">
 	<div class="title">
-		{{category.name | lowercase}}
+		{{title | lowercase}}
 	</div>
 </div>
 
@@ -13,6 +13,6 @@ class="carousel-item active"
 [fetchOnInit]="true"
 [vertical]="false"
 [zoom]="true"
-[contentSource]="ctap.getContent(categoryId, page)"
+[contentSource]="getSource(categoryId, page)"
 >
 </iux-content-row>

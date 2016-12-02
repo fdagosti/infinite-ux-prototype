@@ -16,7 +16,8 @@ export class FullContentComponent implements OnInit {
   private pageNum=0;
   private pages=Array(1);
   private categoryId;
-  private category:Category=new Category();
+  private title:string;
+  private catBased = true;
 
   private errorMessage;
 
@@ -26,23 +27,34 @@ export class FullContentComponent implements OnInit {
   constructor(
     private ctap:CtapService,
     private route:ActivatedRoute,
-  ) { }
-
-
+  ) {}
 
   ngOnInit() {
-
     this.route.params
-      .do((params:Params) => this.categoryId = params['categoryId'])
-      .switchMap((params: Params) => Observable.forkJoin(
-        this.ctap.getContent(this.categoryId),
-        this.ctap.getCategories(this.categoryId)))
+      .switchMap((params:Params) => {
+          if (params['categoryId']) {
+            return Observable.forkJoin(
+              this.ctap.getContent(params['categoryId']),
+              this.ctap.getCategories(params['categoryId']))
+              .do(result => {
+                this.catBased= true;
+                this.categoryId = params['categoryId'];
+                this.content = result[0];
+                this.title = result[1].name;
+              })
+          } else {
+            return this.ctap.getContentFromSearchedTerm(params['contentName'])
+              .do(result => {
+                this.catBased= false;
+                this.categoryId = params['contentName'];
+                this.content = result;
+                this.title = params['contentName'];
+              })
+          }
+        }
+        )
       .subscribe(
-        result => {
-          this.content = result[0];
-          this.category = result[1];
-          this.computePageSize();
-        },
+        () => this.computePageSize(),
         error => this.errorMessage = <any>error
       );
   }
@@ -53,5 +65,12 @@ export class FullContentComponent implements OnInit {
     this.pages = temporaryArray.map((x, i) => i*this.numberOfItemsPerPage);
   }
 
+  getSource(term, page){
+    if (this.catBased){
+      return this.ctap.getContent(term, page);
+    }else {
+      return this.ctap.getContentFromSearchedTerm(term, page);
+    }
+  }
 
 }

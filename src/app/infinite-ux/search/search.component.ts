@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
 import "rxjs/add/operator/debounceTime";
 import {CtapService} from "../../ctap.service";
+import {NgbTypeaheadSelectItemEvent} from "@ng-bootstrap/ng-bootstrap";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'iux-search',
@@ -12,9 +14,15 @@ export class SearchComponent implements OnInit {
   private searching;
   private searchFailed;
 
-  constructor(private ctap:CtapService) { }
+  constructor(
+    private ctap:CtapService,
+    private router: Router) { }
 
   ngOnInit() {
+  }
+
+  valueSelected = (value:NgbTypeaheadSelectItemEvent) => {
+    this.router.navigate(["/full/search", value.item.name.trim()]);
   }
 
   search = (text$: Observable<string>) =>

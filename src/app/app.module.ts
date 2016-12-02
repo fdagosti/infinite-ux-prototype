@@ -34,6 +34,7 @@ import {SettingsComponent} from "./dago/settings/settings.component";
     BrowserModule,
     RouterModule.forRoot([
       {path: "full/:categoryId", component: FullContentComponent},
+      {path: "full/search/:contentName", component: FullContentComponent},
       {path: "video/:contentId", component: PlayerComponent},
       {path: "video", component: PlayerComponent},
       {path: "profiles", component: ProfilesGateComponent},

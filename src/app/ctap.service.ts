@@ -22,6 +22,15 @@ export class CtapService {
     return this.getHttpCall(null, "categories/"+categoryId);
   }
 
+  getContentFromSearchedTerm(term, offset?, limit="6", delay=0){
+    let params = new URLSearchParams();
+    params.set('q', term); // the user's search value
+    params.set('limit', limit); // the user's search value
+    if (offset) params.set('offset', offset); // the user's search value
+
+    return this.getHttpCall(params, "agg/content/",delay);
+  }
+
   getContent(categoryId, offset?, limit="6",delay=0){
     let params = new URLSearchParams();
     params.set('categoryId', categoryId); // the user's search value
