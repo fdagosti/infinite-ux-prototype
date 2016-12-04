@@ -79,6 +79,15 @@ p {
   /* transition-delay: 0.4s; */
 }
 
+a{
+  cursor: default;
+}
+
+.zoom-item a{
+  cursor: pointer;
+}
+
+
 /*.content-container:hover{*/
   /*transform: translate3d(-40px, 0, 0);*/
 /*}*/

@@ -14,7 +14,6 @@
   right: 0;
   bottom: -1px;
   left: -1px;
-  cursor: pointer;
   z-index: 2;
   background-color: rgba(0,0,0,0);
   background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,0)),color-stop(33%,rgba(0,0,0,0)),to(rgba(0,0,0,.85)));
@@ -33,7 +32,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  cursor: pointer;
   color: #fff;
   padding: .5vw 1vw .8vw;
 }
