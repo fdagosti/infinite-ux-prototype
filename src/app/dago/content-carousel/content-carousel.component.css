@@ -118,6 +118,11 @@
 }
 
 .carousel-item.active{
+  z-index: 1;
+}
+
+
+.carousel-item.active:hover{
   z-index: 6;
 }
 
