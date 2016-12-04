@@ -14,7 +14,7 @@ export class FullContentComponent implements OnInit {
 
   private content;
   private pageNum=0;
-  private pages=Array(1);
+  private pages=Array(0);
   private categoryId;
   private title:string;
   private catBased = true;
