@@ -1,7 +1,11 @@
 <div [ngBusy]="{busy: busy,template: ''}">
 </div>
 <div class="content-container">
-  <div class="relative content-item" [class.zoom-item]="content.content[i] && zoom" *ngFor="let toto of dummyArray;let i = index;">
+  <div *ngFor="let toto of dummyArray;let i = index;"
+       class="relative content-item"
+       [class.zoom-item]="content.content[i] && zoom"
+       [class.playable-item]="content.content[i] && content.content[i]._links.playSession"
+  >
     <a [routerLink]="getPlayLink(content.content[i])" >
       <img [src]="getContentImage(i)" alt="" class="absolute-img">
       <iux-overlay [program]="content.content[i]"></iux-overlay>
