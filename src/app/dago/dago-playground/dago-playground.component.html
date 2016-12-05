@@ -1,13 +1,17 @@
-<!--<iux-navbar></iux-navbar>-->
+<iux-navbar-peter></iux-navbar-peter>
 
-<br><br><br>
-<iux-content-carousel
-  [portrait]="portrait"
-  [showIndicator]="true"
-  [categoryId]="catid"
-  (multiPage)="true" >
-</iux-content-carousel>
+<div class="container">
+  <h2>Lolomo</h2>
+  <p>The lolomo is having overflow visible to show the newt previous pages. Let's see an exagerated version of it</p>
+  <iux-content-carousel
+    [portrait]="portrait"
+    [showIndicator]="true"
+    [categoryId]="catid"
+    (multiPage)="true" >
+  </iux-content-carousel>
+  <br>
+  <h2>Twitter</h2>
 
-<h1>TWITTER</h1>
+  <iux-twitter-tweets></iux-twitter-tweets>
 
-<iux-twitter-tweets></iux-twitter-tweets>
+</div>
