@@ -39,7 +39,7 @@
 }
 
 img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   z-index: 1;
 }
@@ -83,7 +83,7 @@ a{
   cursor: default;
 }
 
-.zoom-item a{
+.playable-item a{
   cursor: pointer;
 }
 

@@ -10,7 +10,7 @@ describe('Service: Ctap', () => {
     });
   });
 
-  it('should ...', inject([CtapService], (service: CtapService) => {
-    expect(service).toBeTruthy();
-  }));
+  // it('should ...', inject([CtapService], (service: CtapService) => {
+  //   expect(service).toBeTruthy();
+  // }));
 });
