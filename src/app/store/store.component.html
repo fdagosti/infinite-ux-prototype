@@ -1,3 +1,5 @@
+<div *ngIf="showLoading" [ngBusy]="{busy:busy,backdrop:false}">
+</div>
 <div *ngFor="let cat of categories" >
   <iux-content-list-sm
 
@@ -9,5 +11,6 @@
     *ngIf="!cat.leaf"
     [portrait]="false"
     [category]="cat"
+    [showLoading]="false"
   ></iux-store>
 </div>

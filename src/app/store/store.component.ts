@@ -14,6 +14,7 @@ export class StoreComponent implements OnInit {
   private busy:Subscription;
   @Input() category;
   @Input() portrait = false;
+  @Input() showLoading= true;
 
   constructor(public ctap:CtapService, ) {
 
