@@ -15,6 +15,7 @@ import {SettingsCtapComponent} from "./settings-ctap/settings-ctap.component";
 import {SettingsDebugComponent} from "./settings-debug/settings-debug.component";
 import {SettingsAdsuiteComponent} from "./settings-adsuite/settings-adsuite.component";
 import {BusyModule} from "angular2-busy";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
@@ -22,7 +23,11 @@ import {BusyModule} from "angular2-busy";
     FormsModule,
     HttpModule,
     InfiniteUxModule,
-    BusyModule
+    BusyModule,
+    RouterModule.forChild([
+      {path : "", component: DagoPlaygroundComponent},
+      {path: "settings", component: SettingsComponent},
+    ])
   ],
   declarations: [
     SpyDirective,
@@ -44,4 +49,4 @@ import {BusyModule} from "angular2-busy";
     TwitterService
   ]
 })
-export class DagoModule { }
+export default class DagoModule { }
