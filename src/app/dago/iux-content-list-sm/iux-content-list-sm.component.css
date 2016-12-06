@@ -1,6 +1,6 @@
 :host {
   display: block;
-  margin: 3vw 0;
+  margin: 2vw 0;
   padding-left: 4%;
   padding-right: 4%;
 }
@@ -11,7 +11,7 @@
   margin-bottom: 0.5em;
   text-decoration: none;
   min-width: 6em;
-  line-height: 1.5em; 
+  line-height: 1.5em;
   font-size: 1.4vw;
   text-transform: capitalize;
   display: inline-block;
