@@ -30,6 +30,7 @@ export class ContentRowComponent implements OnInit {
   @Input() private zoom = true;
   @Input() private contentSource:Observable<any>;
 
+  private altContent;
   private imageSize;
   @Input() busy: Subscription;
 
@@ -43,6 +44,7 @@ export class ContentRowComponent implements OnInit {
       this.fetchContent();
     }
     this.imageSize = this.getImageSize(this.portrait);
+    this.altContent = this.portrait?"assets/portrait.png":"assets/landscape.png";
   }
 
   private getImageSize(portrait){
@@ -65,7 +67,7 @@ export class ContentRowComponent implements OnInit {
     if (this.content && this.content.content[index] && this.content.content[index].content.media){
       return this.content.content[index].content.media[this.portrait?5:1].url;
     }else{
-      return `http://placehold.it/${this.imageSize.w}x${this.imageSize.h}/000000/ffffff?text=+`;
+      return this.altContent;
     }
   }
 
