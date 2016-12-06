@@ -2,11 +2,11 @@ import {Component, OnInit, Input} from "@angular/core";
 import {CtapService} from "../../ctap.service";
 
 @Component({
-  selector: 'iux-content-list-sm',
-  templateUrl: 'iux-content-list-sm.component.html',
-  styleUrls: ['iux-content-list-sm.component.css']
+  selector: 'iux-lolomo',
+  templateUrl: 'lolomo.component.html',
+  styleUrls: ['lolomo.component.css']
 })
-export class IUXContentListSmComponent implements OnInit {
+export class LolomoComponent implements OnInit {
 
   @Input() category;
   @Input() portrait=false;
@@ -21,7 +21,7 @@ export class IUXContentListSmComponent implements OnInit {
   }
 
   getFullContentUrl(){
-    return "full/"+this.category.id;
+    return "/full/"+this.category.id;
   }
 
   hasMultiPage(multiPage){

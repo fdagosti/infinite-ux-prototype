@@ -1,15 +1,15 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {Location} from "@angular/common";
-import {CtapService} from "../ctap.service";
-import {VideoService} from "../video.service";
 import {Observable} from "rxjs/Observable";
+import {CtapService} from "../../ctap.service";
+import {VideoService} from "../../video.service";
 
 
 @Component({
   selector: 'iux-player',
-  templateUrl: './player.component.html',
-  styleUrls: ['./player.component.css']
+  templateUrl: 'player.component.html',
+  styleUrls: ['player.component.css']
 })
 export class PlayerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {

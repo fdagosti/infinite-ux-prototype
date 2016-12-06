@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DagoPlaygroundComponent implements OnInit {
 
-  private catid = "urn:spvss:ih:tme:term:RECOMMENDED~TERM:urn:spvss:ih:tme:term:RECOMMENDED"
+  private catid = {
+    name: "My test",
+    id:"urn:spvss:ih:tme:term:RECOMMENDED~TERM:urn:spvss:ih:tme:term:RECOMMENDED"
+  };
 
   constructor() { }
 

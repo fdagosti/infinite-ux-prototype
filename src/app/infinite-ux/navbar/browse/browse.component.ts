@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'iux-browse',
-  templateUrl: './browse.component.html',
-  styleUrls: ['./browse.component.css']
+  templateUrl: 'browse.component.html',
+  styleUrls: ['browse.component.css']
 })
 export class BrowseComponent implements OnInit {
 

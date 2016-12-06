@@ -13,8 +13,8 @@ const LANDSCAPE_SIZE = {w:399,h:225};
 
 @Component({
   selector: 'iux-content-row',
-  templateUrl: './content-row.component.html',
-  styleUrls: ['./content-row.component.css'],
+  templateUrl: 'content-row.component.html',
+  styleUrls: ['content-row.component.css'],
 
 })
 export class ContentRowComponent implements OnInit {

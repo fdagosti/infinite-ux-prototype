@@ -1,12 +1,12 @@
 <div *ngIf="showLoading" [ngBusy]="{busy:busy,backdrop:false, delay:700}">
 </div>
 <div *ngFor="let cat of categories" >
-  <iux-content-list-sm
+  <iux-lolomo
 
     *ngIf="cat.leaf"
     [portrait]="portrait"
     [category]="cat"
-  ></iux-content-list-sm>
+  ></iux-lolomo>
   <iux-store
     *ngIf="!cat.leaf"
     [portrait]="false"

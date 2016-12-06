@@ -3,7 +3,7 @@ import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
-import {PlayerComponent} from "./player/player.component";
+import {PlayerComponent} from "./infinite-ux/player/player.component";
 import {CtapService} from "./ctap.service";
 import {StoreComponent} from "./store/store.component";
 import {PeterPlaygroundComponent} from "./peter/peter-playground/peter-playground.component";
@@ -11,7 +11,7 @@ import {DagoPlaygroundComponent} from "./dago/dago-playground/dago-playground.co
 import {DagoModule} from "./dago/dago.module";
 import {PeterModule} from "./peter/peter.module";
 import {InfiniteUxModule} from "./infinite-ux/infinite-ux.module";
-import {FullContentComponent} from "./dago/full-content/full-content.component";
+import {FullContentComponent} from "./infinite-ux/full-content/full-content.component";
 import {VideoService} from "./video.service";
 import {BusyModule} from "angular2-busy";
 import {ProfilesGateComponent} from "./peter/profiles-gate/profiles-gate.component";
@@ -23,7 +23,6 @@ import {SettingsComponent} from "./dago/settings/settings.component";
   declarations: [
     AppComponent,
     HomeComponent,
-    PlayerComponent,
     StoreComponent,
   ],
   imports: [

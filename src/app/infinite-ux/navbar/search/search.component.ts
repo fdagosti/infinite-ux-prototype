@@ -1,14 +1,14 @@
 import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
 import "rxjs/add/operator/debounceTime";
-import {CtapService} from "../../ctap.service";
 import {NgbTypeaheadSelectItemEvent} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
+import {CtapService} from "../../../ctap.service";
 
 @Component({
   selector: 'iux-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  templateUrl: 'search.component.html',
+  styleUrls: ['search.component.css']
 })
 export class SearchComponent implements OnInit {
   private searching;

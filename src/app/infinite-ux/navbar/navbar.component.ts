@@ -3,11 +3,11 @@ import {DOCUMENT} from "@angular/platform-browser";
 
 
 @Component({
-	selector: 'iux-navbar-peter',
-	templateUrl: './navbar-peter.component.html',
-	styleUrls: ['./navbar-peter.component.css']
+	selector: 'iux-navbar',
+	templateUrl: 'navbar.component.html',
+	styleUrls: ['navbar.component.css']
 })
-export class NavbarPeterComponent implements OnInit {
+export class NavbarComponent implements OnInit {
 	private isAtTop: boolean = true;
 	// constructor() { }
 	constructor(@Inject(DOCUMENT) private document: Document) { }

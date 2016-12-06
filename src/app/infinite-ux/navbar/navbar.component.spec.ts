@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { IUXNavbarComponent } from './iux-navbar.component';
+import { NavbarComponent } from './navbar.component';
 
-describe('Component: IUXNavbar', () => {
+describe('Component: NavbarPeter', () => {
   it('should create an instance', () => {
-    let component = new IUXNavbarComponent();
+    let component = new NavbarComponent();
     expect(component).toBeTruthy();
   });
 });

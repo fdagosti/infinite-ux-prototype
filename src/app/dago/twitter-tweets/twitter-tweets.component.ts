@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {TwitterService} from "../../twitter.service";
+import {TwitterService} from "../twitter.service";
 import {Subject, Observable} from "rxjs";
 import {switchMap} from "rxjs/operator/switchMap";
 

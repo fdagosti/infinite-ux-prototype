@@ -1,16 +1,23 @@
 import {
-  Component, Input, OnInit, AfterContentChecked, OnDestroy, QueryList, ViewChildren, Output,
-  EventEmitter, trigger, state, style, transition, animate
+  Component,
+  Input,
+  OnInit,
+  AfterContentChecked,
+  OnDestroy,
+  QueryList,
+  ViewChildren,
+  Output,
+  EventEmitter
 } from "@angular/core";
-import {CtapService} from "../../ctap.service";
-import {ContentRowComponent} from "../content-row/content-row.component";
-import {Observable, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
+import {ContentRowComponent} from "../../content-row/content-row.component";
+import {CtapService} from "../../../ctap.service";
 
 
 @Component({
   selector: 'iux-content-carousel',
-  templateUrl: './content-carousel.component.html',
-  styleUrls: ['./content-carousel.component.css'],
+  templateUrl: 'content-carousel.component.html',
+  styleUrls: ['content-carousel.component.css'],
   host: {
     'class': 'carousel slide ',
   },
