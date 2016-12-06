@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {CtapService, Category} from "../../ctap.service";
+import {IVPService, Category} from "../../ivp.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import "rxjs/add/operator/switchMap";
 import {Observable} from "rxjs";
@@ -25,7 +25,7 @@ export class FullContentComponent implements OnInit {
 
 
   constructor(
-    private ctap:CtapService,
+    private ctap:IVPService,
     private route:ActivatedRoute,
   ) {}
 

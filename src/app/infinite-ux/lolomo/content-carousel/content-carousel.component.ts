@@ -11,7 +11,7 @@ import {
 } from "@angular/core";
 import {Subscription} from "rxjs";
 import {ContentRowComponent} from "../../content-row/content-row.component";
-import {CtapService} from "../../../ctap.service";
+import {IVPService} from "../../../ivp.service";
 
 
 @Component({
@@ -58,7 +58,7 @@ export class ContentCarouselComponent implements AfterContentChecked,
   ngOnDestroy(): void {
   }
 
-  constructor(public ctap:CtapService) {
+  constructor(public ctap:IVPService) {
   }
 
   ngOnInit() {

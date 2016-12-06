@@ -2,7 +2,7 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {Location} from "@angular/common";
 import {Observable} from "rxjs/Observable";
-import {CtapService} from "../../ctap.service";
+import {IVPService} from "../../ivp.service";
 import {VideoService} from "../../video.service";
 
 
@@ -20,7 +20,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
   constructor(
     private route:ActivatedRoute,
-    private ctap:CtapService,
+    private ctap:IVPService,
     private video:VideoService,
     private location: Location
   ) { }

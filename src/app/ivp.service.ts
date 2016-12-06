@@ -11,7 +11,7 @@ export class Category{
 }
 
 @Injectable()
-export class CtapService {
+export class IVPService {
 
   private ctapUrl = "https://apx.cisco.com/spvss/infinitehome/infinitetoolkit/v_sandbox_2/";
   private LOCAL_STORAGE:string = "InfiniteUX-proto-token-v1";

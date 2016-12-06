@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CtapService} from "../../ctap.service";
+import {IVPService} from "../../ivp.service";
 
 @Component({
   selector: 'iux-settings-ctap',
@@ -8,7 +8,7 @@ import {CtapService} from "../../ctap.service";
 })
 export class SettingsCtapComponent implements OnInit {
 
-  constructor(private ctap:CtapService) { }
+  constructor(private ctap:IVPService) { }
 
   private data;
 

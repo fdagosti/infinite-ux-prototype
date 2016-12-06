@@ -3,7 +3,7 @@ import {Observable} from "rxjs";
 import "rxjs/add/operator/debounceTime";
 import {NgbTypeaheadSelectItemEvent} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
-import {CtapService} from "../../../ctap.service";
+import {IVPService} from "../../../ivp.service";
 
 @Component({
   selector: 'iux-search',
@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
   private searchFailed;
 
   constructor(
-    private ctap:CtapService,
+    private ctap:IVPService,
     private router: Router) { }
 
   ngOnInit() {

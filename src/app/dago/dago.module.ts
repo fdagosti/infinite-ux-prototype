@@ -4,7 +4,6 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {SpyDirective} from "./spy.directive";
 import {DagoPlaygroundComponent} from "./dago-playground/dago-playground.component";
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {InfiniteUxModule} from "../infinite-ux/infinite-ux.module";
 import {TwitterService} from "./twitter.service";
 import {TwitterTweetsComponent} from "./twitter-tweets/twitter-tweets.component";
@@ -23,7 +22,6 @@ import {BusyModule} from "angular2-busy";
     FormsModule,
     HttpModule,
     InfiniteUxModule,
-    NgbModule.forRoot(),
     BusyModule
   ],
   declarations: [

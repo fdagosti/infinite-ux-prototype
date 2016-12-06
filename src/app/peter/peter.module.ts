@@ -3,7 +3,7 @@ import {CommonModule} from "@angular/common";
 import {Lolomo2Component} from "./lolomo2/lolomo2.component";
 import {PeterPlaygroundComponent} from "./peter-playground/peter-playground.component";
 import {InfiniteUxModule} from "../infinite-ux/infinite-ux.module";
-import {BillboardRowComponent} from "./billboard-row/billboard-row.component";
+import {BillboardRowComponent} from "../infinite-ux/billboard-row/billboard-row.component";
 import {SignupBasicHeaderComponent} from "./signup-basic-header/signup-basic-header.component";
 import {HomeWrapperComponent} from "./home-wrapper/home-wrapper.component";
 import {ProfilesGateComponent} from "./profiles-gate/profiles-gate.component";

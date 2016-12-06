@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { CtapService } from './ctap.service';
+import { IVPService } from './ivp.service';
 
 describe('Service: Ctap', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CtapService]
+      providers: [IVPService]
     });
   });
 
-  // it('should ...', inject([CtapService], (service: CtapService) => {
+  // it('should ...', inject([IVPService], (service: IVPService) => {
   //   expect(service).toBeTruthy();
   // }));
 });

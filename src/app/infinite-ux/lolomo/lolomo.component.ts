@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {CtapService} from "../../ctap.service";
+import {IVPService} from "../../ivp.service";
 
 @Component({
   selector: 'iux-lolomo',

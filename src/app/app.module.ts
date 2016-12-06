@@ -4,7 +4,7 @@ import {AppComponent} from "./app.component";
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {PlayerComponent} from "./infinite-ux/player/player.component";
-import {CtapService} from "./ctap.service";
+import {IVPService} from "./ivp.service";
 import {StoreComponent} from "./store/store.component";
 import {PeterPlaygroundComponent} from "./peter/peter-playground/peter-playground.component";
 import {DagoPlaygroundComponent} from "./dago/dago-playground/dago-playground.component";
@@ -46,7 +46,7 @@ import {SettingsComponent} from "./dago/settings/settings.component";
 
   ],
   providers: [
-    CtapService,
+    IVPService,
     VideoService,
     UsersService
   ],

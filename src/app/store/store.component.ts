@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {CtapService} from "../ctap.service";
+import {IVPService} from "../ivp.service";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -16,7 +16,7 @@ export class StoreComponent implements OnInit {
   @Input() portrait = false;
   @Input() showLoading= true;
 
-  constructor(public ctap:CtapService, ) {
+  constructor(public ctap:IVPService, ) {
 
   }
 

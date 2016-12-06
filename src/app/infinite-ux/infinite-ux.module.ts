@@ -21,7 +21,7 @@ import {PlayerComponent} from "./player/player.component";
     FormsModule,
     HttpModule,
     RouterModule,
-    NgbModule,
+    NgbModule.forRoot(),
     BusyModule
   ],
   declarations: [
