@@ -13,7 +13,8 @@ export class Category{
 @Injectable()
 export class IVPService {
 
-  private ctapUrl = "https://apx.cisco.com/spvss/infinitehome/infinitetoolkit/v_sandbox_2/";
+  private proxy = "https://cisco-itk-proxy.herokuapp.com/";
+  private ctapUrl = this.proxy+"https://apx.cisco.com/spvss/infinitehome/infinitetoolkit/v_sandbox_2/";
   private LOCAL_STORAGE:string = "InfiniteUX-proto-token-v1";
 
   constructor(private http: Http) { }
