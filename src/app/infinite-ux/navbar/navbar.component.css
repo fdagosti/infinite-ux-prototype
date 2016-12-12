@@ -3,17 +3,7 @@
 
 
 }
-.navbar {
-	/*-webkit-transition: opacity .4s cubic-bezier(.665, .235, .265, .8) 0s;
-	-moz-transition: opacity .4s cubic-bezier(.665, .235, .265, .8) 0s;
-	-o-transition: opacity .4s cubic-bezier(.665, .235, .265, .8) 0s;
-	transition: opacity .4s cubic-bezier(.665, .235, .265, .8) 0s;
-*/
-	/*-webkit-transition: background .4s cubic-bezier(.665, .235, .265, .8) 0s;
-	-moz-transition: background .4s cubic-bezier(.665, .235, .265, .8) 0s;
-	-o-transition: background .4s cubic-bezier(.665, .235, .265, .8) 0s;
-	transition: background .4s cubic-bezier(.665, .235, .265, .8) 0s;*/
-	
+.navbar {	
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -49,11 +39,8 @@
 	display: inline-block;
 	vertical-align: middle;
 	cursor: pointer;
-	display: block;
-	width: 118px;
-	height: 62px;
-	background: url(assets/cisco-logo.svg);
-	background-size: 118px 62px;
+	width: 95px;
+	height: 50px;
 }
 
 .nav-item>a, .nav-item>a:hover, .nav-item>div>a{
