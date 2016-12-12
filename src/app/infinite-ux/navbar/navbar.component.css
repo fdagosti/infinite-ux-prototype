@@ -41,6 +41,7 @@
 	cursor: pointer;
 	width: 95px;
 	height: 50px;
+	margin:10px 0px;
 }
 
 .nav-item>a, .nav-item>a:hover, .nav-item>div>a{
