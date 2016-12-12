@@ -9,7 +9,6 @@ import {ProfilesGateComponent} from "./profiles-gate/profiles-gate.component";
 import {ProfilesActionContainerComponent} from "./profiles-action-container/profiles-action-container.component";
 import {ListProfilesComponent} from "./list-profiles/list-profiles.component";
 import {ManageProfileButtonComponent} from "./manage-profile-button/manage-profile-button.component";
-import {ProfileLinkComponent} from "./profile-link/profile-link.component";
 import {RouterModule} from "@angular/router";
 
 @NgModule({
@@ -30,8 +29,7 @@ import {RouterModule} from "@angular/router";
 	ProfilesGateComponent,
 	ProfilesActionContainerComponent,
 	ListProfilesComponent,
-	ManageProfileButtonComponent,
-	ProfileLinkComponent,
+	ManageProfileButtonComponent
 	],
   exports: [
     ProfilesGateComponent

@@ -15,6 +15,7 @@ import {BusyModule} from "angular2-busy";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {PlayerComponent} from "./player/player.component";
 import {BillboardRowComponent} from "./billboard-row/billboard-row.component";
+import {ProfileLinkComponent} from "./navbar/profile-link/profile-link.component";
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import {BillboardRowComponent} from "./billboard-row/billboard-row.component";
     OverlayComponent,
     ContentCarouselComponent,
     NavbarComponent,
-    BillboardRowComponent
+    BillboardRowComponent,
+    ProfileLinkComponent
   ],
   exports: [
     BillboardRowComponent,
