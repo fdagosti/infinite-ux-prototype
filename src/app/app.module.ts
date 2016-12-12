@@ -11,6 +11,7 @@ import {FullContentComponent} from "./infinite-ux/full-content/full-content.comp
 import {VideoService} from "./video.service";
 import {BusyModule} from "angular2-busy";
 import {UsersService} from "./users.service";
+import {DebugService} from "./dago/debug.service";
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {UsersService} from "./users.service";
   providers: [
     IVPService,
     VideoService,
-    UsersService
+    UsersService,
+    DebugService
   ],
   bootstrap: [AppComponent]
 })

@@ -3,16 +3,12 @@
     <div class="form-group">
       <div class="checkbox">
         <label>
-          <input type="checkbox" > Enable Fake Videos
+          <input type="checkbox" #proxy [ngModel]="proxyEnabled" (ngModelChange)="enableProxy($event)" > Enable Proxy to IVP backend
         </label>
       </div>
     </div>
-    <p class="help-block">Switch the real videos by fake videos coming from the following list: </p>
-    <ul class="list-unstyled">
-      <li *ngFor="let fakeVideo of ['blablabla', 'bliblibli','blobloblo'] ">
-        {{fakeVideo}}
-      </li>
-    </ul>
+    <p class="help-block">Use a proxy to talk to CTAP as sometimes, the backend is removing its CORS support</p>
+
   </div>
 
 </iux-settings-section>

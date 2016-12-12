@@ -2,6 +2,7 @@ import "rxjs/Rx";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Rx";
 import {Http, Response, Headers, RequestOptions, URLSearchParams} from "@angular/http";
+import {DebugService} from "./dago/debug.service";
 
 export class Category{
   constructor(public id:string="",public name="",public _links=""){
@@ -13,11 +14,10 @@ export class Category{
 @Injectable()
 export class IVPService {
 
-  private proxy = "https://cisco-itk-proxy.herokuapp.com/";
-  private ctapUrl = this.proxy+"https://apx.cisco.com/spvss/infinitehome/infinitetoolkit/v_sandbox_2/";
+  private ctapUrl = "https://apx.cisco.com/spvss/infinitehome/infinitetoolkit/v_sandbox_2/";
   private LOCAL_STORAGE:string = "InfiniteUX-proto-token-v1";
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private debug:DebugService) { }
 
   getCategories(categoryId =""): Observable<any[]>{
     return this.getHttpCall(null, "categories/"+categoryId)
@@ -26,6 +26,14 @@ export class IVPService {
         return cats;
       })
 
+  }
+
+  private getCtapUrl(){
+    if (this.debug.isProxyEnabled()){
+      return this.debug.getProxyUrl()+this.ctapUrl;
+    }else{
+      return this.ctapUrl;
+    }
   }
 
   getContentFromSearchedTerm(term, offset?, limit="6", delay=0){
@@ -69,7 +77,7 @@ export class IVPService {
         headers: headers,
         search: params
       }))
-      .switchMap((options) => this.http.post(this.ctapUrl+"devices/me/playsessions", null,options))
+      .switchMap((options) => this.http.post(this.getCtapUrl()+"devices/me/playsessions", null,options))
       .map((res:Response) => res.json())
       .catch(this.handleError);
   }
@@ -85,7 +93,7 @@ export class IVPService {
         search: params
       }))
       .delay(delay)
-      .switchMap((options) => this.http.get(this.ctapUrl+urls, options))
+      .switchMap((options) => this.http.get(this.getCtapUrl()+urls, options))
       .map((res:Response) => res.json())
       .catch(this.handleError);
   }

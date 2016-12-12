@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DebugService} from "../debug.service";
 
 @Component({
   selector: 'iux-settings-debug',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsDebugComponent implements OnInit {
 
-  constructor() { }
+  private proxyEnabled;
+
+  constructor(private debug:DebugService) {
+    this.proxyEnabled = debug.isProxyEnabled();
+  }
+
+  enableProxy(b){
+    console.log("update service ",b);
+
+    this.proxyEnabled = this.debug.enableProxy(b);
+  }
 
   ngOnInit() {
   }
