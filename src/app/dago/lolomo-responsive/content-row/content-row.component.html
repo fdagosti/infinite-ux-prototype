@@ -1,14 +1,13 @@
-<div [ngBusy]="{busy: busy,template: ''}">
-</div>
-<div class="content-container">
-  <div *ngFor="let toto of dummyArray;let i = index;"
+
+<div #slider class="content-container" (window:resize)="onResize($event.target.innerWidth)">
+  <div *ngFor="let item of window;let i = index;"
        class="relative content-item"
-       [class.zoom-item]="content.content[i] && zoom"
-       [class.playable-item]="content.content[i] && content.content[i]._links.playSession"
+       [class.zoom-item]="item && zoom"
+       [class.playable-item]="item._links.playSession"
   >
-    <a [routerLink]="getPlayLink(content.content[i])" >
-      <img [src]="getContentImage(i)" alt="" class="absolute-img">
-      <iux-overlay [program]="content.content[i]"></iux-overlay>
+    <a [routerLink]="getPlayLink(item)" >
+      <img [src]="getContentImage(item)" alt="" class="absolute-img">
+      <p>{{item.content.title}}</p>
     </a>
   </div>
 </div>

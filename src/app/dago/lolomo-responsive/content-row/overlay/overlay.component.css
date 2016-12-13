@@ -9,7 +9,6 @@
   -o-transition: opacity .3s;
   transition: opacity .3s;
 
-  position: absolute;
   top: 0;
   right: 0;
   bottom: -1px;
@@ -59,7 +58,7 @@
 }
 
 .info-main, #playIcon{
-  display:none;
+  display:block;
 }
 
 .text{
@@ -140,7 +139,7 @@
   width:100%;
 }
 
-.overlay:hover .info-main{
+.overlay.info-main{
   display: block;
 }
 

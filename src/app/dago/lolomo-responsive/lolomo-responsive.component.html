@@ -8,19 +8,7 @@
   </a>
   <p class="categoryLink" *ngIf="!multiPage">{{category.name | lowercase}}</p>
 
-
-  <form action="">
-    <div class="form-group">
-      <label for="power">Items per row</label>
-      <select name="rows" class="form-control" id="power" required [(ngModel)]="rowNb">
-        <option *ngFor="let row of [2,3,4,5,6]" [value]="row">{{row}}</option>
-      </select>
-    </div>
-  </form>
-
-
   <iux-content-carousel
-    [numberOfItemsPerPage]="rowNb"
     [portrait]="portrait"
     [showIndicator]="showChevron"
     [categoryId]="category.id"

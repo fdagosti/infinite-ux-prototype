@@ -7,7 +7,7 @@ import {
   QueryList,
   ViewChildren,
   Output,
-  EventEmitter
+  EventEmitter, ViewChild
 } from "@angular/core";
 import {Subscription} from "rxjs";
 import {ContentRowComponent} from "../content-row/content-row.component";
@@ -30,17 +30,19 @@ export class ContentCarouselComponent implements AfterContentChecked,
   @Input() categoryId;
   @Input() portrait;
   @Input() showIndicator;
-  private content;
+  private content=[];
+  private totalNumberOfItems = 0;
+  private currentOffset = 0;
   private pageNum=0;
   private pages=Array(1);
 
   private errorMessage;
   private busy:Subscription;
 
-  @Input() private numberOfItemsPerPage = 6;
+  @Input() private numberOfItemsPerPage = 16;
   @Output() multiPage = new EventEmitter();
 
-  @ViewChildren(ContentRowComponent) rows : QueryList<ContentRowComponent>;
+  @ViewChild(ContentRowComponent) slider : ContentRowComponent;
 
   wrap = true;
   /**
@@ -62,48 +64,51 @@ export class ContentCarouselComponent implements AfterContentChecked,
   }
 
   ngOnInit() {
-    this.busy = this.ctap.getContent(this.categoryId)
+    this.fetchContent(0);
+  }
+
+  fetchContent(offset){
+    this.busy = this.ctap.getContent(this.categoryId, this.currentOffset, `${this.numberOfItemsPerPage}`)
       .subscribe(
         content => {
-          this.content = content;
+          this.content = this.content.concat(content.content);
+          this.totalNumberOfItems = content.total;
           this.computePageSize();
+          console.log("content ",this.content);
+          this.busy = null;
         },
         error => this.errorMessage = <any>error
       );
   }
 
   computePageSize(){
-    this.pageNum = Math.ceil(this.content.total/this.numberOfItemsPerPage);
+    this.currentOffset = this.content.length;
+    this.pageNum = Math.ceil(this.totalNumberOfItems/this.numberOfItemsPerPage);
     this.pages = Array(this.pageNum).fill(1).map((_,i)=>i*this.numberOfItemsPerPage);
     this.setIndexes(this.activeId);
     this.multiPage.emit(this.pageNum > 1);
   }
 
-  /**
-   * Navigate to the next slide.
-   */
+
+
   prev() {
-
-    this.cycleToPrev();
+    if (!this.busy) {
+      this.cycleToSelected(this._getPrevSlide(this.activeId));
+      this.slider.prev();
+    }
   }
 
-  /**
-   * Navigate to the next slide.
-   */
   next() {
+    if (!this.busy){
+      this.cycleToSelected(this._getNextSlide(this.activeId));
+      this.slider.next();
+    }
 
-    this.cycleToNext();
   }
-
-  cycleToNext() { this.cycleToSelected(this._getNextSlide(this.activeId)); }
-
-  cycleToPrev() { this.cycleToSelected(this._getPrevSlide(this.activeId)); }
 
   cycleToSelected(slideIdx: number) {
-      this.setIndexes(slideIdx)
-
-    let rows = this.rows.toArray();
-    rows[this.activeId].fetchContent();
+    this.setIndexes(slideIdx);
+    this.fetchContent(this.currentOffset);
   }
 
   private setIndexes(currentSlideIdx:number){
@@ -117,13 +122,6 @@ export class ContentCarouselComponent implements AfterContentChecked,
     }
   }
 
-  keyPrev() {
-    this.prev();
-  }
-
-  keyNext() {
-    this.next();
-  }
 
   private _getNextSlide(currentSlideId: number): number {
     const isLastSlide = currentSlideId === this.pages.length - 1;

@@ -59,20 +59,15 @@ p {
 
 .content-container {
   font-size: 0px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  white-space: nowrap;
   transition: all .2s ease-in-out;
   /* transition-delay: 0.4s; */
 }
 
-/* .content-container:hover:first-child { */
-
 
 .content-item{
-  margin-left: 3px;
-  margin-right: 3px;
   background: #000;
+  display: inline-block;
   vertical-align: top;
   z-index: 0;
   transition: all .2s ease-in-out;
@@ -81,16 +76,14 @@ p {
 
 a{
   cursor: default;
+  margin-right: 3px;
+  margin-left: 3px;
 }
 
 .playable-item a{
   cursor: pointer;
 }
 
-
-/*.content-container:hover{*/
-  /*transform: translate3d(-40px, 0, 0);*/
-/*}*/
 
 .zoom-item:hover{
   /* transform: translate3d(40px, 0, 0); */
@@ -99,39 +92,34 @@ a{
   z-index: 100;
 }
 
-/*.zoom-item:first-child:hover{*/
-  /*!* transform: translate3d(80px, 0, 0); *!*/
-  /*transform: translate3d(80px, 0, 0) scale(1.4);;*/
-  /*z-index: 100;*/
-/*}*/
 
-/* .zoom-item:last-child:hover{
-  transform: translate3d(0px, 0, 0);
-  transform: translate3d(40px, 0, 0) scale(1.4);;
-  z-index: 100;
-}
- */
-/* .zoom-item:last-child:hover .content-container{
-  transform: translate3d(-40px, 0, 0);
-  z-index: 100;
-} */
-/* .zoom-item:hover:first-child{
-  transform: translate3d(40px, 0, 0) scale(1.4);;
-  z-index: 100;
-} */
 
-/*.zoom-item:hover ~ .zoom-item {*/
-  /*transform: translate3d(80px, 0, 0);*/
-/*}*/
-
-/*.zoom-item:first-child:hover ~ .zoom-item {*/
-  /*transform: translate3d(120px, 0, 0);*/
-/*}*/
-
-.relative{
-  position:relative;
-  width:600px;
+@media screen and (max-width: 499px){
+  .content-item{
+    width: 50%;
+  }
 }
 
+@media screen and (max-width: 799px) and (min-width: 500px){
+  .content-item{
+    width: 33.3333333333%;
+  }
+}
 
+@media screen and (max-width: 1099px) and (min-width: 800px){
+  .content-item{
+    width: 25%;
+  }
+}
 
+@media screen and (max-width: 1399px) and (min-width: 1100px){
+  .content-item{
+    width: 20%;
+  }
+}
+
+@media screen and (min-width: 1400px){
+  .content-item{
+    width: 16.6666666667%;
+  }
+}
