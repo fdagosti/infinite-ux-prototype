@@ -4,7 +4,6 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {SpyDirective} from "./spy.directive";
 import {DagoPlaygroundComponent} from "./dago-playground/dago-playground.component";
-import {InfiniteUxModule} from "../infinite-ux/infinite-ux.module";
 import {TwitterService} from "./twitter.service";
 import {TwitterTweetsComponent} from "./twitter-tweets/twitter-tweets.component";
 import {SettingsComponent} from "./settings/settings.component";
@@ -16,6 +15,11 @@ import {SettingsDebugComponent} from "./settings-debug/settings-debug.component"
 import {SettingsAdsuiteComponent} from "./settings-adsuite/settings-adsuite.component";
 import {BusyModule} from "angular2-busy";
 import {RouterModule} from "@angular/router";
+import {LolomoResponsiveComponent} from "./lolomo-responsive/lolomo-responsive.component";
+import {ContentRowComponent} from "./lolomo-responsive/content-row/content-row.component";
+import {ContentCarouselComponent} from "./lolomo-responsive/content-carousel/content-carousel.component";
+import {OverlayComponent} from "./lolomo-responsive/content-row/overlay/overlay.component";
+import {InfiniteUxModule} from "../infinite-ux/infinite-ux.module";
 
 @NgModule({
   imports: [
@@ -40,10 +44,12 @@ import {RouterModule} from "@angular/router";
     SettingsCtapComponent,
     SettingsDebugComponent,
     SettingsAdsuiteComponent,
+    LolomoResponsiveComponent,
+    ContentRowComponent,
+    ContentCarouselComponent,
+    OverlayComponent
   ],
   exports: [
-    SettingsComponent,
-    DagoPlaygroundComponent,
   ],
   providers: [
     TwitterService

@@ -47,7 +47,6 @@ import {ProfileLinkComponent} from "./navbar/profile-link/profile-link.component
     BrowseComponent,
     RouterModule,
     FullContentComponent,
-    ContentRowComponent,
     LolomoComponent,
     ProfileLinkComponent
   ]
