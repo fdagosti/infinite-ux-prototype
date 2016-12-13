@@ -48,7 +48,8 @@ import {ProfileLinkComponent} from "./navbar/profile-link/profile-link.component
     RouterModule,
     FullContentComponent,
     ContentRowComponent,
-    LolomoComponent
+    LolomoComponent,
+    ProfileLinkComponent
   ]
 })
 export class InfiniteUxModule { }
