@@ -1,47 +1,29 @@
 <div class="topbar"></div>
+<div [ngBusy]="{busy:busy,backdrop:false}">
 <div class="row">
-  <div class="col-xs-3">
+  <div class="col-xs-2">
     <ul class="list-unstyled" id="first">
-      <li >Accueil</li>
-      <li >Ma liste</li>
-      <li >Programmes originaux</li>
-      <li >Derniers ajouts</li>
-      <li >Audio et sous-titres</li>
-      <li >Modes de lecture</li>
-    </ul>
-  </div>
-  <div class="col-xs-2">
-    <ul class="list-unstyled">
-      <li >Séries</li>
-      <li >Action</li>
-      <li >Animation japonaise</li>
-      <li >Cinéma français</li>
-      <li >Comédie</li>
-    </ul>
-  </div>
-  <div class="col-xs-2">
-    <ul class="list-unstyled">
-      <li >Divers</li>
-      <li >Documentaires</li>
-      <li >Drame</li>
-      <li >Horreur</li>
-      <li >Indépendant</li>
-    </ul>
-  </div>
-  <div class="col-xs-2">
-    <ul class="list-unstyled">
-      <li>International</li>
-      <li>Jeunesse et famille</li>
-      <li>Policier</li>
-      <li>Primés</li>
-      <li>Romance</li>
+      <li ><a routerLink="/">Home</a></li>
     </ul>
   </div>
   <div class="col-xs-3">
     <ul class="list-unstyled">
-      <li>SF et Fantastique</li>
-      <li>Stand-up et talk-shows</li>
-      <li>Thriller</li>
+      <li *ngFor="let cat of categories | slice:0:5 "><a [routerLink]="'/full/'+cat.id">{{cat.name | lowercase}}</a></li>
+    </ul>
+  </div>
+  <div class="col-xs-2">
+    <ul class="list-unstyled">
+      <li *ngFor="let cat of categories | slice:5:10 "><a [routerLink]="'/full/'+cat.id">{{cat.name | lowercase}}</a></li>
+    </ul>
+  </div>
+  <div class="col-xs-2">
+    <ul class="list-unstyled">
+      <li *ngFor="let cat of categories | slice:10:15 "><a [routerLink]="'/full/'+cat.id">{{cat.name | lowercase}}</a></li>
+    </ul>
+  </div>
+  <div class="col-xs-3">
+    <ul class="list-unstyled">
+      <li *ngFor="let cat of categories | slice:15:20 "><a [routerLink]="'/full/'+cat.id">{{cat.name | lowercase}}</a></li>
     </ul>
   </div>
 </div>

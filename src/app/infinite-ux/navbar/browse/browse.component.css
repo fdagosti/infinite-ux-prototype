@@ -1,6 +1,6 @@
 :host{
   font-size: 12px;
-  width: 970px;
+  width: 870px;
   display: block;
   /* top: 71px;
   background-color: rgba(0,0,0,.9);
@@ -12,6 +12,14 @@
   top: 71px;
   background-color: rgba(0,0,0,.9);
   border-radius: 0;
+}
+
+li{
+  text-transform: capitalize;
+}
+
+a{
+  color: inherit;
 }
 
 .topbar {

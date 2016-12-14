@@ -20,11 +20,7 @@ export class IVPService {
   constructor(private http: Http, private debug:DebugService) { }
 
   getCategories(categoryId =""): Observable<any[]>{
-    return this.getHttpCall(null, "categories/"+categoryId)
-      .map(cats => {
-        cats.categories.length = Math.min(cats.categories.length, 7);
-        return cats;
-      })
+    return this.getHttpCall(null, "categories/"+categoryId);
 
   }
 
