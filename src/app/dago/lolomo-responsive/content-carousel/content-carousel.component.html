@@ -3,13 +3,15 @@
   <iux-content-row
     [fullContent]="content"
     [portrait]="portrait"
+    (visibleItem)="updateVisibleItems($event)"
+    (offset)="updateOffset($event)"
   >
   </iux-content-row>
 
 
 
 <ol class="iux-carousel-indicators" *ngIf="pages.length > 1 && showIndicator" [class.hidden]="firstSlide">
-  <li *ngFor="let page of pages; let i = index;" [id]="i" [class.active]="i === activeId" ></li>
+  <li *ngFor="let page of pages; let i = index;" [id]="i" [class.active]="i === activePage" ></li>
 </ol>
 <div class="handle handlePrevious" *ngIf="pages.length > 1  && showIndicator"  role="button" (click)="prev()">
   <b class="indicator-icon icon-leftCaret" ></b>

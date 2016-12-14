@@ -1,5 +1,15 @@
-import {Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges} from "@angular/core";
-import {Subscription, Observable} from "rxjs";
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  OnChanges,
+  SimpleChanges,
+  Output,
+  EventEmitter
+} from "@angular/core";
 
 
 class ContentRow{
@@ -17,28 +27,28 @@ const LANDSCAPE_SIZE = {w:399,h:225};
   styleUrls: ['content-row.component.css'],
 
 })
-export class ContentRowComponent implements OnInit, OnChanges, AfterViewInit {
-  ngAfterViewInit(): void {
-    console.log("After view init ",window.innerWidth);
-    this.onResize(window.innerWidth);
-  }
+export class ContentRowComponent implements OnInit, AfterViewInit, OnChanges {
+
 
   constructor() { }
 
   @Input() private fullContent;
+  private fullContentOffset = 0;
+  @Output("offset") fullContentOffsetEmitter = new EventEmitter();
 
   @Input() private portrait = false;
   @Input() private zoom = true;
 
   private numberOfItems;
   private numberOfVisibleItems;
+  @Output("visibleItem") visibleItemsEmitter = new EventEmitter();
+
 
   @ViewChild('slider') slider:ElementRef;
 
-
   private windowSize = 18;
   private window = Array[this.windowSize];
-  private fullContentOffset = 0;
+
   private altContent;
   private imageSize;
 
@@ -48,6 +58,15 @@ export class ContentRowComponent implements OnInit, OnChanges, AfterViewInit {
     this.imageSize = this.getImageSize(this.portrait);
     this.altContent = this.portrait?"assets/portrait.png":"assets/landscape.png";
   }
+
+  ngAfterViewInit(): void {
+    this.onResize(window.innerWidth);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.fillWindow();
+  }
+
 
   onResize(w){
     let visibleItems = 6;
@@ -66,10 +85,9 @@ export class ContentRowComponent implements OnInit, OnChanges, AfterViewInit {
     let n = visibleItems*3 + 2;
     this.numberOfVisibleItems = visibleItems;
     if (this.numberOfItems != n){
+      this.visibleItemsEmitter.emit(this.numberOfVisibleItems);
       this.updateWindow(n);
     }
-
-    console.log("Number of Items ",this.numberOfItems);
   }
 
   updateWindow(n){
@@ -78,13 +96,8 @@ export class ContentRowComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
 
-  ngOnChanges(changes: SimpleChanges){
-    console.log("CHANGES ",changes);
-    this.fillWindow();
-  }
-
   fillWindow(){
-    console.log("fillWindow ");
+    //console.log("fillWindow ",this.fullContentOffset, this.numberOfItems);
     this.window = this.fullContent.slice(this.fullContentOffset, this.fullContentOffset+this.numberOfItems);
 
   }
@@ -98,15 +111,18 @@ export class ContentRowComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   next(){
-    this.fullContentOffset+=this.numberOfVisibleItems;
+    this.fullContentOffset=(this.fullContentOffset + this.numberOfVisibleItems);
+    if (this.fullContentOffset >= this.fullContent.length) this.fullContentOffset = 0;
+    this.fullContentOffsetEmitter.emit(this.fullContentOffset);
     this.fillWindow();
     // this.slider.nativeElement.style.transform='translate3d(-100%,0px, 0px)';
   }
 
   prev(){
     this.fullContentOffset-=this.numberOfVisibleItems;
+    this.fullContentOffset = Math.max(this.fullContentOffset, 0);
+    this.fullContentOffsetEmitter.emit(this.fullContentOffset);
     this.fillWindow();
-
     // this.slider.nativeElement.style.transform='translate3d(100%,0px, 0px)';
   }
 
