@@ -26,10 +26,10 @@ export class StoreComponent implements OnInit {
 
   private getCategories(){
     this.busy = this.ctap.getCategories(this.category?this.category.id:"")
-      .map((cats:any )=> {
-        cats.categories.length = Math.min(cats.categories.length, 6);
-        return cats;
-      })
+      .map((cats:any )=> ({
+          count: cats.count,
+          categories: cats.categories.slice(0, 6)
+        }))
       .map((result:any)=> result.categories)
       .subscribe(
         cats => this.categories = cats,

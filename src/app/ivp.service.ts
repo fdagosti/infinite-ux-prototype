@@ -22,11 +22,13 @@ export class IVPService {
   constructor(private http: Http, private debug:DebugService) { }
 
   getCategories(categoryId =""): Observable<any[]>{
-    if (this.categoryCache[categoryId]){
-      return Observable.of(this.categoryCache[categoryId])
-    }else
-      return this.getHttpCall(null, "categories/"+categoryId)
-        .do(cats=>this.categoryCache[categoryId]=cats);
+    let cacheKey = categoryId?categoryId:"global";
+    if (this.categoryCache[cacheKey]){
+      return Observable.of(this.categoryCache[cacheKey])
+    }else {
+      return this.getHttpCall(null, "categories/" + categoryId)
+        .do(cats => this.categoryCache[cacheKey] = cats);
+    }
 
   }
 
