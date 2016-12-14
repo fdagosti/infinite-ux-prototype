@@ -23,8 +23,7 @@ import {IVPService} from "../../../ivp.service";
   },
 
 })
-export class ContentCarouselComponent implements AfterContentChecked,
-  OnDestroy, OnInit{
+export class ContentCarouselComponent implements OnInit{
 
 
   @Input() categoryId;
@@ -46,14 +45,6 @@ export class ContentCarouselComponent implements AfterContentChecked,
   private activePage: number = 0;
   private itemWindow;
   private focusOffset = 0;
-
-  ngAfterContentChecked() {
-  }
-
-
-
-  ngOnDestroy(): void {
-  }
 
   constructor(public ctap:IVPService) {
   }
@@ -97,8 +88,6 @@ export class ContentCarouselComponent implements AfterContentChecked,
   updateOffset(offset){
     this.focusOffset = offset;
     this.computeActivePage();
-
-
   }
 
   prev() {
@@ -111,12 +100,5 @@ export class ContentCarouselComponent implements AfterContentChecked,
     if (!this.busy){
       this.slider.next();
     }
-
   }
-
-
-
-
-
-
 }

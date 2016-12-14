@@ -40,6 +40,7 @@ export class ContentRowComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() private zoom = true;
 
   private numberOfItems;
+  private maxPastItems;
   private numberOfVisibleItems;
   @Output("visibleItem") visibleItemsEmitter = new EventEmitter();
 
@@ -85,21 +86,22 @@ export class ContentRowComponent implements OnInit, AfterViewInit, OnChanges {
     let n = visibleItems*3 + 2;
     this.numberOfVisibleItems = visibleItems;
     if (this.numberOfItems != n){
+      this.maxPastItems = visibleItems + 1;
       this.visibleItemsEmitter.emit(this.numberOfVisibleItems);
-      this.updateWindow(n);
+      this.numberOfItems = n;
+      this.fillWindow();
     }
   }
 
-  updateWindow(n){
-    this.numberOfItems = n;
-    this.fillWindow();
-  }
-
-
   fillWindow(){
-    //console.log("fillWindow ",this.fullContentOffset, this.numberOfItems);
-    this.window = this.fullContent.slice(this.fullContentOffset, this.fullContentOffset+this.numberOfItems);
+    // console.log("fillWindow ",this.fullContentOffset, this.numberOfItems, this.maxPastItems);
+    let computedOffset = Math.max(this.fullContentOffset - this.maxPastItems,0);
+    this.window = this.fullContent.slice(computedOffset, computedOffset+this.numberOfItems);
 
+    let actualPastItems = this.fullContentOffset - computedOffset;
+    let oneItemPercentage = 100 / this.numberOfVisibleItems;
+    let percentageOffset = actualPastItems * oneItemPercentage;
+    this.slider.nativeElement.style.transform=`translate3d(-${percentageOffset}%,0px, 0px)`;
   }
 
   private getImageSize(portrait){
@@ -115,7 +117,7 @@ export class ContentRowComponent implements OnInit, AfterViewInit, OnChanges {
     if (this.fullContentOffset >= this.fullContent.length) this.fullContentOffset = 0;
     this.fullContentOffsetEmitter.emit(this.fullContentOffset);
     this.fillWindow();
-    // this.slider.nativeElement.style.transform='translate3d(-100%,0px, 0px)';
+
   }
 
   prev(){
