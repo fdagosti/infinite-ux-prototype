@@ -64,12 +64,14 @@ export class ContentRowComponent implements OnInit {
 
   getContentImage(index){
 
-    if (this.content && this.content.content[index] && this.content.content[index].content.media){
-      return this.content.content[index].content.media[this.portrait?5:1].url;
+    if (this.content && this.content.content[index] && this.content.content[index].media){
+      return this.content.content[index].media[this.portrait?5:1].url;
     }else{
       return this.altContent;
     }
   }
+
+
 
   fetchContent(){
     if (this.content.content.length >0){
@@ -77,7 +79,6 @@ export class ContentRowComponent implements OnInit {
     }
 
     return this.busy = this.contentSource
-       //.do(content =>console.log("content = ",content))
       .subscribe(
         content => this.content = content,
         error => this.errorMessage = <any>error,

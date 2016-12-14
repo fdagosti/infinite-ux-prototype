@@ -42,7 +42,24 @@ export class IVPService {
     params.set('limit', limit); // the user's search value
     if (offset) params.set('offset', offset); // the user's search value
 
-    return this.getHttpCall(params, "agg/content/",delay);
+    return this.normalizeContent(this.getHttpCall(params, "agg/content/",delay));
+
+  }
+
+  normalizeContent(obs:Observable<any>){
+    return obs
+      // .do(content =>console.log("content before = ",content))
+      .map((content:any) => {
+        content.content.forEach(item => {
+          if (item.content) {
+            delete item.content._links;
+            return Object.assign(item, item.content);
+          }
+          return item;
+        });
+        return content;
+      })
+      // .do(content =>console.log("content after = ",content));
   }
 
   getContent(categoryId, offset?, limit="6",delay=0){
@@ -51,7 +68,7 @@ export class IVPService {
     params.set('limit', limit); // the user's search value
     if (offset) params.set('offset', offset); // the user's search value
 
-    return this.getHttpCall(params, "agg/content/",delay)
+    return this.normalizeContent(this.getHttpCall(params, "agg/content/",delay));
   }
 
   getSuggestions(keyword){

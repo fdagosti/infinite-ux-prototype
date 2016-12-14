@@ -3,13 +3,13 @@
   <div class="info">
     <div class="info-main" *ngIf="program" >
       <div class="text">
-        <div class="title">{{program.content.title}}</div>
+        <div class="title">{{program.title}}</div>
         <div class="meta">
           <span class="year">2016</span>
           <span class="maturity-rating"> - </span>
           <span class="duration">1 saison</span>
         </div>
-        <div class="synopsis">{{program.content.synopsis.shortSynopsis}}</div>
+        <div *ngIf="program.synopsis" class="synopsis">{{program.synopsis.shortSynopsis}}</div>
       </div>
       <div class="last-content">
         <div class="mylist-wrapper">
