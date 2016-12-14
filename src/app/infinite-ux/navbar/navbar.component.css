@@ -1,8 +1,7 @@
 .dark {
 	background-color: rgba(0,0,0,.7);
-
-
 }
+
 .navbar {	
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -33,8 +32,6 @@
 	align-items: center
 }
 
-
-
 .logo {
 	display: inline-block;
 	vertical-align: middle;
@@ -64,14 +61,27 @@
 	-webkit-box-flex: 1;
 }
 
+@media screen and (max-width: 880px){
+	.primary-nav{
+		display:none;
+	}
+}
+
+@media screen and (max-width: 980px){
+	.logo{
+		width: 48px;
+		height: 25px;
+	}
+}
+
 .nav-item{
 	padding-right: 31px;
 }
 
 .secondary-nav {
 	position: absolute;
-    right: 0;
-    font-size: 16px;
+	right: 0;
+	font-size: 16px;
 /*    display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;

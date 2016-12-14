@@ -2,32 +2,35 @@
   <a class="navbar-brand" routerLink="/" href="#">
     <img class="logo" src="assets/cisco-logo.svg">
   </a>
+
   <!-- <a class="navbar-brand" routerLink="/" href="#">Infinite UX</a> -->
-  <ul class="nav navbar-nav">
+  <ul class="nav navbar-nav primary-nav">
     <li class="nav-item  dropdown">
       <a class="nav-link dropdown-toggle active" href="http://example.com" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Browse</a>
       <div class="dropdown-menu" role="menu">
-         <iux-browse ></iux-browse>
-      </div>
-    </li>
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" href="#" routerLink="/dago/settings" >Settings<span class="sr-only">(current)</span></a>
-    </li>
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" href="#" routerLink="/peter/profiles" >Profiles<span class="sr-only">(current)</span></a>
-    </li>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="http://example.com" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Playground</a>
-      <div class="dropdown-menu" role="menu">
-        <a class="dropdown-item" href="#" routerLink="/peter" >Peter</a>
-        <a class="dropdown-item" href="#" routerLink="/dago" >Dago</a>
-      </div>
-    </li>
-  </ul>
-  <ul class="nav navbar-nav secondary-nav">
-    <li class="form-inline float-xs-right">
-      <iux-search></iux-search>
+       <iux-browse ></iux-browse>
+     </div>
    </li>
-
+   <li class="nav-item" routerLinkActive="active">
+    <a class="nav-link" href="#" routerLink="/dago/settings" >Settings<span class="sr-only">(current)</span></a>
+  </li>
+  <li class="nav-item" routerLinkActive="active">
+    <a class="nav-link" href="#" routerLink="/peter/profiles" >Profiles<span class="sr-only">(current)</span></a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="http://example.com" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Playground</a>
+    <div class="dropdown-menu" role="menu">
+      <a class="dropdown-item" href="#" routerLink="/peter" >Peter</a>
+      <a class="dropdown-item" href="#" routerLink="/dago" >Dago</a>
+    </div>
+  </li>
+</ul>
+<ul class="nav navbar-nav secondary-nav">
+  <li class="form-inline float-xs-right">
+    <iux-search></iux-search>
+  </li>
+  <li>
+    <!-- <iux-profile-link></iux-profile-link> -->
+    </li>
 </ul>
 </nav>
