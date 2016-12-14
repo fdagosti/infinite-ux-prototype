@@ -1,5 +1,7 @@
-<iux-settings-section *ngIf="data" title="IVP Profile" >
+<iux-settings-section title="IVP Profile" >
+
   <div class="col-sm-4">
+    <div [ngBusy]="{busy:busy,backdrop:false}"></div>
     <p *ngFor="let key of data | keys">
       {{key | ctapSettings}}:
     </p>

@@ -10,10 +10,11 @@ export class SettingsCtapComponent implements OnInit {
 
   constructor(private ctap:IVPService) { }
 
+  private busy;
   private data;
 
   ngOnInit() {
-    this.ctap.getSettings()
+    this.busy = this.ctap.getSettings()
       .subscribe(settings=>this.data = settings);
   }
 
