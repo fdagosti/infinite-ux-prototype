@@ -14,13 +14,19 @@ export class Category{
 @Injectable()
 export class IVPService {
 
+  private categoryCache={};
+
   private ctapUrl = "https://apx.cisco.com/spvss/infinitehome/infinitetoolkit/v_sandbox_2/";
   private LOCAL_STORAGE:string = "InfiniteUX-proto-token-v1";
 
   constructor(private http: Http, private debug:DebugService) { }
 
   getCategories(categoryId =""): Observable<any[]>{
-    return this.getHttpCall(null, "categories/"+categoryId);
+    if (this.categoryCache[categoryId]){
+      return Observable.of(this.categoryCache[categoryId])
+    }else
+      return this.getHttpCall(null, "categories/"+categoryId)
+        .do(cats=>this.categoryCache[categoryId]=cats);
 
   }
 
