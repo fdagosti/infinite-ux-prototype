@@ -19,6 +19,7 @@ import {ProfileLinkComponent} from "./navbar/profile-link/profile-link.component
 import {LolomoResponsiveComponent} from "./lolomo-responsive/lolomo-responsive.component";
 import {ContentRowResponsiveComponent} from "./lolomo-responsive/content-row-responsive/content-row-responsive.component";
 import {ContentCarouselResponsiveComponent} from "./lolomo-responsive/content-carousel-responsive/content-carousel-responsive.component";
+import { OverlayResponsiveComponent } from './lolomo-responsive/content-row-responsive/overlay-responsive/overlay-responsive.component';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import {ContentCarouselResponsiveComponent} from "./lolomo-responsive/content-ca
     ProfileLinkComponent,
     LolomoResponsiveComponent,
     ContentRowResponsiveComponent,
-    ContentCarouselResponsiveComponent
+    ContentCarouselResponsiveComponent,
+    OverlayResponsiveComponent
   ],
   exports: [
     BillboardRowComponent,

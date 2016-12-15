@@ -86,9 +86,16 @@ a{
   z-index: 100;
 }
 
+.content-container{
+  transition :;
+}
+
 @media screen and (max-width: 499px){
   .content-item{
     width: 50%;
+  }
+  .move{
+
   }
 }
 
