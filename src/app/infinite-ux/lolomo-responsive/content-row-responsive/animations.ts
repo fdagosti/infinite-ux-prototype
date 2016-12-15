@@ -3,15 +3,17 @@ import {trigger, state, transition, animate, style} from "@angular/core";
 export const animTable = {}
 
 const transitionDetails = ".75s ease 0s";
-const percentages = [0,100, 116, 120, 125, 133, 150];
+const percentages = [0,100, 116.666667, 120, 125, 133.33333333, 150];
 const transitions = [];
 
 percentages.forEach(percentage => {
 
-  let nextAnimState = "next"+percentage;
-  let prevAnimState = "previous"+percentage;
+  let inPercentage = Math.floor(percentage)
 
-  animTable[percentage ] = {
+  let nextAnimState = "next"+inPercentage;
+  let prevAnimState = "previous"+inPercentage;
+
+  animTable[inPercentage] = {
     animNext : nextAnimState,
     animPrev : prevAnimState,
   };
