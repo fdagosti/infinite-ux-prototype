@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { ContentRowComponent } from './content-row.component';
+import { ContentRowResponsiveComponent } from './content-row-responsive.component';
 
 describe('Component: ContentRow', () => {
   it('should create an instance', () => {
-    let component = new ContentRowComponent();
+    let component = new ContentRowResponsiveComponent();
     expect(component).toBeTruthy();
   });
 });

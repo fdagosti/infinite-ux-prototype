@@ -16,6 +16,9 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import {PlayerComponent} from "./player/player.component";
 import {BillboardRowComponent} from "./billboard-row/billboard-row.component";
 import {ProfileLinkComponent} from "./navbar/profile-link/profile-link.component";
+import {LolomoResponsiveComponent} from "./lolomo-responsive/lolomo-responsive.component";
+import {ContentRowResponsiveComponent} from "./lolomo-responsive/content-row-responsive/content-row-responsive.component";
+import {ContentCarouselResponsiveComponent} from "./lolomo-responsive/content-carousel-responsive/content-carousel-responsive.component";
 
 @NgModule({
   imports: [
@@ -37,7 +40,10 @@ import {ProfileLinkComponent} from "./navbar/profile-link/profile-link.component
     ContentCarouselComponent,
     NavbarComponent,
     BillboardRowComponent,
-    ProfileLinkComponent
+    ProfileLinkComponent,
+    LolomoResponsiveComponent,
+    ContentRowResponsiveComponent,
+    ContentCarouselResponsiveComponent
   ],
   exports: [
     BillboardRowComponent,
@@ -48,7 +54,8 @@ import {ProfileLinkComponent} from "./navbar/profile-link/profile-link.component
     RouterModule,
     FullContentComponent,
     LolomoComponent,
-    ProfileLinkComponent
+    ProfileLinkComponent,
+    LolomoResponsiveComponent
   ]
 })
 export class InfiniteUxModule { }

@@ -10,20 +10,20 @@ import {
   EventEmitter, ViewChild
 } from "@angular/core";
 import {Subscription} from "rxjs";
-import {ContentRowComponent} from "../content-row-responsive/content-row.component";
+import {ContentRowResponsiveComponent} from "../content-row-responsive/content-row-responsive.component";
 import {IVPService} from "../../../ivp.service";
 
 
 @Component({
-  selector: 'iux-content-carousel',
-  templateUrl: 'content-carousel.component-responsive.html',
-  styleUrls: ['content-carousel.component-responsive.css'],
+  selector: 'iux-content-carousel-responsive',
+  templateUrl: 'content-carousel-responsive.component.html',
+  styleUrls: ['content-carousel-responsive.component.css'],
   host: {
     'class': 'carousel slide ',
   },
 
 })
-export class ContentCarouselComponent implements OnInit{
+export class ContentCarouselResponsiveComponent implements OnInit{
 
 
   @Input() categoryId;
@@ -40,7 +40,7 @@ export class ContentCarouselComponent implements OnInit{
 
   @Output() multiPage = new EventEmitter();
 
-  @ViewChild(ContentRowComponent) slider : ContentRowComponent;
+  @ViewChild(ContentRowResponsiveComponent) slider : ContentRowResponsiveComponent;
 
   private activePage: number = 0;
   private itemWindow;

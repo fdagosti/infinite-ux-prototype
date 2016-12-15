@@ -15,10 +15,6 @@ import {SettingsDebugComponent} from "./settings-debug/settings-debug.component"
 import {SettingsAdsuiteComponent} from "./settings-adsuite/settings-adsuite.component";
 import {BusyModule} from "angular2-busy";
 import {RouterModule} from "@angular/router";
-import {LolomoResponsiveComponent} from "./lolomo-responsive/lolomo-responsive.component";
-import {ContentRowComponent} from "./lolomo-responsive/content-row/content-row.component";
-import {ContentCarouselComponent} from "./lolomo-responsive/content-carousel/content-carousel.component";
-import {OverlayComponent} from "./lolomo-responsive/content-row/overlay/overlay.component";
 import {InfiniteUxModule} from "../infinite-ux/infinite-ux.module";
 
 @NgModule({
@@ -44,10 +40,6 @@ import {InfiniteUxModule} from "../infinite-ux/infinite-ux.module";
     SettingsCtapComponent,
     SettingsDebugComponent,
     SettingsAdsuiteComponent,
-    LolomoResponsiveComponent,
-    ContentRowComponent,
-    ContentCarouselComponent,
-    OverlayComponent
   ],
   exports: [
   ],

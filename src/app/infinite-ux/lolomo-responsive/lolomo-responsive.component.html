@@ -8,11 +8,11 @@
   </a>
   <p class="categoryLink" *ngIf="!multiPage">{{category.name | lowercase}}</p>
 
-  <iux-content-carousel
+  <iux-content-carousel-responsive
     [portrait]="portrait"
     [showIndicator]="showChevron"
     [categoryId]="category.id"
     (multiPage)="hasMultiPage($event)"
-  ></iux-content-carousel>
+  ></iux-content-carousel-responsive>
 </div>
 

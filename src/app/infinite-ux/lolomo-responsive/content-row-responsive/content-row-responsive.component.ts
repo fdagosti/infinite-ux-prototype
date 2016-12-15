@@ -23,15 +23,15 @@ const PORTRAIT_SIZE = {w:213,h:318};
 const LANDSCAPE_SIZE = {w:399,h:225};
 
 @Component({
-  selector: 'iux-content-row',
-  templateUrl: 'content-row.component.html',
-  styleUrls: ['content-row.component.css'],
+  selector: 'iux-content-row-responsive',
+  templateUrl: 'content-row-responsive.component.html',
+  styleUrls: ['content-row-responsive.component.css'],
   animations: [
     horizontalScroll
   ]
 
 })
-export class ContentRowComponent implements OnInit, AfterViewInit, OnChanges {
+export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnChanges {
 
   constructor(private zone: NgZone) { }
 
