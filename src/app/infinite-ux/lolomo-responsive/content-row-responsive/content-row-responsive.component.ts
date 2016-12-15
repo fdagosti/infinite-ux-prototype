@@ -8,9 +8,10 @@ import {
   OnChanges,
   SimpleChanges,
   Output,
-  EventEmitter, trigger, state, style, transition, animate, NgZone
+  EventEmitter,
+  NgZone
 } from "@angular/core";
-import {horizontalScroll, nextAnim, prevAnim} from "./animations";
+import {horizontalScroll, animTable} from "./animations";
 
 
 class ContentRow{
@@ -137,9 +138,9 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
 
   next(){
     if (this.inAnim) return;
-    // console.log("NEXT ",this.pageAnimState, this.percentageOffset, this.nextAnim[Math.floor(this.percentageOffset)]);
+    //console.log("NEXT ",this.pageAnimState, this.percentageOffset, animTable[Math.floor(this.percentageOffset)]);
     this.inAnim = true;
-    this.pageAnimState = nextAnim[Math.floor(this.percentageOffset)];
+    this.pageAnimState = animTable[Math.floor(this.percentageOffset)].animNext;
     this.fullContentOffset=(this.fullContentOffset + this.numberOfVisibleItems);
     if (this.fullContentOffset >= this.fullContent.length) this.fullContentOffset = 0;
     this.fullContentOffsetEmitter.emit(this.fullContentOffset);
@@ -151,7 +152,7 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
     if (this.inAnim) return;
     // console.log("PREV ",this.pageAnimState, this.percentageOffset, this.prevAnim[Math.floor(this.percentageOffset)]);
     this.inAnim = true;
-    this.pageAnimState = prevAnim[Math.floor(this.percentageOffset)];
+    this.pageAnimState = animTable[Math.floor(this.percentageOffset)].animPrev;
     this.fullContentOffset-=this.numberOfVisibleItems;
     this.fullContentOffset = Math.max(this.fullContentOffset, 0);
     this.fullContentOffsetEmitter.emit(this.fullContentOffset);
