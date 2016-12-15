@@ -10,14 +10,14 @@ import {
   EventEmitter, ViewChild
 } from "@angular/core";
 import {Subscription} from "rxjs";
-import {ContentRowComponent} from "../content-row/content-row.component";
+import {ContentRowComponent} from "../content-row-responsive/content-row.component";
 import {IVPService} from "../../../ivp.service";
 
 
 @Component({
   selector: 'iux-content-carousel',
-  templateUrl: 'content-carousel.component.html',
-  styleUrls: ['content-carousel.component.css'],
+  templateUrl: 'content-carousel.component-responsive.html',
+  styleUrls: ['content-carousel.component-responsive.css'],
   host: {
     'class': 'carousel slide ',
   },

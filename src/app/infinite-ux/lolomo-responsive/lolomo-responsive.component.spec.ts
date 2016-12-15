@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { LolomoResponsiveComponent } from './lolomo-responsive.component';
+import { LolomoResponsiveComponent } from './lolomo-responsive.component-responsive';
 
 describe('Component: IUXContentListSm2', () => {
   it('should create an instance', () => {
