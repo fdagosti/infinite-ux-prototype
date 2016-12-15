@@ -71,8 +71,8 @@ p {
 
 a{
   cursor: default;
-  /*margin-right: 3px;*/
-  /*margin-left: 3px;*/
+  margin-right: 3px;
+  margin-left: 3px;
 }
 
 .playable-item a{
