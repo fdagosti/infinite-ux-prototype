@@ -3,10 +3,6 @@
   position: relative;
 }
 
-
-
-
-
 .last-content{
   -webkit-box-flex: 0;
   -webkit-flex: 0 1 11%;
@@ -64,7 +60,6 @@ p {
   /* transition-delay: 0.4s; */
 }
 
-
 .content-item{
   background: #000;
   display: inline-block;
@@ -84,15 +79,12 @@ a{
   cursor: pointer;
 }
 
-
 .zoom-item:hover{
   /* transform: translate3d(40px, 0, 0); */
   transition-delay: 0.4s;
   transform: scale(1.4);;
   z-index: 100;
 }
-
-
 
 @media screen and (max-width: 499px){
   .content-item{
