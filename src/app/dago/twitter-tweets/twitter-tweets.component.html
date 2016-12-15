@@ -4,3 +4,12 @@
   <button>SEARCH</button>
 </form>
 <div [ngBusy]="busy"></div>
+<iux-content-row
+  *ngFor="let query of queries"
+  class="carousel-item active"
+  [rowSize]="6"
+  [content]="{content:[]}"
+  [fetchOnInit]="true"
+  [contentSource]="twitter.getContent(searchQuery.value)"
+>
+</iux-content-row>

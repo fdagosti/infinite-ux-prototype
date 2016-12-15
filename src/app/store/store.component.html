@@ -2,11 +2,17 @@
 </div>
 <div *ngFor="let cat of categories" >
   <iux-lolomo
-
-    *ngIf="cat.leaf"
+    *ngIf="!newLolomo && cat.leaf"
     [portrait]="portrait"
     [category]="cat"
   ></iux-lolomo>
+
+  <iux-lolomo-responsive
+    *ngIf="newLolomo && cat.leaf"
+    [portrait]="portrait"
+    [category]="cat"
+  ></iux-lolomo-responsive>
+
   <iux-store
     *ngIf="!cat.leaf"
     [portrait]="false"

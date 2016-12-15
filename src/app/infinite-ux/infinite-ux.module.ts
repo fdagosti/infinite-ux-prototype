@@ -55,7 +55,8 @@ import {ContentCarouselResponsiveComponent} from "./lolomo-responsive/content-ca
     FullContentComponent,
     LolomoComponent,
     ProfileLinkComponent,
-    LolomoResponsiveComponent
+    LolomoResponsiveComponent,
+    ContentRowComponent
   ]
 })
 export class InfiniteUxModule { }

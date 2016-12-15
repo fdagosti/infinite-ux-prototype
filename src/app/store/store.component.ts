@@ -1,6 +1,8 @@
 import {Component, OnInit, Input} from "@angular/core";
 import {IVPService} from "../ivp.service";
 import {Subscription} from "rxjs";
+import {DebugService} from "../dago/debug.service";
+import {debug} from "util";
 
 @Component({
   selector: 'iux-store',
@@ -12,16 +14,18 @@ export class StoreComponent implements OnInit {
   private errorMessage;
   private categories;
   private busy:Subscription;
+  private newLolomo=false;
   @Input() category;
   @Input() portrait = false;
   @Input() showLoading= true;
 
-  constructor(public ctap:IVPService, ) {
+  constructor(public ctap:IVPService, public debug:DebugService) {
 
   }
 
   ngOnInit(){
     this.getCategories();
+    this.newLolomo = this.debug.isNewLolomoUsed();
   }
 
   private getCategories(){
