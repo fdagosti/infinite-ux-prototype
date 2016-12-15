@@ -1,6 +1,6 @@
 import {trigger, state, transition, animate, style} from "@angular/core";
 
-
+const transitionDetails = ".75s ease 0s"
 
 export const horizontalScroll = trigger('horizontalScroll', [
 
@@ -8,46 +8,46 @@ export const horizontalScroll = trigger('horizontalScroll', [
   state('previous',   style({})),
   state('stop',   style({})),
   transition('* => next0', [
-    animate('750ms ease-out', style({transform: 'translate3d(-100%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(-100%,0px, 0px)'}))
   ]),
   transition('* => next100', [
-    animate('750ms ease-out', style({transform: 'translate3d(-200%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(-200%,0px, 0px)'}))
   ]),
   transition('* => next116', [
-    animate('750ms ease-out', style({transform: 'translate3d(-216.66666666%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(-216.66666666%,0px, 0px)'}))
   ]),
   transition('* => next120', [
-    animate('750ms ease-out', style({transform: 'translate3d(-220%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(-220%,0px, 0px)'}))
   ]),
   transition('* => next125', [
-    animate('750ms ease-out', style({transform: 'translate3d(-225%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(-225%,0px, 0px)'}))
   ]),
   transition('* => next133', [
-    animate('750ms ease-out', style({transform: 'translate3d(-233.3333333%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(-233.3333333%,0px, 0px)'}))
   ]),
   transition('* => next150', [
-    animate('750ms ease-out', style({transform: 'translate3d(-250%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(-250%,0px, 0px)'}))
   ]),
   transition('* => previous0', [
-    animate('750ms ease-out', style({transform: 'translate3d(0%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(0%,0px, 0px)'}))
   ]),
   transition('* => previous100', [
-    animate('750ms ease-out', style({transform: 'translate3d(0%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(0%,0px, 0px)'}))
   ]),
   transition('* => previous116', [
-    animate('750ms ease-out', style({transform: 'translate3d(-16.66666666%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(-16.66666666%,0px, 0px)'}))
   ]),
   transition('* => previous120', [
-    animate('750ms ease-out', style({transform: 'translate3d(-20%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(-20%,0px, 0px)'}))
   ]),
   transition('* => previous125', [
-    animate('750ms ease-out', style({transform: 'translate3d(-25%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(-25%,0px, 0px)'}))
   ]),
   transition('* => previous133', [
-    animate('750ms ease-out', style({transform: 'translate3d(-33.333333%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(-33.333333%,0px, 0px)'}))
   ]),
   transition('* => previous150', [
-    animate('750ms ease-out', style({transform: 'translate3d(-50%,0px, 0px)'}))
+    animate(transitionDetails, style({transform: 'translate3d(-50%,0px, 0px)'}))
   ]),
 ])
 
