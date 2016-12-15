@@ -1,5 +1,12 @@
 
-<div #slider class="content-container" (window:resize)="onResize($event.target.innerWidth)">
+<div
+  #slider
+  class="content-container"
+  (window:resize)="onResize($event.target.innerWidth)"
+  (@horizontalScroll.start)="animationStarted($event)"
+  (@horizontalScroll.done)="animationDone($event)"
+  [@horizontalScroll]="pageAnimState"
+>
   <div *ngFor="let item of window;let i = index;"
        class="relative content-item"
        [class.zoom-item]="item && zoom"
