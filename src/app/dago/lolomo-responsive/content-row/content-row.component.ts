@@ -10,6 +10,7 @@ import {
   Output,
   EventEmitter, trigger, state, style, transition, animate, NgZone
 } from "@angular/core";
+import {horizontalScroll, nextAnim, prevAnim} from "./animations";
 
 
 class ContentRow{
@@ -26,61 +27,11 @@ const LANDSCAPE_SIZE = {w:399,h:225};
   templateUrl: 'content-row.component.html',
   styleUrls: ['content-row.component.css'],
   animations: [
-    trigger('horizontalScroll', [
-
-      state('next',style({})),
-      state('previous',   style({})),
-      state('stop',   style({})),
-      transition('* => next0', [
-        animate('750ms ease-out', style({transform: 'translate3d(-100%,0px, 0px)'}))
-      ]),
-      transition('* => next100', [
-        animate('750ms ease-out', style({transform: 'translate3d(-200%,0px, 0px)'}))
-      ]),
-      transition('* => next116', [
-        animate('750ms ease-out', style({transform: 'translate3d(-216.66666666%,0px, 0px)'}))
-      ]),
-      transition('* => next120', [
-        animate('750ms ease-out', style({transform: 'translate3d(-220%,0px, 0px)'}))
-      ]),
-      transition('* => next125', [
-        animate('750ms ease-out', style({transform: 'translate3d(-225%,0px, 0px)'}))
-      ]),
-      transition('* => next133', [
-        animate('750ms ease-out', style({transform: 'translate3d(-233.3333333%,0px, 0px)'}))
-      ]),
-      transition('* => next150', [
-        animate('750ms ease-out', style({transform: 'translate3d(-250%,0px, 0px)'}))
-      ]),
-      transition('* => previous0', [
-        animate('750ms ease-out', style({transform: 'translate3d(0%,0px, 0px)'}))
-      ]),
-      transition('* => previous100', [
-        animate('750ms ease-out', style({transform: 'translate3d(0%,0px, 0px)'}))
-      ]),
-      transition('* => previous116', [
-        animate('750ms ease-out', style({transform: 'translate3d(-16.66666666%,0px, 0px)'}))
-      ]),
-      transition('* => previous120', [
-        animate('750ms ease-out', style({transform: 'translate3d(-20%,0px, 0px)'}))
-      ]),
-      transition('* => previous125', [
-        animate('750ms ease-out', style({transform: 'translate3d(-25%,0px, 0px)'}))
-      ]),
-      transition('* => previous133', [
-        animate('750ms ease-out', style({transform: 'translate3d(-33.333333%,0px, 0px)'}))
-      ]),
-      transition('* => previous150', [
-        animate('750ms ease-out', style({transform: 'translate3d(-50%,0px, 0px)'}))
-      ]),
-    ])
+    horizontalScroll
   ]
 
 })
 export class ContentRowComponent implements OnInit, AfterViewInit, OnChanges {
-
-
-
 
   constructor(private zone: NgZone) { }
 
@@ -182,31 +133,13 @@ export class ContentRowComponent implements OnInit, AfterViewInit, OnChanges {
 
   pageAnimState;
   private percentageOffset;
-  private nextAnim = {
-    "0":"next0",
-    "100":"next100",
-    "116":"next116",
-    "120":"next120",
-    "125":"next125",
-    "133":"next133",
-    "150":"next150",
-  }
-  private prevAnim = {
-    "0":"previous0",
-    "100":"previous100",
-    "116":"previous116",
-    "120":"previous120",
-    "125":"previous125",
-    "133":"previous133",
-    "150":"previous150",
-  }
   private inAnim = false;
 
   next(){
     if (this.inAnim) return;
     // console.log("NEXT ",this.pageAnimState, this.percentageOffset, this.nextAnim[Math.floor(this.percentageOffset)]);
     this.inAnim = true;
-    this.pageAnimState = this.nextAnim[Math.floor(this.percentageOffset)];
+    this.pageAnimState = nextAnim[Math.floor(this.percentageOffset)];
     this.fullContentOffset=(this.fullContentOffset + this.numberOfVisibleItems);
     if (this.fullContentOffset >= this.fullContent.length) this.fullContentOffset = 0;
     this.fullContentOffsetEmitter.emit(this.fullContentOffset);
@@ -218,7 +151,7 @@ export class ContentRowComponent implements OnInit, AfterViewInit, OnChanges {
     if (this.inAnim) return;
     // console.log("PREV ",this.pageAnimState, this.percentageOffset, this.prevAnim[Math.floor(this.percentageOffset)]);
     this.inAnim = true;
-    this.pageAnimState = this.prevAnim[Math.floor(this.percentageOffset)];
+    this.pageAnimState = prevAnim[Math.floor(this.percentageOffset)];
     this.fullContentOffset-=this.numberOfVisibleItems;
     this.fullContentOffset = Math.max(this.fullContentOffset, 0);
     this.fullContentOffsetEmitter.emit(this.fullContentOffset);
@@ -230,8 +163,6 @@ export class ContentRowComponent implements OnInit, AfterViewInit, OnChanges {
 
     return '/video/'+program.id;
   }
-
-
 
   getContentImage(item){
 
