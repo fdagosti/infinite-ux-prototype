@@ -1,14 +1,4 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  AfterContentChecked,
-  OnDestroy,
-  QueryList,
-  ViewChildren,
-  Output,
-  EventEmitter, ViewChild
-} from "@angular/core";
+import {Component, Input, OnInit, Output, EventEmitter, ViewChild} from "@angular/core";
 import {Subscription} from "rxjs";
 import {ContentRowResponsiveComponent} from "../content-row-responsive/content-row-responsive.component";
 import {IVPService} from "../../../ivp.service";
@@ -24,7 +14,6 @@ import {IVPService} from "../../../ivp.service";
 
 })
 export class ContentCarouselResponsiveComponent implements OnInit{
-
 
   @Input() categoryId;
   @Input() portrait;
@@ -50,17 +39,21 @@ export class ContentCarouselResponsiveComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.fetchContent();
+    this.busy = this.fetchContent();
   }
 
-  fetchContent(){
 
-    this.busy = this.ctap.getContent(this.categoryId, this.contentOffset, "100")
+  private dataFullyLoaded = false;
+
+  fetchContent(){
+    return this.ctap.getContent(this.categoryId, this.contentOffset, "20")
+      // .delay(50000)
       .subscribe(
         content => {
           this.content = this.content.concat(content.content);
           this.totalNumberOfItems = content.total;
           this.contentOffset = this.content.length;
+          this.dataFullyLoaded = (this.content.length === this.totalNumberOfItems);
           this.computePageSize();
           this.busy = null;
         },
@@ -87,6 +80,9 @@ export class ContentCarouselResponsiveComponent implements OnInit{
 
   updateOffset(offset){
     this.focusOffset = offset;
+    if (!this.dataFullyLoaded && (this.contentOffset - this.focusOffset < 20)){
+      this.fetchContent();
+    }
     this.computeActivePage();
   }
 

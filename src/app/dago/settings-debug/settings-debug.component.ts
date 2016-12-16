@@ -13,6 +13,7 @@ export class SettingsDebugComponent implements OnInit {
 
   constructor(private debug:DebugService) {
     this.proxyEnabled = debug.isProxyEnabled();
+    this.newLolomo = debug.isNewLolomoUsed();
   }
 
   enableProxy(b){

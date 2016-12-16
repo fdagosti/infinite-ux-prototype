@@ -9,7 +9,7 @@
 >
   <div *ngFor="let item of window;let i = index;"
        class="relative content-item"
-       [class.zoom-item]="item && zoom"
+       [class.zoom-item]="!item.empty && zoom"
        [class.playable-item]="item._links.playSession"
   >
     <a [routerLink]="getPlayLink(item)" >

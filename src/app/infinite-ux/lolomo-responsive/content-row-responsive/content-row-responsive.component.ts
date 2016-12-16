@@ -4,12 +4,11 @@ import {
   Input,
   ViewChild,
   ElementRef,
-  AfterViewInit,
   OnChanges,
   SimpleChanges,
   Output,
   EventEmitter,
-  NgZone
+  NgZone, AfterViewInit
 } from "@angular/core";
 import {horizontalScroll, animTable} from "./animations";
 
@@ -22,6 +21,13 @@ class ContentRow{
 
 const PORTRAIT_SIZE = {w:213,h:318};
 const LANDSCAPE_SIZE = {w:399,h:225};
+
+const emptyItem = {
+  _links:{},
+  content:{},
+  empty: true
+
+}
 
 @Component({
   selector: 'iux-content-row-responsive',
@@ -51,8 +57,8 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
 
   @ViewChild('slider') slider:ElementRef;
 
-  private windowSize = 18;
-  private window = Array[this.windowSize];
+  private windowSize = 6;
+  private window = new Array(this.windowSize).fill(emptyItem);
 
   private altContent;
   private imageSize;
@@ -69,7 +75,8 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.fillWindow();
+    if (this.window[0].empty)
+      this.fillWindow();
   }
 
 
@@ -98,7 +105,9 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   }
 
   fillWindow(){
-    // console.log("fillWindow ",this.fullContentOffset, this.numberOfItems, this.maxPastItems);
+    // console.log("fillWindow ",this.fullContent.length);
+    if (this.fullContent.length == 0) return;
+
     let computedOffset = Math.max(this.fullContentOffset - this.maxPastItems,0);
     this.window = this.fullContent.slice(computedOffset, computedOffset+this.numberOfItems);
 
@@ -139,10 +148,14 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   next(){
     if (this.inAnim) return;
     //console.log("NEXT ",this.pageAnimState, this.percentageOffset, animTable[Math.floor(this.percentageOffset)]);
-    this.inAnim = true;
-    this.pageAnimState = animTable[Math.floor(this.percentageOffset)].animNext;
     this.fullContentOffset=(this.fullContentOffset + this.numberOfVisibleItems);
-    if (this.fullContentOffset >= this.fullContent.length) this.fullContentOffset = 0;
+    if (this.fullContentOffset >= this.fullContent.length){
+      this.fullContentOffset = 0;
+      this.fillWindow();
+    } else{
+      this.inAnim = true;
+      this.pageAnimState = animTable[Math.floor(this.percentageOffset)].animNext;
+    }
     this.fullContentOffsetEmitter.emit(this.fullContentOffset);
 
 
@@ -159,8 +172,7 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   }
 
   private getPlayLink(program){
-    if (!program) return "./";
-    if (!program._links.playSession) return "./";
+    if (!program || !program._links || !program._links.playSession) return "./";
 
     return '/video/'+program.id;
   }

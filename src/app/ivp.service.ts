@@ -40,13 +40,13 @@ export class IVPService {
     }
   }
 
-  getContentFromSearchedTerm(term, offset?, limit="6", delay=0){
+  getContentFromSearchedTerm(term, offset?, limit="6"){
     let params = new URLSearchParams();
     params.set('q', term); // the user's search value
     params.set('limit', limit); // the user's search value
     if (offset) params.set('offset', offset); // the user's search value
 
-    return this.normalizeContent(this.getHttpCall(params, "agg/content/",delay));
+    return this.normalizeContent(this.getHttpCall(params, "agg/content/"));
 
   }
 
@@ -66,13 +66,13 @@ export class IVPService {
       // .do(content =>console.log("content after = ",content));
   }
 
-  getContent(categoryId, offset?, limit="6",delay=0){
+  getContent(categoryId, offset?, limit="6",){
     let params = new URLSearchParams();
     params.set('categoryId', categoryId); // the user's search value
     params.set('limit', limit); // the user's search value
     if (offset) params.set('offset', offset); // the user's search value
 
-    return this.normalizeContent(this.getHttpCall(params, "agg/content/",delay));
+    return this.normalizeContent(this.getHttpCall(params, "agg/content/"));
   }
 
   getSuggestions(keyword){
@@ -107,13 +107,12 @@ export class IVPService {
     return this.getHttpCall(undefined, "userProfiles/me/settings");
   }
 
-  private getHttpCall(params, urls, delay=0){
+  private getHttpCall(params, urls){
     return this.getHeadersWithAuth()
       .map((headers) => new RequestOptions({
         headers: headers,
         search: params
       }))
-      .delay(delay)
       .switchMap((options) => this.http.get(this.getCtapUrl()+urls, options))
       .map((res:Response) => res.json())
       .catch(this.handleError);
