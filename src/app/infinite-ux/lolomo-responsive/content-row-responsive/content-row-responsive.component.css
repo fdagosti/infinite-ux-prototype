@@ -56,8 +56,6 @@ p {
 .content-container {
   font-size: 0px;
   white-space: nowrap;
-  /*transition: all .2s ease-in-out;*/
-  /* transition-delay: 0.4s; */
 }
 
 .content-item{
@@ -67,13 +65,12 @@ p {
   z-index: 0;
   transition: all .2s ease-in-out;
   position: relative;
-  /* transition-delay: 0.4s; */
+  padding-right: 1px;
+  padding-left: 1px;
 }
 
 a{
   cursor: default;
-  margin-right: 3px;
-  margin-left: 3px;
 }
 
 .playable-item a{
@@ -81,22 +78,14 @@ a{
 }
 
 .zoom-item:hover{
-  /* transform: translate3d(40px, 0, 0); */
   transition-delay: 0.4s;
-  transform: scale(1.4);;
+  transform: scale(1.4);
   z-index: 100;
-}
-
-.content-container{
-  transition :;
 }
 
 @media screen and (max-width: 499px){
   .content-item{
     width: 50%;
-  }
-  .move{
-
   }
 }
 
