@@ -8,7 +8,7 @@
   top: 0;
   bottom: 0;
   z-index: 4;
-  width: 4%;
+  width: 5%;
   text-align: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -30,11 +30,11 @@ iux-content-row-responsive{
 }
 
 .handle.handlePrevious {
-  left: -4%;
+  left: -5%;
 }
 
 .handle.handleNext {
-  right: -4%;
+  right: -5%;
 }
 
 .icon-rightCaret:before {
