@@ -41,25 +41,25 @@ const zoomAnimate = [
 
 export const zoomAnimation = trigger('ZoomItem', [
   state("itemOpenedLeft", style({
-    transform: `translate3d(-41%,0px, 0px)`
+    transform: `translate3d(-40%,0px, 0px)`
   })),
   state("itemOpenedRight", style({
-    transform: `translate3d(41%,0px, 0px)`
+    transform: `translate3d(40%,0px, 0px)`
   })),
   state("itemOpenedRightFromBeginning", style({
-    transform: `translate3d(82%,0px, 0px)`
+    transform: `translate3d(80%,0px, 0px)`
   })),
   state("itemOpenedLeftFromEnd", style({
-    transform: `translate3d(-82%,0px, 0px)`
+    transform: `translate3d(-80%,0px, 0px)`
   })),
   state("zoomSelectedItem", style({
     transform: `scale(1.8)`
   })),
   state("zoomSelectedItemBeginning", style({
-    transform: `scale(1.8) translate3d(23%,0px, 0px)`
+    transform: `scale(1.8) translate3d(22%,0px, 0px)`
   })),
   state("zoomSelectedItemEnd", style({
-    transform: `scale(1.8) translate3d(-23%,0px, 0px)`
+    transform: `scale(1.8) translate3d(-22%,0px, 0px)`
   })),
 
   state("portraitItemOpenedLeft", style({
@@ -86,5 +86,6 @@ export const zoomAnimation = trigger('ZoomItem', [
 
   // transition('* => stop', [animate(".4s cubic-bezier(0.5, 0, 0.1, 1)")]),
   transition('* => stop', []),
+  transition('* => void', []),
   transition('* => *', zoomAnimate)
 ])

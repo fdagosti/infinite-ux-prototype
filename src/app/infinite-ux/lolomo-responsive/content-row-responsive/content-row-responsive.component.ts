@@ -62,8 +62,7 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
 
   @ViewChild('slider') slider:ElementRef;
 
-  private windowSize = 6;
-  private window = new Array(this.windowSize).fill(emptyItem);
+  private window = new Array(6).fill(emptyItem);
   private zoomState:string[] = this.window.map(()=>"stop");
 
   private altContent;
@@ -112,7 +111,6 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   }
 
   computeVisibleItemsIdx(actualPastItems){
-
     let pastItems = actualPastItems > 0?1:0;
     let startIdx = actualPastItems - pastItems;
     let lastIdx = Math.min(startIdx + this.numberOfVisibleItems + 1 + pastItems, this.window.length);
@@ -132,6 +130,9 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
     let oneItemPercentage = 100 / this.numberOfVisibleItems;
     this.percentageOffset = actualPastItems * oneItemPercentage;
     this.slider.nativeElement.style.transform=`translate3d(-${this.percentageOffset}%,0px, 0px)`;
+
+    // console.log("FILL WINDOW ",this.window.map(i=>i.title), this.itemWindow.map(i=>this.window[i].title));
+
   }
 
   private getImageSize(portrait){
@@ -149,6 +150,7 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
     // Bug workaround. See https://github.com/angular/angular/issues/11881
     this.zone.run(() => {
       this.pageAnimState="stop";
+
       this.fillWindow();
       this.inScrollAnim = false;
     });
@@ -170,8 +172,16 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
       this.pageAnimState = animTable[Math.floor(this.percentageOffset)].animNext;
     }
     this.fullContentOffsetEmitter.emit(this.fullContentOffset);
+  }
 
+  prev(){
+    if (this.inScrollAnim) return;
+    this.inScrollAnim = true;
 
+    this.pageAnimState = animTable[Math.floor(this.percentageOffset)].animPrev;
+    this.fullContentOffset-=this.numberOfVisibleItems;
+    this.fullContentOffset = Math.max(this.fullContentOffset, 0);
+    this.fullContentOffsetEmitter.emit(this.fullContentOffset);
   }
 
   getFirstActionableItem(){
@@ -189,6 +199,8 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   }
 
   launchZoomAnim(idx){
+    if (this.inScrollAnim) return;
+
     let firstItemSelected = idx === this.getFirstActionableItem();
     let lastItemSelected = idx === this.getLastActionableItem();
 
@@ -214,17 +226,8 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   }
 
   stopAnim(){
-    this.zoomState = this.zoomState.map(()=>"stop");
-  }
-
-  prev(){
     if (this.inScrollAnim) return;
-    this.inScrollAnim = true;
-
-    this.pageAnimState = animTable[Math.floor(this.percentageOffset)].animPrev;
-    this.fullContentOffset-=this.numberOfVisibleItems;
-    this.fullContentOffset = Math.max(this.fullContentOffset, 0);
-    this.fullContentOffsetEmitter.emit(this.fullContentOffset);
+    this.zoomState = this.zoomState.map(()=>"stop");
   }
 
   private getPlayLink(program){
