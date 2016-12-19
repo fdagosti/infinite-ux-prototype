@@ -1,6 +1,6 @@
 <div *ngIf="showLoading" [ngBusy]="{busy:busy,backdrop:false, delay:700}">
 </div>
-<div *ngFor="let cat of categories" >
+<div id="lolomoContainer" *ngFor="let cat of categories" >
   <iux-lolomo
     *ngIf="!newLolomo && cat.leaf"
     [portrait]="portrait"

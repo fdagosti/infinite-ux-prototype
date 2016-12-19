@@ -1,5 +1,6 @@
 
 <div
+  (mouseleave)="stopAnim()"
   #slider
   class="content-container"
   (window:resize)="onResize($event.target.innerWidth)"
@@ -8,9 +9,22 @@
   [@horizontalScroll]="pageAnimState"
 >
   <div *ngFor="let item of window;let i = index;"
+       (mouseover)="launchZoomAnim(i)"
+
        class="relative content-item"
+       [@ZoomItem]="zoomState[i]"
        [class.zoom-item]="!item.empty && zoom"
        [class.playable-item]="item._links.playSession"
+
+       [class.item-window-0]="i === itemWindow[0]"
+       [class.item-window-1]="i === itemWindow[1]"
+       [class.item-window-2]="i === itemWindow[2]"
+       [class.item-window-3]="i === itemWindow[3]"
+       [class.item-window-4]="i === itemWindow[4]"
+       [class.item-window-5]="i === itemWindow[5]"
+       [class.item-window-6]="i === itemWindow[6]"
+       [class.item-window-7]="i === itemWindow[7]"
+
   >
     <a [routerLink]="getPlayLink(item)" >
       <img [src]="getContentImage(item)" alt="" class="absolute-img">

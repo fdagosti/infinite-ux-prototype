@@ -8,7 +8,7 @@ import {
   SimpleChanges,
   Output,
   EventEmitter,
-  NgZone, AfterViewInit
+  NgZone, AfterViewInit, trigger, transition, animate, style, state
 } from "@angular/core";
 import {horizontalScroll, animTable} from "./animations";
 
@@ -29,16 +29,86 @@ const emptyItem = {
 
 }
 
+const zoomAnimate = [animate(".4s 300ms cubic-bezier(0.5, 0, 0.1, 1) 0s")];
+const instantZoomAnimate = [animate(".4s cubic-bezier(0.5, 0, 0.1, 1) 0s")];
+
 @Component({
   selector: 'iux-content-row-responsive',
   templateUrl: 'content-row-responsive.component.html',
   styleUrls: ['content-row-responsive.component.css'],
   animations: [
-    horizontalScroll
+    horizontalScroll,
+    trigger('ZoomItem', [
+      state("itemOpenedLeft", style({
+        transform: `translate3d(-41%,0px, 0px)`
+      })),
+      state("itemOpenedRight", style({
+        transform: `translate3d(41%,0px, 0px)`
+      })),
+      state("itemOpenedRightFromBeginning", style({
+        transform: `translate3d(82%,0px, 0px)`
+      })),
+      state("itemOpenedLeftFromEnd", style({
+        transform: `translate3d(-82%,0px, 0px)`
+      })),
+      state("zoomSelectedItem", style({
+        transform: `scale(1.8)`
+      })),
+      state("zoomSelectedItemBeginning", style({
+        transform: `scale(1.8) translate3d(23%,0px, 0px)`
+      })),
+      state("zoomSelectedItemEnd", style({
+        transform: `scale(1.8) translate3d(-23%,0px, 0px)`
+      })),
+
+      state("portraitItemOpenedLeft", style({
+        transform: `translate3d(-11%,0px, 0px)`
+      })),
+      state("portraitItemOpenedRight", style({
+        transform: `translate3d(11%,0px, 0px)`
+      })),
+      state("portraitItemOpenedRightFromBeginning", style({
+        transform: `translate3d(22%,0px, 0px)`
+      })),
+      state("portraitItemOpenedLeftFromEnd", style({
+        transform: `translate3d(-22%,0px, 0px)`
+      })),
+      state("portraitZoomSelectedItem", style({
+        transform: `scale(1.2)`
+      })),
+      state("portraitZoomSelectedItemBeginning", style({
+        transform: `scale(1.2) translate3d(8%,0px, 0px)`
+      })),
+      state("portraitZoomSelectedItemEnd", style({
+        transform: `scale(1.2) translate3d(-8%,0px, 0px)`
+      })),
+
+
+
+      transition('* => itemOpenedLeft', zoomAnimate),
+      transition('* => itemOpenedLeftFromEnd', zoomAnimate),
+      transition('* => itemOpenedRightFromBeginning', zoomAnimate),
+      transition('* => itemOpenedRight', zoomAnimate),
+      transition('* => zoomSelectedItem', zoomAnimate),
+      transition('* => zoomSelectedItemBeginning', zoomAnimate),
+      transition('* => zoomSelectedItemEnd', zoomAnimate),
+
+      transition('* => portraitItemOpenedLeft', zoomAnimate),
+      transition('* => portraitItemOpenedRight', zoomAnimate),
+      transition('* => portraitItemOpenedRightFromBeginning', zoomAnimate),
+      transition('* => portraitItemOpenedLeftFromEnd', zoomAnimate),
+      transition('* => portraitZoomSelectedItem', zoomAnimate),
+      transition('* => portraitZoomSelectedItemBeginning', zoomAnimate),
+      transition('* => portraitZoomSelectedItemEnd', zoomAnimate),
+
+    ])
   ]
 
 })
 export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnChanges {
+
+
+  private itemWindow = [];
 
   constructor(private zone: NgZone) { }
 
@@ -59,6 +129,7 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
 
   private windowSize = 6;
   private window = new Array(this.windowSize).fill(emptyItem);
+  private zoomState:string[] = this.window.map(()=>"stop");
 
   private altContent;
   private imageSize;
@@ -100,18 +171,29 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
       this.maxPastItems = visibleItems + 1;
       this.visibleItemsEmitter.emit(this.numberOfVisibleItems);
       this.numberOfItems = n;
+
       this.fillWindow();
     }
   }
 
+  computeVisibleItemsIdx(actualPastItems){
+
+    let pastItems = actualPastItems > 0?1:0;
+    let startIdx = actualPastItems - pastItems;
+    let lastIdx = Math.min(startIdx + this.numberOfVisibleItems + 1 + pastItems, this.window.length);
+    this.itemWindow = Array.apply(null, Array(lastIdx - startIdx)).map((_,i)=>startIdx + i);
+  }
+
   fillWindow(){
-    // console.log("fillWindow ",this.fullContent.length);
     if (this.fullContent.length == 0) return;
 
     let computedOffset = Math.max(this.fullContentOffset - this.maxPastItems,0);
     this.window = this.fullContent.slice(computedOffset, computedOffset+this.numberOfItems);
 
     let actualPastItems = this.fullContentOffset - computedOffset;
+    this.zoomState = new Array(this.window.length).fill("stop");
+
+    this.computeVisibleItemsIdx(actualPastItems);
     let oneItemPercentage = 100 / this.numberOfVisibleItems;
     this.percentageOffset = actualPastItems * oneItemPercentage;
     this.slider.nativeElement.style.transform=`translate3d(-${this.percentageOffset}%,0px, 0px)`;
@@ -126,12 +208,9 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   }
 
   animationStarted(e){
-    // console.log("ANIMATION Started ",e);
   }
 
   animationDone(e){
-    // console.log("Animation Done ",e);
-
     // Bug workaround. See https://github.com/angular/angular/issues/11881
     this.zone.run(() => {
       this.pageAnimState="stop";
@@ -147,7 +226,6 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
 
   next(){
     if (this.inAnim) return;
-    //console.log("NEXT ",this.pageAnimState, this.percentageOffset, animTable[Math.floor(this.percentageOffset)]);
     this.fullContentOffset=(this.fullContentOffset + this.numberOfVisibleItems);
     if (this.fullContentOffset >= this.fullContent.length){
       this.fullContentOffset = 0;
@@ -161,10 +239,49 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
 
   }
 
+  getFirstActionableItem(){
+    if (this.percentageOffset != 0){
+      return this.itemWindow[1];
+    }
+    return this.itemWindow[0];
+  }
+
+  getLastActionableItem(){
+    if (this.fullContent.length === this.itemWindow[this.itemWindow.length]){
+      return this.itemWindow[this.itemWindow.length-1];
+    }
+    return this.itemWindow[this.itemWindow.length-2];
+  }
+
+  launchZoomAnim(idx){
+    let firstItemSelected = idx === this.getFirstActionableItem();
+    let lastItemSelected = idx === this.getLastActionableItem();
+
+    this.itemWindow.forEach((v)=>{
+      if (firstItemSelected){
+        if (v === idx) {this.zoomState[v] = this.portrait?"portraitZoomSelectedItemBeginning":"zoomSelectedItemBeginning";}
+        else if (v > idx) this.zoomState[v] = this.portrait?"portraitItemOpenedRightFromBeginning":"itemOpenedRightFromBeginning";
+      }
+      else if (lastItemSelected){
+        if (v === idx) {this.zoomState[v] = this.portrait?"portraitZoomSelectedItemEnd":"zoomSelectedItemEnd";}
+        else if (v < idx) this.zoomState[v] = this.portrait?"portraitItemOpenedLeftFromEnd":"itemOpenedLeftFromEnd";
+      }
+      else if (v === idx) this.zoomState[v] = this.portrait?"portraitZoomSelectedItem":"zoomSelectedItem";
+      else if (v<idx) this.zoomState[v] = this.portrait?"portraitItemOpenedLeft":"itemOpenedLeft";
+      else if (v>idx) this.zoomState[v] = this.portrait?"portraitItemOpenedRight":"itemOpenedRight";
+
+    });
+  }
+
+  stopAnim(){
+    this.zoomState = this.zoomState.map(()=>"stop");
+
+  }
+
   prev(){
     if (this.inAnim) return;
-    // console.log("PREV ",this.pageAnimState, this.percentageOffset, this.prevAnim[Math.floor(this.percentageOffset)]);
     this.inAnim = true;
+
     this.pageAnimState = animTable[Math.floor(this.percentageOffset)].animPrev;
     this.fullContentOffset-=this.numberOfVisibleItems;
     this.fullContentOffset = Math.max(this.fullContentOffset, 0);

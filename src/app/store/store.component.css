@@ -1,6 +1,20 @@
 :host{
   display: block;
   position: relative;
-  overflow-x: hidden;
   min-height: 50px;
+  overflow: visible;
+  z-index: 0;
+}
+
+host:hover{
+  z-index: 10;
+}
+
+#lolomoContainer{
+  position: relative;
+  z-index: 0;
+}
+
+#lolomoContainer:hover{
+  z-index: 10;
 }
