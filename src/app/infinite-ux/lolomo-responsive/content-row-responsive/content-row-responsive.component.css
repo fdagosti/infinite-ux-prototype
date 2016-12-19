@@ -63,7 +63,7 @@ p {
   display: inline-block;
   vertical-align: top;
   z-index: 0;
-  transition: all .2s ease-in-out;
+
   position: relative;
   padding-right: 1px;
   padding-left: 1px;
@@ -75,12 +75,6 @@ a{
 
 .playable-item a{
   cursor: pointer;
-}
-
-.zoom-item:hover{
-  transition-delay: 0.4s;
-  transform: scale(1.4);
-  z-index: 100;
 }
 
 @media screen and (max-width: 499px){

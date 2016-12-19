@@ -32,3 +32,59 @@ percentages.forEach(percentage => {
 export const horizontalScroll = trigger('horizontalScroll', transitions)
 
 
+
+
+const zoomAnimate = [
+  animate(".4s 300ms cubic-bezier(0.5, 0, 0.1, 1)")
+];
+
+
+export const zoomAnimation = trigger('ZoomItem', [
+  state("itemOpenedLeft", style({
+    transform: `translate3d(-41%,0px, 0px)`
+  })),
+  state("itemOpenedRight", style({
+    transform: `translate3d(41%,0px, 0px)`
+  })),
+  state("itemOpenedRightFromBeginning", style({
+    transform: `translate3d(82%,0px, 0px)`
+  })),
+  state("itemOpenedLeftFromEnd", style({
+    transform: `translate3d(-82%,0px, 0px)`
+  })),
+  state("zoomSelectedItem", style({
+    transform: `scale(1.8)`
+  })),
+  state("zoomSelectedItemBeginning", style({
+    transform: `scale(1.8) translate3d(23%,0px, 0px)`
+  })),
+  state("zoomSelectedItemEnd", style({
+    transform: `scale(1.8) translate3d(-23%,0px, 0px)`
+  })),
+
+  state("portraitItemOpenedLeft", style({
+    transform: `translate3d(-11%,0px, 0px)`
+  })),
+  state("portraitItemOpenedRight", style({
+    transform: `translate3d(11%,0px, 0px)`
+  })),
+  state("portraitItemOpenedRightFromBeginning", style({
+    transform: `translate3d(22%,0px, 0px)`
+  })),
+  state("portraitItemOpenedLeftFromEnd", style({
+    transform: `translate3d(-22%,0px, 0px)`
+  })),
+  state("portraitZoomSelectedItem", style({
+    transform: `scale(1.2)`
+  })),
+  state("portraitZoomSelectedItemBeginning", style({
+    transform: `scale(1.2) translate3d(9%,0px, 0px)`
+  })),
+  state("portraitZoomSelectedItemEnd", style({
+    transform: `scale(1.2) translate3d(-9%,0px, 0px)`
+  })),
+
+  // transition('* => stop', [animate(".4s cubic-bezier(0.5, 0, 0.1, 1)")]),
+  transition('* => stop', []),
+  transition('* => *', zoomAnimate)
+])
