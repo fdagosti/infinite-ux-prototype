@@ -213,10 +213,16 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   }
 
   getLastActionableItem(){
-    if (this.fullContent.length === this.itemWindow[this.itemWindow.length]){
+    if (this.itemWindow.length === this.numberOfVisibleItems+2){
+      return this.itemWindow[this.itemWindow.length-2];
+    }else if (this.itemWindow.length <= this.numberOfVisibleItems){
       return this.itemWindow[this.itemWindow.length-1];
+    }else if (this.percentageOffset === 0){
+      return this.itemWindow[this.itemWindow.length-2];
+    }else{
+      this.itemWindow[this.itemWindow.length-1];
     }
-    return this.itemWindow[this.itemWindow.length-2];
+
   }
 
   launchZoomAnim(idx){
