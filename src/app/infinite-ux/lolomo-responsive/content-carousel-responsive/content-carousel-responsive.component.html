@@ -5,7 +5,9 @@
     [portrait]="portrait"
     (visibleItem)="updateVisibleItems($event)"
     (offset)="updateOffset($event)"
+    (jawboneOpen)="jawboneChanged($event)"
   >
+    <ng-content></ng-content>
   </iux-content-row-responsive>
 
 

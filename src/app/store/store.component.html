@@ -1,22 +1,26 @@
 <div *ngIf="showLoading" [ngBusy]="{busy:busy,backdrop:false, delay:700}">
 </div>
-<div id="lolomoContainer" *ngFor="let cat of categories" >
+<div id="lolomoContainer"
+     *ngFor="let cat of leafCats;let i = index"
+     [class.jawboneOpen]="jawboneOpened[i]"
+     class="lolomoContainer"
+>
   <iux-lolomo
-    *ngIf="!newLolomo && cat.leaf"
+    *ngIf="!newLolomo"
     [portrait]="portrait"
     [category]="cat"
   ></iux-lolomo>
 
   <iux-lolomo-responsive
-    *ngIf="newLolomo && cat.leaf"
-    [portrait]="portrait"
+    *ngIf="newLolomo"
+    [portrait]="i ===2"
     [category]="cat"
-  ></iux-lolomo-responsive>
+    (jawboneOpen)="jawboneOpen($event, i)"
+  >
+    <span (click)="jawboneOpened[i]=false" class="jawBoneContent">
+    <iux-jawbone *ngIf="jawboneOpened[i]" ></iux-jawbone>
+    </span>
+  </iux-lolomo-responsive>
 
-  <iux-store
-    *ngIf="!cat.leaf"
-    [portrait]="false"
-    [category]="cat"
-    [showLoading]="false"
-  ></iux-store>
+
 </div>

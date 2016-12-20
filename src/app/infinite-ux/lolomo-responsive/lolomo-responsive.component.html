@@ -13,6 +13,9 @@
     [showIndicator]="showChevron"
     [categoryId]="category.id"
     (multiPage)="hasMultiPage($event)"
-  ></iux-content-carousel-responsive>
+    (jawboneEmit)="jawboneOpen($event)"
+  >
+    <ng-content></ng-content>
+  </iux-content-carousel-responsive>
 </div>
 

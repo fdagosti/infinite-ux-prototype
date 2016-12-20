@@ -24,16 +24,23 @@ export class ContentCarouselResponsiveComponent implements OnInit{
   private pageNum=0;
   private pages=Array(1);
 
+
+
   private errorMessage;
   private busy:Subscription;
 
   @Output() multiPage = new EventEmitter();
+  @Output("jawboneEmit") jawboneEmitter= new EventEmitter();
 
   @ViewChild(ContentRowResponsiveComponent) slider : ContentRowResponsiveComponent;
 
   private activePage: number = 0;
   private itemWindow;
   private focusOffset = 0;
+
+  jawboneChanged(b){
+    this.jawboneEmitter.emit(b);
+}
 
   constructor(public ctap:IVPService) {
   }

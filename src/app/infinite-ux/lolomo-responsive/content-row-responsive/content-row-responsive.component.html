@@ -28,9 +28,10 @@
        [class.item-window-7]="i === itemWindow[7]"
 
   >
-    <a [routerLink]="getPlayLink(item)" >
+    <a routerLink="./" (click)="openJawbone()" >
       <img [src]="getContentImage(item)" alt="" class="absolute-img">
        <iux-overlay-responsive [program]="item"></iux-overlay-responsive>
     </a>
   </div>
 </div>
+<ng-content></ng-content>

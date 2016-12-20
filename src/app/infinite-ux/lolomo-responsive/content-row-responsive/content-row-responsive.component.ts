@@ -50,6 +50,7 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   private zoomAnimStarter = new Subject()
     .delay(300)
     .takeUntil(this.zoomAnimStopper);
+  @Output("jawboneOpen") private jawboneEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private zone: NgZone) { }
 
@@ -98,6 +99,10 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
 
   ngAfterViewInit(): void {
     this.onResize(window.innerWidth);
+  }
+
+  openJawbone(){
+    this.jawboneEmitter.emit(true);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

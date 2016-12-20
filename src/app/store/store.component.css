@@ -10,11 +10,23 @@ host:hover{
   z-index: 10;
 }
 
-#lolomoContainer{
+.lolomoContainer{
   position: relative;
   z-index: 0;
+  transition: transform .54s cubic-bezier(.5,0,.1,1) 0s;
 }
 
-#lolomoContainer:hover{
+.lolomoContainer.jawboneOpen~.lolomoContainer{
+  transform: translate3d(0,40vw,0);
+}
+
+.jawBoneContent{
+  position: absolute;
+  right:0;
+  left: 0;
+}
+
+
+.lolomoContainer:hover{
   z-index: 10;
 }
