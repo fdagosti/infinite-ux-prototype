@@ -35,7 +35,7 @@ export const horizontalScroll = trigger('horizontalScroll', transitions)
 
 
 const zoomAnimate = [
-  animate(".4s 300ms cubic-bezier(0.5, 0, 0.1, 1)")
+  animate(".4s cubic-bezier(0.5, 0, 0.1, 1)")
 ];
 
 
@@ -84,8 +84,7 @@ export const zoomAnimation = trigger('ZoomItem', [
     transform: `scale(1.2) translate3d(-9%,0px, 0px)`
   })),
 
-  // transition('* => stop', [animate(".4s cubic-bezier(0.5, 0, 0.1, 1)")]),
-  transition('* => stop', []),
+
   transition('* => void', []),
   transition('* => *', zoomAnimate)
 ])

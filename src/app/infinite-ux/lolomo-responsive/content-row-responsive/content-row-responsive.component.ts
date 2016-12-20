@@ -11,6 +11,7 @@ import {
   NgZone, AfterViewInit, trigger, transition, animate, style, state
 } from "@angular/core";
 import {horizontalScroll, animTable, zoomAnimation} from "./animations";
+import {Subject} from "rxjs";
 
 
 class ContentRow{
@@ -45,6 +46,11 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
 
   private itemWindow = [];
 
+  private zoomAnimStopper = new Subject();
+  private zoomAnimStarter = new Subject()
+    .delay(300)
+    .takeUntil(this.zoomAnimStopper);
+
   constructor(private zone: NgZone) { }
 
   @Input() private fullContent;
@@ -73,6 +79,21 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   ngOnInit() {
     this.imageSize = this.getImageSize(this.portrait);
     this.altContent = this.portrait?"assets/portrait.png":"assets/landscape.png";
+
+    this.listenMouse();
+  }
+
+  listenMouse(){
+    this.zoomAnimStarter
+      .subscribe(
+        value => {
+          this.launchZoomAnim(value);
+        },
+        e=>console.log("error"),
+        ()=>{
+          this.stopAnim();
+          this.listenMouse();
+        });
   }
 
   ngAfterViewInit(): void {
@@ -199,6 +220,7 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   }
 
   launchZoomAnim(idx){
+
     if (this.inScrollAnim) return;
 
     let firstItemSelected = idx === this.getFirstActionableItem();

@@ -7,10 +7,11 @@
   (@horizontalScroll.start)="animationStarted($event)"
   (@horizontalScroll.done)="animationDone($event)"
   [@horizontalScroll]="pageAnimState"
+  (mouseleave)="zoomAnimStopper.next('stop')"
 >
   <div *ngFor="let item of window;let i = index;"
-       (mouseover)="launchZoomAnim(i)"
-       (mouseleave)="stopAnim()"
+       (mouseover)="zoomAnimStarter.next(i)"
+
        class="relative content-item"
        [@ZoomItem]="zoomState[i]"
 
