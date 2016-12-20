@@ -265,9 +265,8 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   }
 
   getContentImage(item){
-
-    if (item.content.media){
-      return item.content.media[this.portrait?5:1].url;
+    if (item.media){
+      return item.media[this.portrait?5:1].url;
     }else{
       return this.altContent;
     }
