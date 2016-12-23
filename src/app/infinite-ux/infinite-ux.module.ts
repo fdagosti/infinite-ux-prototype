@@ -21,6 +21,7 @@ import {ContentRowResponsiveComponent} from "./lolomo-row/content-row-responsive
 import {ContentCarouselResponsiveComponent} from "./lolomo-row/content-carousel-responsive/content-carousel-responsive.component";
 import { OverlayResponsiveComponent } from './lolomo-row/content-row-responsive/overlay-responsive/overlay-responsive.component';
 import { JawboneComponent } from './lolomo-row/content-row-responsive/jawbone/jawbone.component';
+import { LolomoComponent } from './lolomo/lolomo.component';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { JawboneComponent } from './lolomo-row/content-row-responsive/jawbone/ja
     ContentCarouselResponsiveComponent,
     OverlayResponsiveComponent,
     JawboneComponent,
+    LolomoComponent,
   ],
   exports: [
     BillboardRowComponent,
@@ -61,7 +63,7 @@ import { JawboneComponent } from './lolomo-row/content-row-responsive/jawbone/ja
     ProfileLinkComponent,
     LolomoRowComponent,
     ContentRowComponent,
-    JawboneComponent
+    LolomoComponent
   ]
 })
 export class InfiniteUxModule { }

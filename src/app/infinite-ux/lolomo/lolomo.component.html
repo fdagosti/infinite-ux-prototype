@@ -5,13 +5,13 @@
      [class.jawboneOpen]="jawboneOpened[i]"
      class="lolomoContainer"
 >
-  <iux-lolomo
+  <iux-lolomo-row-v1
     *ngIf="!newLolomo"
     [portrait]="portrait"
     [category]="cat"
-  ></iux-lolomo>
+  ></iux-lolomo-row-v1>
 
-  <iux-lolomo-responsive
+  <iux-lolomo-row
     *ngIf="newLolomo"
     [portrait]="i ===2"
     [category]="cat"
@@ -20,7 +20,7 @@
     <span (click)="jawboneOpened[i]=false" class="jawBoneContent">
     <iux-jawbone *ngIf="jawboneOpened[i]" ></iux-jawbone>
     </span>
-  </iux-lolomo-responsive>
+  </iux-lolomo-row>
 
 
 </div>
