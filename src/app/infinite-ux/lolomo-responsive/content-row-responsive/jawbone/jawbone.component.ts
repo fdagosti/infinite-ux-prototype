@@ -1,4 +1,4 @@
-import {Component, OnInit, state, style, trigger, transition, animate} from '@angular/core';
+import {Component, OnInit, state, style, trigger, transition, animate, Input} from '@angular/core';
 
 @Component({
   selector: 'iux-jawbone',
@@ -7,7 +7,7 @@ import {Component, OnInit, state, style, trigger, transition, animate} from '@an
   animations: [
     trigger('jawboneAppear', [
       state("*", style({
-        height: "40vw",
+        height: "35vw",
         opacity: "1"
       })),
       state("void", style({
@@ -23,7 +23,7 @@ import {Component, OnInit, state, style, trigger, transition, animate} from '@an
 }
 })
 export class JawboneComponent implements OnInit {
-
+  @Input() program;
   private jawboneState;
 
   constructor() { }
