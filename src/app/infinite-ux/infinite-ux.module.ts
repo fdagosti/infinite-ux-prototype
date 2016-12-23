@@ -6,21 +6,21 @@ import {RouterModule} from "@angular/router";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {SearchComponent} from "./navbar/search/search.component";
 import {BrowseComponent} from "./navbar/browse/browse.component";
-import {LolomoComponent} from "./lolomo/lolomo.component";
+import {LolomoRowV1Component} from "./lolomo-row-v1/lolomo-row-v1.component";
 import {ContentRowComponent} from "./content-row/content-row.component";
 import {FullContentComponent} from "./full-content/full-content.component";
 import {OverlayComponent} from "./content-row/overlay/overlay.component";
-import {ContentCarouselComponent} from "./lolomo/content-carousel/content-carousel.component";
+import {ContentCarouselComponent} from "./lolomo-row-v1/content-carousel/content-carousel.component";
 import {BusyModule} from "angular2-busy";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {PlayerComponent} from "./player/player.component";
 import {BillboardRowComponent} from "./billboard-row/billboard-row.component";
 import {ProfileLinkComponent} from "./navbar/profile-link/profile-link.component";
-import {LolomoResponsiveComponent} from "./lolomo-responsive/lolomo-responsive.component";
-import {ContentRowResponsiveComponent} from "./lolomo-responsive/content-row-responsive/content-row-responsive.component";
-import {ContentCarouselResponsiveComponent} from "./lolomo-responsive/content-carousel-responsive/content-carousel-responsive.component";
-import { OverlayResponsiveComponent } from './lolomo-responsive/content-row-responsive/overlay-responsive/overlay-responsive.component';
-import { JawboneComponent } from './lolomo-responsive/content-row-responsive/jawbone/jawbone.component';
+import {LolomoRowComponent} from "./lolomo-row/lolomo-row.component";
+import {ContentRowResponsiveComponent} from "./lolomo-row/content-row-responsive/content-row-responsive.component";
+import {ContentCarouselResponsiveComponent} from "./lolomo-row/content-carousel-responsive/content-carousel-responsive.component";
+import { OverlayResponsiveComponent } from './lolomo-row/content-row-responsive/overlay-responsive/overlay-responsive.component';
+import { JawboneComponent } from './lolomo-row/content-row-responsive/jawbone/jawbone.component';
 
 @NgModule({
   imports: [
@@ -35,7 +35,7 @@ import { JawboneComponent } from './lolomo-responsive/content-row-responsive/jaw
     SearchComponent,
     PlayerComponent,
     BrowseComponent,
-    LolomoComponent,
+    LolomoRowV1Component,
     ContentRowComponent,
     FullContentComponent,
     OverlayComponent,
@@ -43,11 +43,11 @@ import { JawboneComponent } from './lolomo-responsive/content-row-responsive/jaw
     NavbarComponent,
     BillboardRowComponent,
     ProfileLinkComponent,
-    LolomoResponsiveComponent,
+    LolomoRowComponent,
     ContentRowResponsiveComponent,
     ContentCarouselResponsiveComponent,
     OverlayResponsiveComponent,
-    JawboneComponent
+    JawboneComponent,
   ],
   exports: [
     BillboardRowComponent,
@@ -57,9 +57,9 @@ import { JawboneComponent } from './lolomo-responsive/content-row-responsive/jaw
     BrowseComponent,
     RouterModule,
     FullContentComponent,
-    LolomoComponent,
+    LolomoRowV1Component,
     ProfileLinkComponent,
-    LolomoResponsiveComponent,
+    LolomoRowComponent,
     ContentRowComponent,
     JawboneComponent
   ]

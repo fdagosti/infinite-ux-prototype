@@ -2,11 +2,11 @@ import {Component, OnInit, Input} from "@angular/core";
 import {IVPService} from "../../ivp.service";
 
 @Component({
-  selector: 'iux-lolomo',
-  templateUrl: 'lolomo.component.html',
-  styleUrls: ['lolomo.component.css']
+  selector: 'iux-lolomo-row-v1',
+  templateUrl: 'lolomo-row-v1.component.html',
+  styleUrls: ['lolomo-row-v1.component.css']
 })
-export class LolomoComponent implements OnInit {
+export class LolomoRowV1Component implements OnInit {
 
   @Input() category;
   @Input() portrait=false;
