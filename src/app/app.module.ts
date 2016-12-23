@@ -5,7 +5,7 @@ import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {PlayerComponent} from "./infinite-ux/player/player.component";
 import {IVPService} from "./ivp.service";
-import {StoreComponent} from "./store/store.component";
+import {LolomoComponent} from "./infinite-ux/lolomo/lolomo.component";
 import {InfiniteUxModule} from "./infinite-ux/infinite-ux.module";
 import {FullContentComponent} from "./infinite-ux/full-content/full-content.component";
 import {VideoService} from "./video.service";
@@ -18,7 +18,6 @@ import {DebugService} from "./dago/debug.service";
   declarations: [
     AppComponent,
     HomeComponent,
-    StoreComponent,
   ],
   imports: [
     BusyModule,
