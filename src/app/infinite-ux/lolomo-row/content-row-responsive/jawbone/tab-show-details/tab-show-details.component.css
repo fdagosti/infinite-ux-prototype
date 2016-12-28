@@ -1,0 +1,151 @@
+:host{
+	font-size: 14px;
+	margin-top: 12px;
+	white-space: nowrap;
+}
+
+.title{
+	position: relative;
+	z-index: 1;
+	line-height: 1.3;
+	margin: 0 0 .2em;
+	font-weight: 700;
+	color: #fff;
+	font-size: 3vw;
+	width: 670px;
+	padding: 0;
+}
+
+.slider{
+	overflow-y: hidden;
+	margin-left: -4%;
+}
+
+.mask{
+	overflow-x: hidden;
+	padding-bottom: 1px;
+	overflow-y: hidden;
+}
+
+.content{
+	white-space: nowrap;
+}
+
+.detailsItem{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0 20px 0 0;
+	height: auto;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: top;
+	white-space: normal;
+	width: 25%;
+}
+
+
+
+@media screen and (max-width: 1099px) and (min-width: 800px){
+	.detailsItem {
+		width: 25%;
+	}
+	.title{
+		font-size: 3vw;
+		width: 55vw;
+	}
+}
+
+@media screen and (max-width: 799px) and (min-width: 500px){
+	.detailsItem {
+		width: 33.333333%;
+	}
+	.title{
+		font-size: 14px;
+		width: 55vw;
+	}
+}
+
+.listLabel:first-child {
+	margin-top: 0;
+}
+
+.detailsList{
+	list-style: none;
+}
+
+.listLabel {
+	margin-top: 14px;
+	font-size: 15px;
+	margin: 0 0 5px;
+	display: block;
+	color: grey;
+	font-weight: 700;
+}
+
+.listItem {
+	font-size: 14px;
+	color: #fff;
+	/* text-decoration: none; */
+}
+
+.handle {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 20;
+	width: 4%;
+	text-align: center;
+	justify-content: center;
+	display: flex;
+	color: #fff;
+}
+
+.handlePrev {
+	left: 0;
+}
+
+.handleNext {
+	right: 0;
+}
+
+.memberReviews {
+	padding-left: 0;
+	margin: 0 0 14px;
+}
+
+.memberReview {
+	margin: 1em 0;
+}
+
+.starbar {
+	display: flex;
+	color: #333;
+	margin-right: .5em;
+	width: 5.6em;
+	margin: 0 0 .5em;
+}
+
+.star {
+    color: #049FD9;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+	height: auto;
+	width: auto;
+	min-width: .8em;
+	flex-grow: 1;
+	flex-basis: 0;
+}
+
+.icon-star:before {
+	content: '\e640';
+}
+
+.reviewText {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+

@@ -1,3 +1,79 @@
-<p>
-  tab-show-details works!
-</p>
+<div class="slider">
+	<div handle handlePrev>
+		<b class="indicator-icon icon-leftCaret"></b>
+	</div>
+	<div handle handleNext active>
+		<b class="indicator-icon icon-rightCaret"></b>
+	</div>
+	<div class="mask">
+		<div class="content">
+			<h3 class="title">{{program.title}}</h3>
+			<div class="detailsItem detailsMedia">
+				<ul class="detailsList">
+					<li class="listLabel">Director</li>
+					<li class="listItem">{{program.director}}</li>
+					<li class="listLabel">Casting</li>
+					<li class="listItem" >John Travolta</li>
+					<li class="listItem">Samuel L. Jackson</li>
+					<li class="listItem">Uma Thurman</li>
+					<li class="listItem">Harvey Keitel</li>
+					<li class="listItem">Tim Roth</li>
+					<li class="listItem">Amanda Plummer</li>
+					<li class="listItem">Maria de Medeiros</li>
+					<li class="listItem">Ving Rhames</li>
+					<li class="listItem">Eric Stoltz</li>
+					<li class="listItem">Rosanna Arquette</li>
+					<li class="listItem">Christopher Walken</li>
+					<li class="listItem">Bruce Willis</li>
+				</ul>
+			</div>
+			<div class="detailsItem detailsTags">
+				<ul class="detailsList">
+					<li class="listLabel">Genres</li>
+					<li class="listItem">Comedy</li>
+					<li class="listItem">Horror</li>
+					<li class="listItem">Independant</li>
+					<li class="listLabel">This movie is</li>
+					<li class="listItem" >Funny</li>
+					<li class="listItem">Absurd</li>
+				</ul>
+			</div>
+			<div class="detailsItem detailsReviews doubleWidth">
+				<h4 class="listLabel">Users Reviews</h4>
+				<div class="memberReviews">
+					<ul class="memberReviews">
+						<li>
+							<div class="memberReview">
+								<div class="starbar readOnly">
+									<span class="star default icon-star" data-rating="1"></span>
+									<span class="star default icon-star" data-rating="2"></span>
+									<span class="star default icon-star" data-rating="3"></span>
+									<span class="star default icon-star" data-rating="4"></span>
+									<span class="star default icon-star" data-rating="5"></span>
+								</div>
+								<div class="reviewText">
+									We are ultra fans of this film and the producer, and think it's his best film.
+									To put in the category "cult movie".
+									We must love originality, parlotte, action, violence ...</div>
+								</div>
+							</li>
+							<li>
+								<div class="memberReview">
+									<div class="starbar readOnly" aria-hidden="true">
+										<span class="star default icon-star" data-rating="1"></span>
+										<span class="star default icon-star" data-rating="2"></span>
+										<span class="star default icon-star" data-rating="3"></span>
+										<span class="star default icon-star" data-rating="4"></span>
+										<span class="star default icon-star" data-rating="5"></span>
+									</div>
+									<div class="reviewText">No I can see Pulp fiction without problem. You must have a connection problem. 
+									</div>
+								</div>
+							</li>
+						</ul>
+						<div class="seeAllLink">See all reviews (4)</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
