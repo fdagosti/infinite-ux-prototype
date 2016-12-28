@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'iux-tab-overview',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tab-overview.component.css']
 })
 export class TabOverviewComponent implements OnInit {
+
+  @Input() program;
 
   constructor() { }
 

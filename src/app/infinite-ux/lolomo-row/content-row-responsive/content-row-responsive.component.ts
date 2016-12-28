@@ -12,6 +12,7 @@ import {
 } from "@angular/core";
 import {horizontalScroll, animTable, zoomAnimation} from "./animations";
 import {Subject} from "rxjs";
+import {JawboneService} from "../../jawbone.service";
 
 
 class ContentRow{
@@ -50,9 +51,9 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   private zoomAnimStarter = new Subject()
     .delay(300)
     .takeUntil(this.zoomAnimStopper);
-  @Output("jawboneOpen") private jawboneEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output("jawboneOpen") private jawboneEmitter: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private zone: NgZone) { }
+  constructor(private zone: NgZone, private jawbone: JawboneService) { }
 
   @Input() private fullContent;
   private fullContentOffset = 0;
@@ -101,8 +102,9 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
     this.onResize(window.innerWidth);
   }
 
-  openJawbone(){
-    this.jawboneEmitter.emit(true);
+  openJawbone(idx){
+    this.jawbone.openJawbone(this.window[idx]);
+    this.jawboneEmitter.emit(this.window[idx]);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

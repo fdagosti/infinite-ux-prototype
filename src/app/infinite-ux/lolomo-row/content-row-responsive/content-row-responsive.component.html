@@ -28,7 +28,7 @@
        [class.item-window-7]="i === itemWindow[7]"
 
   >
-    <a routerLink="./" (click)="openJawbone()" >
+    <a routerLink="./" (click)="openJawbone(i)" >
       <img [src]="getContentImage(item)" alt="" class="absolute-img">
        <iux-overlay-responsive [program]="item"></iux-overlay-responsive>
     </a>

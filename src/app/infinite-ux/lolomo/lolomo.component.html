@@ -18,7 +18,10 @@
     (jawboneOpen)="jawboneOpen($event, i)"
   >
     <span (click)="jawboneOpened[i]=false" class="jawBoneContent">
-    <iux-jawbone *ngIf="jawboneOpened[i]" ></iux-jawbone>
+      <iux-jawbone
+        *ngIf="jawboneOpened[i]"
+        [program]="jawboneOpened[i]"
+      ></iux-jawbone>
     </span>
   </iux-lolomo-row>
 

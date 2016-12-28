@@ -25,6 +25,7 @@ import { LolomoComponent } from './lolomo/lolomo.component';
 import { TabOverviewComponent } from './lolomo-row/content-row-responsive/jawbone/tab-overview/tab-overview.component';
 import { TabMoreLikeThisComponent } from './lolomo-row/content-row-responsive/jawbone/tab-more-like-this/tab-more-like-this.component';
 import { TabShowDetailsComponent } from './lolomo-row/content-row-responsive/jawbone/tab-show-details/tab-show-details.component';
+import {JawboneService} from "./jawbone.service";
 
 @NgModule({
   imports: [
@@ -70,6 +71,9 @@ import { TabShowDetailsComponent } from './lolomo-row/content-row-responsive/jaw
     LolomoRowComponent,
     ContentRowComponent,
     LolomoComponent
+  ],
+  providers: [
+    JawboneService
   ]
 })
 export class InfiniteUxModule { }
