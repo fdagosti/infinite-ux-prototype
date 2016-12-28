@@ -16,8 +16,9 @@
     [portrait]="i ===2"
     [category]="cat"
     (jawboneOpen)="jawboneOpen($event, i)"
+    [rowIndex]="i"
   >
-    <span (click)="jawboneOpened[i]=false" class="jawBoneContent">
+    <span (click)="closeJawbone(i)" class="jawBoneContent">
       <iux-jawbone
         *ngIf="jawboneOpened[i]"
         [program]="jawboneOpened[i]"

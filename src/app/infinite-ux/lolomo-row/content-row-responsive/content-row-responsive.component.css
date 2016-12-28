@@ -56,6 +56,8 @@ p {
 .content-container {
   font-size: 0px;
   white-space: nowrap;
+  position: relative;
+  z-index: 2;
 }
 
 .content-item{
@@ -67,6 +69,49 @@ p {
   position: relative;
   padding-right: 1px;
   padding-left: 1px;
+}
+
+.highlighted {
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
+}
+
+.not-highlighted {
+  opacity: .6;
+}
+
+.focus-ring {
+  box-sizing: border-box;
+  border: 4px solid #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  box-shadow: 0 4px 4px rgba(0,0,0,.2);
+}
+
+.focus-ring::after, .focus-ring::before {
+  content: '';
+  width: 0;
+  height: 0;
+  top: 100%;
+  left: 50%;
+  margin-left: -13px;
+  border-style: solid;
+  border-width: 7px 13px 0;
+  position: absolute;
+}
+
+.focus-ring::before {
+  border-color: rgba(0,0,0,.15) transparent transparent;
+  margin-top: 5px;
+}
+
+.focus-ring::after {
+  margin-top: 4px;
+  border-color: #fff transparent transparent;
 }
 
 a{

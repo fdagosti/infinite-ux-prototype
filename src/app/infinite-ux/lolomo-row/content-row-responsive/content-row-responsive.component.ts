@@ -47,12 +47,6 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
 
   private itemWindow = [];
 
-  private zoomAnimStopper = new Subject();
-  private zoomAnimStarter = new Subject()
-    .delay(300)
-    .takeUntil(this.zoomAnimStopper);
-  @Output("jawboneOpen") private jawboneEmitter: EventEmitter<any> = new EventEmitter<any>();
-
   constructor(private zone: NgZone, private jawbone: JawboneService) { }
 
   @Input() private fullContent;
@@ -61,6 +55,8 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
 
   @Input() private portrait = false;
   @Input() private zoom = true;
+
+  @Input() rowIndex;
 
   private numberOfItems;
   private maxPastItems;
@@ -71,7 +67,7 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   @ViewChild('slider') slider:ElementRef;
 
   private window = new Array(6).fill(emptyItem);
-  private zoomState:string[] = this.window.map(()=>"stop");
+
 
   private altContent;
   private imageSize;
@@ -82,14 +78,30 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
     this.imageSize = this.getImageSize(this.portrait);
     this.altContent = this.portrait?"assets/portrait.png":"assets/landscape.png";
 
-    this.listenMouse();
+    this.jawbone.subscribe(this.rowIndex, ()=>this.jawboneOpened=false);
+    this.listenMouse();this.jawboneMoustListen();
+
   }
+
+  ngAfterViewInit(): void {
+    this.onResize(window.innerWidth);
+  }
+
+  // Zoom anim management
+  private zoomState:string[] = this.window.map(()=>"stop");
+
+  private zoomAnimStopper = new Subject();
+  private zoomAnimStarter = new Subject()
+    .delay(300)
+    .takeUntil(this.zoomAnimStopper);
+
 
   listenMouse(){
     this.zoomAnimStarter
       .subscribe(
         value => {
-          this.launchZoomAnim(value);
+          if (!this.jawboneOpened)
+            this.launchZoomAnim(value);
         },
         e=>console.log("error"),
         ()=>{
@@ -98,14 +110,76 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
         });
   }
 
-  ngAfterViewInit(): void {
-    this.onResize(window.innerWidth);
+  launchZoomAnim(idx){
+
+    if (this.inScrollAnim) return;
+
+    let firstItemSelected = idx === this.getFirstActionableItem();
+    let lastItemSelected = idx === this.getLastActionableItem();
+
+    if (idx < this.getFirstActionableItem() || idx > this.getLastActionableItem()){
+      // don't launch animations on non fully visible Items
+      return;
+    }
+    this.itemWindow.forEach((v)=>{
+      if (firstItemSelected){
+        if (v === idx) {this.zoomState[v] = this.portrait?"portraitZoomSelectedItemBeginning":"zoomSelectedItemBeginning";}
+        else if (v > idx) this.zoomState[v] = this.portrait?"portraitItemOpenedRightFromBeginning":"itemOpenedRightFromBeginning";
+      }
+      else if (lastItemSelected){
+        if (v === idx) {this.zoomState[v] = this.portrait?"portraitZoomSelectedItemEnd":"zoomSelectedItemEnd";}
+        else if (v < idx) this.zoomState[v] = this.portrait?"portraitItemOpenedLeftFromEnd":"itemOpenedLeftFromEnd";
+      }
+      else if (v === idx) this.zoomState[v] = this.portrait?"portraitZoomSelectedItem":"zoomSelectedItem";
+      else if (v<idx) this.zoomState[v] = this.portrait?"portraitItemOpenedLeft":"itemOpenedLeft";
+      else if (v>idx) this.zoomState[v] = this.portrait?"portraitItemOpenedRight":"itemOpenedRight";
+
+    });
+
   }
 
-  openJawbone(idx){
-    this.jawbone.openJawbone(this.window[idx]);
-    this.jawboneEmitter.emit(this.window[idx]);
+  stopAnim(){
+    if (this.inScrollAnim) return;
+    this.zoomState = this.zoomState.map(()=>"stop");
   }
+
+  // End Zoom Anim Management
+
+
+
+  // Jawbone management
+  private jawboneOpened = false;
+  private jawboneSelectedIx = false;
+
+  private jawboneStopper = new Subject();
+  private jawboneFocusStarter = new Subject()
+    .delay(300)
+    .takeUntil(this.jawboneStopper);
+  @Output("jawboneOpen") private jawboneEmitter: EventEmitter<any> = new EventEmitter<any>();
+
+  openJawbone(idx){
+    this.jawboneEmitter.emit(this.window[idx]);
+    this.jawbone.setJawboneStatus(this.rowIndex, this.window[idx]);
+    this.jawboneSelectedIx = idx;
+    this.jawboneOpened= true;
+    this.stopAnim();
+  }
+
+  jawboneMoustListen(){
+    this.jawboneFocusStarter
+      .subscribe(
+        value => {
+          if (this.jawboneOpened)
+            this.openJawbone(value);
+        },
+        e=>console.log("error"),
+        ()=>{
+          this.stopAnim();
+          this.jawboneMoustListen();
+        });
+  }
+  // End Jawbone management
+
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.window[0].empty)
@@ -230,39 +304,6 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
       this.itemWindow[this.itemWindow.length-1];
     }
 
-  }
-
-  launchZoomAnim(idx){
-
-    if (this.inScrollAnim) return;
-
-    let firstItemSelected = idx === this.getFirstActionableItem();
-    let lastItemSelected = idx === this.getLastActionableItem();
-
-    if (idx < this.getFirstActionableItem() || idx > this.getLastActionableItem()){
-      // don't launch animations on non fully visible Items
-      return;
-    }
-    this.itemWindow.forEach((v)=>{
-      if (firstItemSelected){
-        if (v === idx) {this.zoomState[v] = this.portrait?"portraitZoomSelectedItemBeginning":"zoomSelectedItemBeginning";}
-        else if (v > idx) this.zoomState[v] = this.portrait?"portraitItemOpenedRightFromBeginning":"itemOpenedRightFromBeginning";
-      }
-      else if (lastItemSelected){
-        if (v === idx) {this.zoomState[v] = this.portrait?"portraitZoomSelectedItemEnd":"zoomSelectedItemEnd";}
-        else if (v < idx) this.zoomState[v] = this.portrait?"portraitItemOpenedLeftFromEnd":"itemOpenedLeftFromEnd";
-      }
-      else if (v === idx) this.zoomState[v] = this.portrait?"portraitZoomSelectedItem":"zoomSelectedItem";
-      else if (v<idx) this.zoomState[v] = this.portrait?"portraitItemOpenedLeft":"itemOpenedLeft";
-      else if (v>idx) this.zoomState[v] = this.portrait?"portraitItemOpenedRight":"itemOpenedRight";
-
-    });
-
-  }
-
-  stopAnim(){
-    if (this.inScrollAnim) return;
-    this.zoomState = this.zoomState.map(()=>"stop");
   }
 
   private getPlayLink(program){

@@ -18,6 +18,7 @@ export class ContentCarouselResponsiveComponent implements OnInit{
   @Input() categoryId;
   @Input() portrait;
   @Input() showIndicator;
+  @Input() rowIndex;
   private content=[];
   private totalNumberOfItems = 0;
   private contentOffset = 0;

@@ -11,6 +11,7 @@ export class LolomoRowComponent implements OnInit {
   @Input() category;
   @Input() portrait=false;
   @Input() closeJawbone=false;
+  @Input() rowIndex;
 
   private jawboneState;
   @Output("jawboneOpen") private jawboneEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -30,7 +31,6 @@ export class LolomoRowComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   getFullContentUrl(){
