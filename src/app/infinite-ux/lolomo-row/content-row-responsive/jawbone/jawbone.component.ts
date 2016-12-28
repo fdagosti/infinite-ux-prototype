@@ -37,6 +37,20 @@ export class JawboneComponent implements OnInit {
   private jawboneState;
   private altContent;
 
+  private jawboneContent =[
+    {
+      title: "Overview",
+    },
+    {
+      title: "More Like This",
+    },
+    {
+      title: "Show Details",
+    },
+  ];
+
+  private currentContent=this.jawboneContent[0];
+
 
   constructor() { }
 

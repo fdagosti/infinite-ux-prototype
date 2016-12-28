@@ -8,21 +8,27 @@
 			<div class="nav-shadow"></div>
 		</div>
 		<div class="jawBonePanes">
-			<!-- <iux-tab-overview class="jawBonePane" [program]="program"></iux-tab-overview> -->
-			<!-- <iux-tab-more-like-this class="jawBonePane" ></iux-tab-more-like-this> -->
-			<iux-tab-show-details class="jawBonePane" [program]="program"></iux-tab-show-details>
+			 <iux-tab-overview *ngIf="currentContent===jawboneContent[0]" class="jawBonePane" [program]="program"></iux-tab-overview>
+			 <iux-tab-more-like-this *ngIf="currentContent===jawboneContent[1]" class="jawBonePane" ></iux-tab-more-like-this>
+			<iux-tab-show-details *ngIf="currentContent===jawboneContent[2]" class="jawBonePane" [program]="program"></iux-tab-show-details>
 		</div>
 		<a (click)="closeJawbone()" class="close-button icon-close" role="button"></a>
 		<ul class="menu">
-			<li class="menuItem" id="tab-Overview">
+			<li (click)="currentContent=jawboneContent[0]"
+          [class.current]="currentContent===jawboneContent[0]"
+          class="menuItem" id="tab-Overview">
 				<a class="menuItemLink">Overview</a>
 				<div class="menuItemLine"></div>
 			</li>
-			<li class="menuItem" id="tab-MoreLikeThis">
+			<li (click)="currentContent=jawboneContent[1]"
+          [class.current]="currentContent===jawboneContent[1]"
+          class="menuItem" id="tab-MoreLikeThis">
 				<a class="menuItemLink">More like this</a>
 				<div class="menuItemLine"></div>
 			</li>
-			<li class="menuItem" id="tab-ShowDetails">
+			<li (click)="currentContent=jawboneContent[2]"
+          [class.current]="currentContent===jawboneContent[2]"
+          class="menuItem" id="tab-ShowDetails">
 				<a class="menuItemLink">show Details</a>
 				<div class="menuItemLine"></div>
 			</li>

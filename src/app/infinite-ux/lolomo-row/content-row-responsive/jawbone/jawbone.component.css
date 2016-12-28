@@ -145,6 +145,10 @@
   pointer-events: auto;
 }
 
+.menuItem:hover{
+  color: #fff;
+}
+
 .menuItemLink{
   margin: 0;
   padding: 0;
@@ -167,5 +171,9 @@
 }
 
 .current{
+  color: #fff;
+}
+
+.current>.menuItemLine{
   background-color: #049FD9;
 }
