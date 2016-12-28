@@ -2,6 +2,7 @@
 	font-size: 14px;
 	margin-top: 12px;
 	white-space: nowrap;
+	overflow: hidden;
 }
 
 .title{
@@ -128,14 +129,11 @@
 	-ms-flex-item-align: center;
 	align-self: center;
 	font-size: 2.5vw;
-	-webkit-transition: -webkit-transform .1s ease-out 0s;
-	-moz-transition: -moz-transform .1s ease-out 0s;
-	-o-transition: -o-transform .1s ease-out 0s;
-	transition: transform .1s ease-out 0s
+	transition: transform .1s ease-out 0s;
 }
 
 .slider:hover .handle.active .indicator-icon {
-    display: block
+    display: block;
 }
 
 .icon-leftCaret:before {
