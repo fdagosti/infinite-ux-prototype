@@ -5,27 +5,28 @@
 			<div class="vignette"></div>
 			<div class="nav-shadow"></div>
 		</div>
-		<div class="jawBone">
-			<!-- <h3 class="title">{{program.title}}</h3> -->
-			<h3 class="title">Title</h3>
-			<div class="playlink">
-				<div class="playRing"></div>
-			</div>
-			<div class="jawBonePane">
-				<div class="meta">
-					<div class="rating">3 stars</div>
-					<div class="year">2000</div>
-					<div class="maturity-rating">FOR ALL</div>
-					<div class="duration">1 h 44 min</div>
-				</div>
-				<div class="synopsis">TODO :  bind "image url", title", rating", "year", "maturity", "duration", and the "synopsis"</div>
-
-				<div class="listMeta">
-					<p>With</p>
-				</div>
-			</div>
+		<div class="jawBonePanes">
+			<iux-tab-overview class="jawBonePane2"></iux-tab-overview>
+			<iux-tab-more-like-this class="jawBonePane2"></iux-tab-more-like-this>
+			<iux-tab-show-details class="jawBonePane2"></iux-tab-show-details>
+			
 		</div>
-	</div>
+		<ul class="menu">
+			<li class="menuItem" id="tab-Overview">
+				<a class="menuItemLink">Overview</a>
+				<div class="menuItemLine"></div>
+			</li>
+			<li class="menuItem" id="tab-MoreLikeThis">
+				<a class="menuItemLink">More like this</a>
+				<div class="menuItemLine"></div>
 
+			</li>
+			<li class="menuItem" id="tab-ShowDetails">
+				<a class="menuItemLink">show Details</a>
+				<div class="menuItemLine"></div>
+
+			</li>
+		</ul>
+	</div>
 
 </div>

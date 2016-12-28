@@ -22,6 +22,9 @@ import {ContentCarouselResponsiveComponent} from "./lolomo-row/content-carousel-
 import { OverlayResponsiveComponent } from './lolomo-row/content-row-responsive/overlay-responsive/overlay-responsive.component';
 import { JawboneComponent } from './lolomo-row/content-row-responsive/jawbone/jawbone.component';
 import { LolomoComponent } from './lolomo/lolomo.component';
+import { TabOverviewComponent } from './lolomo-row/content-row-responsive/jawbone/tab-overview/tab-overview.component';
+import { TabMoreLikeThisComponent } from './lolomo-row/content-row-responsive/jawbone/tab-more-like-this/tab-more-like-this.component';
+import { TabShowDetailsComponent } from './lolomo-row/content-row-responsive/jawbone/tab-show-details/tab-show-details.component';
 
 @NgModule({
   imports: [
@@ -50,6 +53,9 @@ import { LolomoComponent } from './lolomo/lolomo.component';
     OverlayResponsiveComponent,
     JawboneComponent,
     LolomoComponent,
+    TabOverviewComponent,
+    TabMoreLikeThisComponent,
+    TabShowDetailsComponent,
   ],
   exports: [
     BillboardRowComponent,
