@@ -1,4 +1,7 @@
-import {Component, OnInit, state, style, trigger, transition, animate, Input} from '@angular/core';
+import {
+  Component, OnInit, state, style, trigger, transition, animate, Input, Output,
+  EventEmitter
+} from '@angular/core';
 
 class ContentRow{
   content:{
@@ -30,6 +33,7 @@ class ContentRow{
 })
 export class JawboneComponent implements OnInit {
   @Input() program;
+  @Output("closeJawbone")closeJawboneEmitter = new EventEmitter();
   private jawboneState;
   private altContent;
 
@@ -38,7 +42,10 @@ export class JawboneComponent implements OnInit {
 
   ngOnInit() {
     this.altContent = "assets/landscape.png";
+  }
 
+  closeJawbone(){
+    this.closeJawboneEmitter.emit("close");
   }
 
   getContentImage(program){

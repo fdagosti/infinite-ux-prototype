@@ -18,8 +18,9 @@
     (jawboneOpen)="jawboneOpen($event, i)"
     [rowIndex]="i"
   >
-    <span (click)="closeJawbone(i)" class="jawBoneContent">
+    <span class="jawBoneContent">
       <iux-jawbone
+        (closeJawbone)="closeJawbone(i)"
         *ngIf="jawboneOpened[i]"
         [program]="jawboneOpened[i]"
       ></iux-jawbone>
