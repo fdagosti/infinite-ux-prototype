@@ -71,3 +71,21 @@
   line-height: 1.3;
   font-size: .9em;
 }
+.metaLabel{
+  margin: 0;
+  padding: 0;
+}
+.metaItem {
+  color: white;
+}
+
+.metaLink{
+  color: white;
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.metaLink:hover {
+    text-decoration: underline;
+}

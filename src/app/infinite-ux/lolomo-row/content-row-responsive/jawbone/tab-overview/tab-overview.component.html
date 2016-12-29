@@ -1,5 +1,10 @@
-<!-- <div class="jawBonePane" id="pane-Overview"> -->
-<!-- <h3 class="title">{{program.title}}</h3> -->
+<!-- TODO :map
+"rating"
+"year"
+"maturity rating"
+"Actors[]"
+-->
+
 <h3 class="title">{{program.title}}</h3>
 <div class="playlink">
 	<div class="playRing"></div>
@@ -9,12 +14,27 @@
 		<div class="rating">3 stars</div>
 		<div class="year">2000</div>
 		<div class="maturity-rating">FOR ALL</div>
-		<div class="duration">1 h 44 min</div>
+		<div class="duration">{{program.duration/3600}}</div>
 	</div>
-	<div class="synopsis">TODO :  bind "image url", title", rating", "year", "maturity", "duration", and the "synopsis"</div>
-
+	<div class="synopsis">{{program.synopsis.longSynopsis}}</div>
 	<div class="listMeta">
-		<p>With</p>
+		<p class="metaLabel">With&nbsp;:
+			<span class="metaList">
+				<span class="metaItem">Actor 1</span>
+				,&nbsp;
+				<span class="metaItem">Actor 2</span>
+				,&nbsp;
+				<span class="metaItem">Actor 3</span>
+			</span>
+		</p>
+		<p>Genres&nbsp;:
+			<span class="metaList">
+				<a href="" class="metaLink">{{program.content.genres[0].name}}</a>
+				,&nbsp;
+				<!-- <a class="metaLink">{{program.content.genres[1].name}}</a>
+				,&nbsp;
+				<a class="metaLink">{{program.content.genres[2].name}}</a> -->
+			</span>
+		</p>	
 	</div>
 </div>
-<!-- </div> -->
