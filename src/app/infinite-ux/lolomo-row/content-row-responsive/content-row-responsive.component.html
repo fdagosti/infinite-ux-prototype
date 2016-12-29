@@ -21,16 +21,6 @@
        [class.playable-item]="item._links.playSession"
        [class.highlighted]="jawboneOpened && jawboneSelectedIx===i"
        [class.not-highlighted]="jawboneOpened && jawboneSelectedIx!=i"
-
-       [class.item-window-0]="i === itemWindow[0]"
-       [class.item-window-1]="i === itemWindow[1]"
-       [class.item-window-2]="i === itemWindow[2]"
-       [class.item-window-3]="i === itemWindow[3]"
-       [class.item-window-4]="i === itemWindow[4]"
-       [class.item-window-5]="i === itemWindow[5]"
-       [class.item-window-6]="i === itemWindow[6]"
-       [class.item-window-7]="i === itemWindow[7]"
-
   >
     <div class="focus-ring" *ngIf="jawboneOpened && jawboneSelectedIx===i"></div>
     <a routerLink="./" (click)="openJawbone(i)" >
