@@ -88,7 +88,9 @@
   background-size: 100% 114px;
 }
 
-.jawBonePane{
+
+
+.jawBone{
   padding: 18px 0 12px 4%;
   position: absolute;
   top: 0;
@@ -96,7 +98,70 @@
   left: 0;
   right: 0;
   z-index: 10;
-  color:grey;
+}
+
+.title{
+  position: relative;
+  z-index: 1;
+  line-height: 1.3;
+  margin: 0 0 .2em;
+  font-weight: 700;
+  color: #fff;
+  font-size: 3vw;
+  width: 670px;
+  padding: 0;
+}
+
+
+.playlink{
+  top: 45%;
+  right: 26%;
+  font-size: 7.2vw;
+  height: 7.92vw;
+  width: 7.92vw;
+  margin-left: -3.78vw;
+  margin-top: -3.78vw;
+  border-radius: 50%;
+  color: #fff;
+  opacity: .7;
+  position: absolute;
+  z-index: 100;
+  box-sizing: border-box;
+  outline: 0;
+  transition: all 150ms ease;
+}
+
+.playRing{
+  height: 7.2vw;
+  width: 7.2vw;
+  border: .36vw solid #fff;
+  border-radius: 50%;
+  position: absolute;
+}
+.common {
+  display: inline-block;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 31.5vw;
+}
+
+.jawBonePanes {
+  position: relative;
+  opacity: 1;
+  z-index: 2;
+  -webkit-transition: -webkit-transform .3s;
+  -o-transition: -o-transform .3s;
+  -moz-transition: transform .3s,-moz-transform .3s;
+  transition: transform .3s;
+  transition: transform .3s,-webkit-transform .3s,-moz-transform .3s,-o-transform .3s;
+}
+
+.jawBonePane {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  color: grey;
+  /* opacity: 0; */
 }
 
 .close-button {
