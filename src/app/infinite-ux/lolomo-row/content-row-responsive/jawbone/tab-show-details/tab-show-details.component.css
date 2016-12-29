@@ -188,4 +188,8 @@
 	word-wrap: break-word;
 }
 
-
+.seeAllLink{
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+}
