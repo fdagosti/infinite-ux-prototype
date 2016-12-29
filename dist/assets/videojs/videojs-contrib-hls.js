@@ -9029,9 +9029,9 @@ var defaults = {
   mode: 'auto'
 };
 
-// store references to the media sources so they can be connected
+// lolomo references to the media sources so they can be connected
 // to a video element (a swf object)
-// TODO: can we store this somewhere local to this module?
+// TODO: can we lolomo this somewhere local to this module?
 _videoJs2['default'].mediaSources = {};
 
 /**
