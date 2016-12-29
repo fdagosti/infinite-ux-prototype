@@ -45,7 +45,7 @@ const emptyItem = {
 export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnChanges {
 
 
-  private itemWindow = [];
+
 
   constructor(private zone: NgZone, private jawbone: JawboneService) { }
 
@@ -87,8 +87,9 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
     this.onResize(window.innerWidth);
   }
 
-  // Zoom anim management
+  /** START ZOOM ANIM MANAGEMENT*/
   private zoomState:string[] = this.window.map(()=>"stop");
+  private visibleItemWindow = [];
 
   private zoomAnimStopper = new Subject();
   private zoomAnimStarter = new Subject()
@@ -110,6 +111,33 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
         });
   }
 
+  getFirstActionableItem(){
+    if (this.percentageOffset != 0){
+      return this.visibleItemWindow[1];
+    }
+    return this.visibleItemWindow[0];
+  }
+
+  getLastActionableItem(){
+    if (this.visibleItemWindow.length === this.numberOfVisibleItems+2){
+      return this.visibleItemWindow[this.visibleItemWindow.length-2];
+    }else if (this.visibleItemWindow.length <= this.numberOfVisibleItems){
+      return this.visibleItemWindow[this.visibleItemWindow.length-1];
+    }else if (this.percentageOffset === 0){
+      return this.visibleItemWindow[this.visibleItemWindow.length-2];
+    }else{
+      this.visibleItemWindow[this.visibleItemWindow.length-1];
+    }
+
+  }
+
+  private computeVisibleItemWindow(actualPastItems){
+    let pastItems = actualPastItems > 0?1:0;
+    let startIdx = actualPastItems - pastItems;
+    let lastIdx = Math.min(startIdx + this.numberOfVisibleItems + 1 + pastItems, this.window.length);
+    this.visibleItemWindow = Array.apply(null, Array(lastIdx - startIdx)).map((_,i)=>startIdx + i);
+  }
+
   launchZoomAnim(idx){
 
     if (this.inScrollAnim) return;
@@ -121,7 +149,7 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
       // don't launch animations on non fully visible Items
       return;
     }
-    this.itemWindow.forEach((v)=>{
+    this.visibleItemWindow.forEach((v)=>{
       if (firstItemSelected){
         if (v === idx) {this.zoomState[v] = this.portrait?"portraitZoomSelectedItemBeginning":"zoomSelectedItemBeginning";}
         else if (v > idx) this.zoomState[v] = this.portrait?"portraitItemOpenedRightFromBeginning":"itemOpenedRightFromBeginning";
@@ -143,7 +171,7 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
     this.zoomState = this.zoomState.map(()=>"stop");
   }
 
-  // End Zoom Anim Management
+  /** END ZOOM ANIM MANAGEMENT*/
 
 
 
@@ -186,8 +214,7 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
       this.fillWindow();
   }
 
-
-  onResize(w){
+  private computeVisibleItems(w){
     let visibleItems = 6;
     if (w > 1400){
       visibleItems = 6;
@@ -200,41 +227,44 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
     }else{
       visibleItems = 2;
     }
-
-    let n = visibleItems*3 + 2;
-    this.numberOfVisibleItems = visibleItems;
-    if (this.numberOfItems != n){
-      this.maxPastItems = visibleItems + 1;
-      this.visibleItemsEmitter.emit(this.numberOfVisibleItems);
-      this.numberOfItems = n;
-
-      this.fillWindow();
-    }
+    return visibleItems;
   }
 
-  computeVisibleItemsIdx(actualPastItems){
-    let pastItems = actualPastItems > 0?1:0;
-    let startIdx = actualPastItems - pastItems;
-    let lastIdx = Math.min(startIdx + this.numberOfVisibleItems + 1 + pastItems, this.window.length);
-    this.itemWindow = Array.apply(null, Array(lastIdx - startIdx)).map((_,i)=>startIdx + i);
+  onResize(w){
+
+    let n = this.computeVisibleItems(w);
+
+    if (this.numberOfVisibleItems != n){
+      this.numberOfVisibleItems = n;
+      this.maxPastItems = this.numberOfVisibleItems + 1;
+      this.visibleItemsEmitter.emit(this.numberOfVisibleItems);
+      this.fillWindow();
+    }
   }
 
   fillWindow(){
     if (this.fullContent.length == 0) return;
 
+    this.numberOfItems = (this.numberOfVisibleItems * 2 + 1) + (this.fullContentOffset?(this.numberOfVisibleItems +1):0);
+
     let computedOffset = Math.max(this.fullContentOffset - this.maxPastItems,0);
+
     this.window = this.fullContent.slice(computedOffset, computedOffset+this.numberOfItems);
 
     let actualPastItems = this.fullContentOffset - computedOffset;
+
     this.zoomState = new Array(this.window.length).fill("stop");
 
-    this.computeVisibleItemsIdx(actualPastItems);
+    this.computeVisibleItemWindow(actualPastItems);
+
+    this.translateListToShowPastItems(actualPastItems);
+  }
+
+  // translate the slider so that past items are displayed on the left of the screen
+  private translateListToShowPastItems(actualPastItems: number) {
     let oneItemPercentage = 100 / this.numberOfVisibleItems;
     this.percentageOffset = actualPastItems * oneItemPercentage;
     this.slider.nativeElement.style.transform=`translate3d(-${this.percentageOffset}%,0px, 0px)`;
-
-    // console.log("FILL WINDOW ",this.window.map(i=>i.title), this.itemWindow.map(i=>this.window[i].title));
-
   }
 
   private getImageSize(portrait){
@@ -286,26 +316,6 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
     this.fullContentOffsetEmitter.emit(this.fullContentOffset);
   }
 
-  getFirstActionableItem(){
-    if (this.percentageOffset != 0){
-      return this.itemWindow[1];
-    }
-    return this.itemWindow[0];
-  }
-
-  getLastActionableItem(){
-    if (this.itemWindow.length === this.numberOfVisibleItems+2){
-      return this.itemWindow[this.itemWindow.length-2];
-    }else if (this.itemWindow.length <= this.numberOfVisibleItems){
-      return this.itemWindow[this.itemWindow.length-1];
-    }else if (this.percentageOffset === 0){
-      return this.itemWindow[this.itemWindow.length-2];
-    }else{
-      this.itemWindow[this.itemWindow.length-1];
-    }
-
-  }
-
   private getPlayLink(program){
     if (!program || !program._links || !program._links.playSession) return "./";
 
@@ -319,6 +329,7 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
       return this.altContent;
     }
   }
+
 
 
 }
