@@ -26,6 +26,7 @@ import { TabOverviewComponent } from './lolomo-row/content-row-responsive/jawbon
 import { TabMoreLikeThisComponent } from './lolomo-row/content-row-responsive/jawbone/tab-more-like-this/tab-more-like-this.component';
 import { TabShowDetailsComponent } from './lolomo-row/content-row-responsive/jawbone/tab-show-details/tab-show-details.component';
 import {JawboneService} from "./jawbone.service";
+import { MetaComponent } from './meta/meta.component';
 
 @NgModule({
   imports: [
@@ -57,6 +58,7 @@ import {JawboneService} from "./jawbone.service";
     TabOverviewComponent,
     TabMoreLikeThisComponent,
     TabShowDetailsComponent,
+    MetaComponent,
   ],
   exports: [
     BillboardRowComponent,
