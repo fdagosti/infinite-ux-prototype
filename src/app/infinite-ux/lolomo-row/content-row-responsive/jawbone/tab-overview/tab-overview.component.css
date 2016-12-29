@@ -10,57 +10,6 @@
   z-index: 200;
 }
 
-.meta{
-  position: relative;
-  color: #666;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  font-size: 1.1vw;
-}
-.rating, .year , .maturity-rating, .duration{
-  margin-right: .5em;
-  font-weight: 700;
-  vertical-align: middle;
-}
-
-.starbar:not(.readOnly) {
-  cursor: pointer;
-}
-
-.starbar {
-  display: flex;
-  color: #333;
-  margin-right: .5em;
-  width: 5.6em;
-  font-size: .8em;
-
-}
-
-.star {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  vertical-align: middle;
-  height: auto;
-  width: auto;
-  min-width: .8em;
-  flex-grow: 1;
-  flex-basis: 0;
-}
-
-.star.sb-placeholder {
-  color: #333;
-}
-
-.star.default {
-  color:#049FD9;;
-}
-
-.icon-star:before {
-  content: '\e640';
-}
-
 .synopsis {
   margin: .8em 0 0;
 }
