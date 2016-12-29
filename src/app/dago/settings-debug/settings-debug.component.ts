@@ -9,21 +9,15 @@ import {DebugService} from "../debug.service";
 export class SettingsDebugComponent implements OnInit {
 
   private proxyEnabled;
-  private newLolomo;
 
   constructor(private debug:DebugService) {
     this.proxyEnabled = debug.isProxyEnabled();
-    this.newLolomo = debug.isNewLolomoUsed();
   }
 
   enableProxy(b){
     console.log("update service ",b);
 
     this.proxyEnabled = this.debug.enableProxy(b);
-  }
-
-  useNewLolomo(b){
-    this.newLolomo = this.debug.useNewLolomo(b);
   }
 
   ngOnInit() {

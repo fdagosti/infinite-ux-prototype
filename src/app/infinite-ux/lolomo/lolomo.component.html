@@ -9,14 +9,7 @@
        class="lolomoContainer"
 
   >
-    <iux-lolomo-row-v1
-      *ngIf="!newLolomo"
-      [portrait]="portrait"
-      [category]="cat"
-    ></iux-lolomo-row-v1>
-
     <iux-lolomo-row
-      *ngIf="newLolomo"
       [portrait]="i ===2"
       [category]="cat"
       (jawboneOpen)="jawboneOpen($event, i)"

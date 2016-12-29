@@ -18,14 +18,13 @@ export class LolomoComponent implements OnInit {
   private leafCats = [];
   private projectedCats = [];
   private busy: Subscription;
-  private newLolomo = false;
   @Input() category;
   @Input() portrait = false;
   @Input() showLoading = true;
   private jawboneOpened: any = [];
   private nonLeafCats = [];
 
-  constructor(public ctap: IVPService, public debug: DebugService, private jawbone:JawboneService) {
+  constructor(public ctap: IVPService, private jawbone:JawboneService) {
 
   }
 
@@ -41,7 +40,6 @@ export class LolomoComponent implements OnInit {
 
   ngOnInit() {
     this.getCategories();
-    this.newLolomo = this.debug.isNewLolomoUsed();
   }
 
   private currentLeafWin = 6;

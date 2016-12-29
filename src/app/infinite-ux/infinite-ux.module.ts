@@ -6,11 +6,7 @@ import {RouterModule} from "@angular/router";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {SearchComponent} from "./navbar/search/search.component";
 import {BrowseComponent} from "./navbar/browse/browse.component";
-import {LolomoRowV1Component} from "./lolomo-row-v1/lolomo-row-v1.component";
-import {ContentRowComponent} from "./content-row/content-row.component";
 import {FullContentComponent} from "./full-content/full-content.component";
-import {OverlayComponent} from "./content-row/overlay/overlay.component";
-import {ContentCarouselComponent} from "./lolomo-row-v1/content-carousel/content-carousel.component";
 import {BusyModule} from "angular2-busy";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {PlayerComponent} from "./player/player.component";
@@ -25,7 +21,6 @@ import { LolomoComponent } from './lolomo/lolomo.component';
 import { TabOverviewComponent } from './lolomo-row/content-row-responsive/jawbone/tab-overview/tab-overview.component';
 import { TabMoreLikeThisComponent } from './lolomo-row/content-row-responsive/jawbone/tab-more-like-this/tab-more-like-this.component';
 import { TabShowDetailsComponent } from './lolomo-row/content-row-responsive/jawbone/tab-show-details/tab-show-details.component';
-import {JawboneService} from "./jawbone.service";
 import { MetaComponent } from './meta/meta.component';
 import {InfiniteScrollModule} from "angular2-infinite-scroll";
 
@@ -43,11 +38,7 @@ import {InfiniteScrollModule} from "angular2-infinite-scroll";
     SearchComponent,
     PlayerComponent,
     BrowseComponent,
-    LolomoRowV1Component,
-    ContentRowComponent,
     FullContentComponent,
-    OverlayComponent,
-    ContentCarouselComponent,
     NavbarComponent,
     BillboardRowComponent,
     ProfileLinkComponent,
@@ -70,10 +61,8 @@ import {InfiniteScrollModule} from "angular2-infinite-scroll";
     BrowseComponent,
     RouterModule,
     FullContentComponent,
-    LolomoRowV1Component,
     ProfileLinkComponent,
     LolomoRowComponent,
-    ContentRowComponent,
     LolomoComponent
   ],
 })

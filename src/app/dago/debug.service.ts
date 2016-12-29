@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class DebugService {
   private proxyEnabled = false;
-  private newLolomo = true;
 
   private proxy = "https://cisco-itk-proxy.herokuapp.com/";
 
@@ -12,15 +11,6 @@ export class DebugService {
 
   isProxyEnabled(){
     return this.proxyEnabled
-  }
-
-  isNewLolomoUsed(){
-    return this.newLolomo;
-  }
-
-  useNewLolomo(b){
-    this.newLolomo = b;
-    return this.useNewLolomo;
   }
 
   getProxyUrl(){
