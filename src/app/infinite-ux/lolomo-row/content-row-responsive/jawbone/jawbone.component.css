@@ -10,6 +10,7 @@
 }
 
 .jawboneContainer{
+  background-color: #000;
   transition:
   height .54s cubic-bezier(.5,0,.1,1) 0s,
   opacity .44s cubic-bezier(.5,0,.1,1) .1s;
@@ -36,7 +37,6 @@
 
 .dim {
     opacity: .2;
-    background-color: #000;
 }
 
 .image{
