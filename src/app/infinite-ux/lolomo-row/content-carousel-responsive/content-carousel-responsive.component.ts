@@ -15,6 +15,7 @@ import {IVPService} from "../../../ivp.service";
 })
 export class ContentCarouselResponsiveComponent implements OnInit{
 
+
   @Input() categoryId;
   @Input() portrait;
   @Input() showIndicator;
@@ -47,7 +48,20 @@ export class ContentCarouselResponsiveComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.busy = this.fetchContent();
+    if (this.ctap.getContentCache(this.categoryId).total >0){
+      setTimeout(()=>{
+        this.content = this.ctap.getContentCache(this.categoryId).content;
+        this.totalNumberOfItems= this.ctap.getContentCache(this.categoryId).total;
+        this.setContent();
+      },0)
+
+    }else{
+      this.busy = this.fetchContent();
+    }
+
+  }
+
+  ngAfterViewChecked(): void {
   }
 
 
@@ -60,13 +74,18 @@ export class ContentCarouselResponsiveComponent implements OnInit{
         content => {
           this.content = this.content.concat(content.content);
           this.totalNumberOfItems = content.total;
-          this.contentOffset = this.content.length;
-          this.dataFullyLoaded = (this.content.length === this.totalNumberOfItems);
-          this.computePageSize();
+          this.ctap.setContentCache(this.categoryId, this.content, content.total);
+          this.setContent();
           this.busy = null;
         },
         error => this.errorMessage = <any>error
       );
+  }
+
+  private setContent(){
+    this.contentOffset = this.content.length;
+    this.dataFullyLoaded = (this.content.length === this.totalNumberOfItems);
+    this.computePageSize();
   }
 
   private computePageSize(){
