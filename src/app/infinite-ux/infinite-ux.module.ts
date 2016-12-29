@@ -27,6 +27,7 @@ import { TabMoreLikeThisComponent } from './lolomo-row/content-row-responsive/ja
 import { TabShowDetailsComponent } from './lolomo-row/content-row-responsive/jawbone/tab-show-details/tab-show-details.component';
 import {JawboneService} from "./jawbone.service";
 import { MetaComponent } from './meta/meta.component';
+import {InfiniteScrollModule} from "angular2-infinite-scroll";
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { MetaComponent } from './meta/meta.component';
     HttpModule,
     RouterModule,
     NgbModule.forRoot(),
-    BusyModule
+    BusyModule,
+    InfiniteScrollModule
   ],
   declarations: [
     SearchComponent,
@@ -74,8 +76,5 @@ import { MetaComponent } from './meta/meta.component';
     ContentRowComponent,
     LolomoComponent
   ],
-  providers: [
-    JawboneService
-  ]
 })
 export class InfiniteUxModule { }

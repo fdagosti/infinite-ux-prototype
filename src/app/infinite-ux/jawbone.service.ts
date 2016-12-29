@@ -10,7 +10,8 @@ export class JawboneService {
 
   setNumberOfRows(n){
     this.numberOfRows = n;
-    this.jawboneEmitters = this.jawboneEmitters.concat(new Array(n - this.jawboneEmitters.length).fill(null).map(()=>new EventEmitter()))
+    if (this.jawboneEmitters.length > n) this.jawboneEmitters.length = n;
+    else this.jawboneEmitters = this.jawboneEmitters.concat(new Array(n - this.jawboneEmitters.length).fill(null).map(()=>new EventEmitter()))
   }
 
   setJawboneStatus(idx, b){
@@ -19,6 +20,8 @@ export class JawboneService {
   }
 
   subscribe(idx, f){
-    this.jawboneEmitters[idx].subscribe(f);
+    if (this.numberOfRows) {
+      this.jawboneEmitters[idx].subscribe(f);
+    }
   }
 }

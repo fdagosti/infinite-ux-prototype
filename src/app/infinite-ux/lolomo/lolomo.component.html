@@ -1,31 +1,36 @@
 <div *ngIf="showLoading" [ngBusy]="{busy:busy,backdrop:false, delay:700}">
 </div>
-<div id="lolomoContainer"
-     *ngFor="let cat of leafCats;let i = index"
-     [class.jawboneOpen]="jawboneOpened[i]"
-     class="lolomoContainer"
->
-  <iux-lolomo-row-v1
-    *ngIf="!newLolomo"
-    [portrait]="portrait"
-    [category]="cat"
-  ></iux-lolomo-row-v1>
+<div
+  infinite-scroll
+  (scrolled)="onScroll()">
+  <div id="lolomoContainer"
+       *ngFor="let cat of projectedCats;let i = index"
+       [class.jawboneOpen]="jawboneOpened[i]"
+       class="lolomoContainer"
 
-  <iux-lolomo-row
-    *ngIf="newLolomo"
-    [portrait]="i ===2"
-    [category]="cat"
-    (jawboneOpen)="jawboneOpen($event, i)"
-    [rowIndex]="i"
   >
-    <span class="jawBoneContent">
-      <iux-jawbone
-        (closeJawbone)="closeJawbone(i)"
-        *ngIf="jawboneOpened[i]"
-        [program]="jawboneOpened[i]"
-      ></iux-jawbone>
-    </span>
-  </iux-lolomo-row>
+    <iux-lolomo-row-v1
+      *ngIf="!newLolomo"
+      [portrait]="portrait"
+      [category]="cat"
+    ></iux-lolomo-row-v1>
+
+    <iux-lolomo-row
+      *ngIf="newLolomo"
+      [portrait]="i ===2"
+      [category]="cat"
+      (jawboneOpen)="jawboneOpen($event, i)"
+      [rowIndex]="i"
+    >
+      <span class="jawBoneContent">
+        <iux-jawbone
+          (closeJawbone)="closeJawbone(i)"
+          *ngIf="jawboneOpened[i]"
+          [program]="jawboneOpened[i]"
+        ></iux-jawbone>
+      </span>
+    </iux-lolomo-row>
 
 
+  </div>
 </div>

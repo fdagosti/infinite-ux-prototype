@@ -59,8 +59,10 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   @Input() rowIndex;
 
   private numberOfItems;
-  private maxPastItems;
-  private numberOfVisibleItems;
+  private maxPastItems=0;
+  // why 7 as a start value? because other values are causing an ng2 exception
+  // TODO investigate why values of 0 or 1 create an exception
+  private numberOfVisibleItems=7;
   @Output("visibleItem") visibleItemsEmitter = new EventEmitter();
 
 
@@ -209,8 +211,11 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   // End Jawbone management
 
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.window[0].empty)
+  ngOnChanges(changes: any): void {
+
+    let contentSizeChange = changes.fullContent && (changes.fullContent.previousValue.length != changes.fullContent.currentValue.length);
+
+    if (this.window[0].empty || contentSizeChange)
       this.fillWindow();
   }
 

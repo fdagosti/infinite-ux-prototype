@@ -52,7 +52,8 @@ export class JawboneComponent implements OnInit {
   private currentContent=this.jawboneContent[0];
 
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.altContent = "assets/landscape.png";
@@ -64,7 +65,7 @@ export class JawboneComponent implements OnInit {
 
   getContentImage(program){
     if (program.media){
-      return program.media.url;
+      return program.media[2].url;
     }else{
       return this.altContent;
     }

@@ -2,7 +2,7 @@
 	<div class="trigger">
 		<div class="background"
 		[class.dim]="currentContent===jawboneContent[1] || currentContent===jawboneContent[2]">
-		<img class="image" [src]="program.media[2].url">
+		<img class="image" [src]="getContentImage(program)">
 		<div class="vignette"></div>
 		<div class="nav-shadow"></div>
 	</div>
@@ -16,7 +16,7 @@
 		<div class="common">
 			<div class="jawBonePanes">
 				<iux-tab-overview *ngIf="currentContent===jawboneContent[0]" class="jawBonePane" [program]="program"></iux-tab-overview>
-				<iux-tab-more-like-this [program]="program"*ngIf="currentContent===jawboneContent[1]" class="jawBonePane" [program]="program"></iux-tab-more-like-this >
+				<iux-tab-more-like-this *ngIf="currentContent===jawboneContent[1]" class="jawBonePane" ></iux-tab-more-like-this >
 					<iux-tab-show-details *ngIf="currentContent===jawboneContent[2]" class="jawBonePane" [program]="program"></iux-tab-show-details>
 				</div>
 			</div>

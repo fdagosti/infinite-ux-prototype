@@ -7,12 +7,16 @@ import {JawboneService} from "../jawbone.service";
 @Component({
   selector: 'iux-lolomo',
   templateUrl: 'lolomo.component.html',
-  styleUrls: ['lolomo.component.css']
+  styleUrls: ['lolomo.component.css'],
+  providers: [
+    JawboneService
+  ]
 })
 export class LolomoComponent implements OnInit {
 
   private errorMessage;
   private leafCats = [];
+  private projectedCats = [];
   private busy: Subscription;
   private newLolomo = false;
   @Input() category;
@@ -40,15 +44,24 @@ export class LolomoComponent implements OnInit {
     this.newLolomo = this.debug.isNewLolomoUsed();
   }
 
+  private currentLeafWin = 6;
+
+  onScroll(){
+    if (this.projectedCats.length < this.leafCats.length) {
+      this.currentLeafWin += 2;
+      this.projectedCats = this.leafCats.slice(0, this.currentLeafWin);
+    }
+  }
+
   private getCategories(zeCats?) {
     this.busy = this.ctap.getCategories(zeCats ? zeCats.id : "")
-      .map((cats: any) => cats.categories.slice(0, 6))
+      .map((cats: any) => cats.categories)
       .do(cats => this.leafCats = this.leafCats.concat(cats.filter(v => v.leaf)))
       .do(cats => this.jawbone.setNumberOfRows(this.leafCats.length))
       .do(cats => this.nonLeafCats = cats.filter(v => !v.leaf))
       .do(v => this.jawboneOpened = v.map(() => false))
       .subscribe(
-        null,
+        ()=>this.projectedCats = this.leafCats.slice(0,this.currentLeafWin),
         error => this.errorMessage = <any>error,
         () => this.nonLeafCats.forEach(c => this.getCategories(c))
       );

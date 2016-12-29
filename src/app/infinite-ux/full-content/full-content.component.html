@@ -5,14 +5,30 @@
 	</div>
 </div>
 
-<iux-content-row
-*ngFor="let page of pages; let i = index;"
-class="carousel-item active"
-[rowSize]="6"
-[content]="page==0?content:{content:[]}"
-[fetchOnInit]="true"
-[portrait]="catBased"
-[zoom]="true"
-[contentSource]="getSource(categoryId, page)"
+<div [ngBusy]="{busy:busy,backdrop:false}">
+</div>
+
+<div infinite-scroll
+     (scrolled)="onScroll()">
+
+<iux-content-row-responsive
+  class="lolomoContainer"
+  [class.jawboneOpen]="jawboneOpened[i]"
+  *ngFor="let page of pages; let i = index;"
+  [fullContent]="projectedContent[i]"
+  [portrait]="catBased"
+  (visibleItem)="updateVisibleItems($event, i)"
+  (offset)="updateOffset($event)"
+  (jawboneOpen)="jawboneChanged($event, i)"
+  [rowIndex]="i"
 >
-</iux-content-row>
+  <span class="jawBoneContent">
+      <iux-jawbone
+        (closeJawbone)="closeJawbone(i)"
+        *ngIf="jawboneOpened[i]"
+        [program]="jawboneOpened[i]"
+      ></iux-jawbone>
+    </span>
+</iux-content-row-responsive>
+
+</div>
