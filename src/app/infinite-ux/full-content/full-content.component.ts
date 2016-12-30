@@ -82,8 +82,12 @@ export class FullContentComponent implements OnInit {
     );
   }
 
+  private isCacheFull(){
+    return this.content?this.content.content.length >= this.content.total:false;
+  }
+
   onScroll(){
-    if (this.catBased)
+    if (this.catBased && !this.isCacheFull())
       this.fetchCategoryContent();
   }
 
@@ -114,14 +118,6 @@ export class FullContentComponent implements OnInit {
     this.jawbone.setNumberOfRows(this.pageNum);
     this.jawboneOpened = this.pages.map(() => false)
     this.projectedContent = this.pages.map((v)=>this.content.content.slice(v, v+this.numberOfItemsPerPage))
-  }
-
-  getSource(term, page){
-    if (this.catBased){
-      return this.ctap.getContent(term, page);
-    }else {
-      return this.ctap.getContentFromSearchedTerm(term, page);
-    }
   }
 
 }
