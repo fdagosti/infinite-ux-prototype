@@ -38,33 +38,39 @@ export class FullContentComponent implements OnInit {
   ngOnInit() {
     this.inData = true;
     this.route.params
-      .switchMap((params:Params) => {
-          if (params['categoryId']) {
-            this.categoryId = params['categoryId'];
-            this.catBased= true;
-
-            return Observable.forkJoin(
-              this.ctap.getContent(this.categoryId, this.currentOffset, "30"),
-              this.ctap.getCategories(params['categoryId'])).take(1)
-              .do(result => {
-                this.content = result[0];
-                this.title = result[1].name;
-              })
-          } else {
-            this.categoryId = params['contentName'];
-            this.title = params['contentName'];
-            this.catBased= false;
-
-            return this.ctap.getContentFromSearchedTerm(params['contentName'], 0, "200")
-              .do(result => this.content = result)
-          }
-        }
-        )
+      .switchMap((params:Params) => this.getCtapObservable(params))
       .subscribe(
         () => {this.inData = false;this.computePageSize()},
         error => console.log("ERRROR",error),
         ()=>console.log("REQUEST ENDED")
       );
+  }
+
+  private getCtapObservable(params:Params){
+    if (params['categoryId'] && params['categoryId']!="live") {
+      this.categoryId = params['categoryId'];
+      this.catBased= true;
+
+      return Observable.forkJoin(
+        this.ctap.getContent(this.categoryId, this.currentOffset, "30"),
+        this.ctap.getCategories(params['categoryId'])).take(1)
+        .do(result => {
+          this.content = result[0];
+          this.title = result[1].name;
+        })
+    } else if (params["contentName"]{
+      this.categoryId = params['contentName'];
+      this.title = params['contentName'];
+      this.catBased= false;
+
+      return this.ctap.getContentFromSearchedTerm(params['contentName'], 0, "200")
+        .do(result => this.content = result)
+    }else if (params['categoryId'] && params['categoryId']=="live"){
+      this.title = "Live";
+      this.catBased= false;
+      return this.ctap.getChannels( 0, "200")
+        .do(result => this.content = result);
+    }
   }
 
   private currentOffset = 0;

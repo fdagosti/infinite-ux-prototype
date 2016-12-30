@@ -72,8 +72,8 @@ p {
   padding-left: 1px;
 }
 
-.content-item-bright{
-  background: white;
+.content-item.channel{
+  background: #888;
 }
 
 .highlighted {

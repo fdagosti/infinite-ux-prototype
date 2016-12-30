@@ -17,7 +17,7 @@
        class="relative content-item"
        [@ZoomItem]="zoomState[i]"
 
-       [class.content-item-bright]="item.bright"
+       [class.channel]="item.channel"
        [class.zoom-item]="!item.empty && zoom"
        [class.playable-item]="item._links.playSession"
        [class.highlighted]="jawboneOpened && jawboneSelectedIx===i"

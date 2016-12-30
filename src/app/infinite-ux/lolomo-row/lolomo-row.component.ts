@@ -35,7 +35,7 @@ export class LolomoRowComponent implements OnInit {
 
   getFullContentUrl(){
     if (this.category.preventFullContent)
-      return "./";
+      return "/full/live";
     return "/full/"+this.category.id;
   }
 

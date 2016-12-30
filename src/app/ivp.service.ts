@@ -163,7 +163,7 @@ export class IVPService {
         ch.title = ch.name;
         ch._links = [];
         ch.media = Array(6).fill(ch.media[0]);
-        ch.bright = true;
+        ch.channel = true;
         ch.synopsis = {
           longSynopsis:"This Channel does not have a synopsis",
           shortSynopsis:"This Channel does not have a synopsis"
