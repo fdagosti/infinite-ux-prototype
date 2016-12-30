@@ -58,7 +58,7 @@ export class FullContentComponent implements OnInit {
           this.content = result[0];
           this.title = result[1].name;
         })
-    } else if (params["contentName"]{
+    } else if (params["contentName"]){
       this.categoryId = params['contentName'];
       this.title = params['contentName'];
       this.catBased= false;
