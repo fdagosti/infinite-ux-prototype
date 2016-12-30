@@ -23,6 +23,7 @@ import { TabMoreLikeThisComponent } from './lolomo-row/content-row-responsive/ja
 import { TabShowDetailsComponent } from './lolomo-row/content-row-responsive/jawbone/tab-show-details/tab-show-details.component';
 import { MetaComponent } from './meta/meta.component';
 import {InfiniteScrollModule} from "angular2-infinite-scroll";
+import { ProgressComponent } from './lolomo-row/content-row-responsive/progress/progress.component';
 
 @NgModule({
   imports: [
@@ -52,6 +53,7 @@ import {InfiniteScrollModule} from "angular2-infinite-scroll";
     TabMoreLikeThisComponent,
     TabShowDetailsComponent,
     MetaComponent,
+    ProgressComponent,
   ],
   exports: [
     BillboardRowComponent,
