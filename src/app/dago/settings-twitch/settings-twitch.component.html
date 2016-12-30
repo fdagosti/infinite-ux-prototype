@@ -1,6 +1,9 @@
 <iux-settings-section title="Twitch" >
   <div class="col-sm-8">
-
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+      <strong>{{error}}</strong>
+      <p>{{errorDescription}}</p>
+    </div>
     <button class="btn btn-primary">Connect your Twitch Account</button>
 
 
