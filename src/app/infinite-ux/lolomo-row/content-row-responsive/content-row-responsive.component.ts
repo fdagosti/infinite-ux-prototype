@@ -248,7 +248,7 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
   }
 
   fillWindow(){
-    if (this.fullContent.length == 0) return;
+    if (this.fullContent.length == 0 || this.inScrollAnim) return;
 
     this.numberOfItems = (this.numberOfVisibleItems * 2 + 1) + (this.fullContentOffset?(this.numberOfVisibleItems +1):0);
 
