@@ -18,7 +18,7 @@
 			</span>
 		</p>
 		<p>Genres&nbsp;:
-			<span class="metaList" *ngFor="let genre of program.genres ; let lastGenre = last ; let i=index">	
+			<span class="metaList" *ngFor="let genre of program.genres ; let i=index">
 				<span *ngIf="i<3">
 					<span *ngIf="i>0" >,&nbsp;</span>
 					<a  href="" class="metaLink" >{{genre.name}}</a>			

@@ -29,12 +29,7 @@
 			<div class="detailsItem detailsTags">
 				<ul class="detailsList">
 					<li class="listLabel">Genres</li>
-					<li class="listItem">Comedy</li>
-					<li class="listItem">Horror</li>
-					<li class="listItem">Independant</li>
-					<li class="listLabel">This movie is</li>
-					<li class="listItem" >Funny</li>
-					<li class="listItem">Absurd</li>
+					<li *ngFor="let genre of program.genres" class="listItem">{{genre.name}}</li>
 				</ul>
 			</div>
 			<div class="detailsItem detailsReviews doubleWidth">
