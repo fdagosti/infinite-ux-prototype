@@ -61,10 +61,6 @@ export class ContentCarouselResponsiveComponent implements OnInit{
 
   }
 
-  ngAfterViewChecked(): void {
-  }
-
-
   private dataFullyLoaded = false;
 
   private getCtapObservable(){

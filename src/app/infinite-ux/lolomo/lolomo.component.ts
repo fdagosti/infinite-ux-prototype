@@ -21,7 +21,7 @@ export class LolomoComponent implements OnInit {
   @Input() portrait = false;
   private jawboneOpened: any = [];
 
-  constructor(private home:HomeService, private jawbone:JawboneService) {
+  constructor(private lolomoService:HomeService, private jawbone:JawboneService) {
   }
 
   jawboneOpen(b, i) {
@@ -49,7 +49,7 @@ export class LolomoComponent implements OnInit {
 
   private getRows() {
 
-    this.busy = this.home.getHomeRowsContent()
+    this.busy = this.lolomoService.getLolomoRows()
       .do(v=>this.allRows=v)
       .do(rows => this.jawbone.setNumberOfRows(this.allRows.length))
       .do(v => this.jawboneOpened = v.map(() => false))

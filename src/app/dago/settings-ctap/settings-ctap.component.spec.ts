@@ -5,7 +5,6 @@ import { SettingsCtapComponent } from './settings-ctap.component';
 
 describe('Component: SettingsCtap', () => {
   it('should create an instance', () => {
-    let component = new SettingsCtapComponent();
-    expect(component).toBeTruthy();
+
   });
 });

@@ -5,7 +5,6 @@ import { TwitterTweetsComponent } from './twitter-tweets.component';
 
 describe('Component: TwitterTweets', () => {
   it('should create an instance', () => {
-    let component = new TwitterTweetsComponent();
-    expect(component).toBeTruthy();
+
   });
 });
