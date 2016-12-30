@@ -10,8 +10,8 @@
   (mouseleave)="zoomAnimStopper.next('stop')"
 >
   <div *ngFor="let item of window;let i = index;"
-       (mouseover)="zoomAnimStarter.next(i)"
-       (mouseover)="jawboneFocusStarter.next(i)"
+       (mouseenter)="zoomAnimStarter.next(i)"
+       (mouseenter)="jawboneFocusStarter.next(i)"
        (mouseleave)="jawboneStopper.next(i)"
 
        class="relative content-item"
