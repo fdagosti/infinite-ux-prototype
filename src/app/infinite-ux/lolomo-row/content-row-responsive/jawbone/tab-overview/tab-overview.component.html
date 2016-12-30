@@ -10,7 +10,7 @@
 	<div class="listMeta">
 		<p class="metaLabel">With&nbsp;:
 			<span class="metaList">
-				<span class="metaItem">Actor 1</span>
+				<span  class="metaItem">Actor 1</span>
 				,&nbsp;
 				<span class="metaItem">Actor 2</span>
 				,&nbsp;
@@ -18,12 +18,11 @@
 			</span>
 		</p>
 		<p>Genres&nbsp;:
-			<span class="metaList">
-				<a href="" class="metaLink">{{program.genres[0].name}}</a>
-				,&nbsp;
-				<!-- <a class="metaLink">{{program.content.genres[1].name}}</a>
-				,&nbsp;
-				<a class="metaLink">{{program.content.genres[2].name}}</a> -->
+			<span class="metaList" *ngFor="let genre of program.genres ; let lastGenre = last ; let i=index">	
+				<span *ngIf="i<3">
+					<span *ngIf="i>0" >,&nbsp;</span>
+					<a  href="" class="metaLink" >{{genre.name}}</a>			
+				</span>
 			</span>
 		</p>
 	</div>
