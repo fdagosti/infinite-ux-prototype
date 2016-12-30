@@ -24,6 +24,7 @@ import { TabShowDetailsComponent } from './lolomo-row/content-row-responsive/jaw
 import { MetaComponent } from './meta/meta.component';
 import {InfiniteScrollModule} from "angular2-infinite-scroll";
 import { ProgressComponent } from './lolomo-row/content-row-responsive/progress/progress.component';
+import {SettingsSectionComponent} from "./settings/settings-section/settings-section.component";
 
 @NgModule({
   imports: [
@@ -54,18 +55,17 @@ import { ProgressComponent } from './lolomo-row/content-row-responsive/progress/
     TabShowDetailsComponent,
     MetaComponent,
     ProgressComponent,
+    SettingsSectionComponent
   ],
   exports: [
     BillboardRowComponent,
     NavbarComponent,
     PlayerComponent,
-    SearchComponent,
-    BrowseComponent,
     RouterModule,
     FullContentComponent,
     ProfileLinkComponent,
-    LolomoRowComponent,
-    LolomoComponent
+    LolomoComponent,
+    SettingsSectionComponent
   ],
 })
 export class InfiniteUxModule { }
