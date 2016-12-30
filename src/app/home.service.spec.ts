@@ -10,7 +10,5 @@ describe('HomeService', () => {
     });
   });
 
-  it('should ...', inject([HomeService], (service: HomeService) => {
 
-  }));
 });
