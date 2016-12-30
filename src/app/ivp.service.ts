@@ -54,27 +54,6 @@ export class IVPService {
 
   }
 
-  /**
-   * Converts data returned by agg/content or search to data understandable by Lolomo component
-   * @param obs
-   * @returns {Observable<R>}
-   */
-  private convertContentDataToLolomo(obs:Observable<any>){
-    return obs
-      // .do(content =>console.log("content before = ",content))
-      .map((content:any) => {
-        content.content.forEach(item => {
-          if (item.content) {
-            delete item.content._links;
-            return Object.assign(item, item.content);
-          }
-          return item;
-        });
-        return content;
-      })
-      // .do(content =>console.log("content after = ",content));
-  }
-
   getContent(categoryId, offset?, limit="6",){
     let params = new URLSearchParams();
     params.set('categoryId', categoryId); // the user's search value
@@ -148,6 +127,27 @@ export class IVPService {
     if (offset) params.set('offset', offset); // the user's search value
 
     return this.convertChannelDataToLolomo(this.getHttpCall(params, "channels"));
+  }
+
+  /**
+   * Converts data returned by agg/content or search to data understandable by Lolomo component
+   * @param obs
+   * @returns {Observable<R>}
+   */
+  private convertContentDataToLolomo(obs:Observable<any>){
+    return obs
+    // .do(content =>console.log("content before = ",content))
+      .map((content:any) => {
+        content.content.forEach(item => {
+          if (item.content) {
+            delete item.content._links;
+            return Object.assign(item, item.content);
+          }
+          return item;
+        });
+        return content;
+      })
+    // .do(content =>console.log("content after = ",content));
   }
 
   /**

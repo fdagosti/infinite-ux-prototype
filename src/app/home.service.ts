@@ -9,7 +9,8 @@ export class HomeService {
 
   private channel = {
     id: "live",
-    name: "Live Channels"
+    name: "Live Channels",
+    preventFullContent: true
   }
 
   constructor(private ivp:IVPService) { }
