@@ -67,8 +67,15 @@ export class ContentCarouselResponsiveComponent implements OnInit{
 
   private dataFullyLoaded = false;
 
+  private getCtapObservable(){
+    if (this.categoryId === "live")
+      return this.ctap.getChannels(this.contentOffset, "20");
+    else
+      return this.ctap.getContent(this.categoryId, this.contentOffset, "20")
+  }
+
   fetchContent(){
-    return this.ctap.getContent(this.categoryId, this.contentOffset, "20")
+    return this.getCtapObservable()
       // .delay(50000)
       .subscribe(
         content => {
@@ -89,6 +96,7 @@ export class ContentCarouselResponsiveComponent implements OnInit{
   }
 
   private computePageSize(){
+
     this.pageNum = Math.ceil(this.totalNumberOfItems/this.itemWindow);
     this.pages = Array(this.pageNum).fill(1).map((_,i)=>i*this.itemWindow);
     this.multiPage.emit(this.pageNum > 1);

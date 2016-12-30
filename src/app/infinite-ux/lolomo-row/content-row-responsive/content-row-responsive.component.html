@@ -17,6 +17,7 @@
        class="relative content-item"
        [@ZoomItem]="zoomState[i]"
 
+       [class.content-item-bright]="item.bright"
        [class.zoom-item]="!item.empty && zoom"
        [class.playable-item]="item._links.playSession"
        [class.highlighted]="jawboneOpened && jawboneSelectedIx===i"
@@ -27,7 +28,7 @@
       <img [src]="getContentImage(item)" alt="" class="absolute-img">
        <iux-overlay-responsive [program]="item"></iux-overlay-responsive>
     </a>
-    <iux-progress></iux-progress>
+    <iux-progress *ngIf="item.bright"></iux-progress>
   </div>
 </div>
 <ng-content></ng-content>

@@ -4,14 +4,14 @@
   infinite-scroll
   (scrolled)="onScroll()">
   <div id="lolomoContainer"
-       *ngFor="let cat of projectedCats;let i = index"
+       *ngFor="let row of projectedRows let i = index"
        [class.jawboneOpen]="jawboneOpened[i]"
        class="lolomoContainer"
 
   >
     <iux-lolomo-row
       [portrait]="i ===2"
-      [category]="cat"
+      [category]="row"
       (jawboneOpen)="jawboneOpen($event, i)"
       [rowIndex]="i"
     >

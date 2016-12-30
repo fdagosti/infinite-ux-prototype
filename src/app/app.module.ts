@@ -12,6 +12,7 @@ import {VideoService} from "./video.service";
 import {BusyModule} from "angular2-busy";
 import {UsersService} from "./users.service";
 import {DebugService} from "./dago/debug.service";
+import {HomeService} from "./home.service";
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {DebugService} from "./dago/debug.service";
     IVPService,
     VideoService,
     UsersService,
-    DebugService
+    DebugService,
+    HomeService
   ],
   bootstrap: [AppComponent]
 })

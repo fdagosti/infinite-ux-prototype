@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {IVPService} from "../../ivp.service";
 import {DebugService} from "../../dago/debug.service";
 import {JawboneService} from "../jawbone.service";
+import {HomeService} from "../../home.service";
 
 @Component({
   selector: 'iux-lolomo',
@@ -14,18 +15,13 @@ import {JawboneService} from "../jawbone.service";
 })
 export class LolomoComponent implements OnInit {
 
-  private errorMessage;
-  private leafCats = [];
-  private projectedCats = [];
+  private allRows;
+  private projectedRows = [];
   private busy: Subscription;
-  @Input() category;
   @Input() portrait = false;
-  @Input() showLoading = true;
   private jawboneOpened: any = [];
-  private nonLeafCats = [];
 
-  constructor(public ctap: IVPService, private jawbone:JawboneService) {
-
+  constructor(private home:HomeService, private jawbone:JawboneService) {
   }
 
   jawboneOpen(b, i) {
@@ -39,30 +35,33 @@ export class LolomoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCategories();
+    this.getRows();
   }
 
   private currentLeafWin = 6;
 
   onScroll(){
-    if (this.projectedCats.length < this.leafCats.length) {
+    if (this.projectedRows.length < this.allRows.length) {
       this.currentLeafWin += 2;
-      this.projectedCats = this.leafCats.slice(0, this.currentLeafWin);
+      this.projectedRows = this.allRows.slice(0, this.currentLeafWin);
     }
   }
 
-  private getCategories(zeCats?) {
-    this.busy = this.ctap.getCategories(zeCats ? zeCats.id : "")
-      .map((cats: any) => cats.categories)
-      .do(cats => this.leafCats = this.leafCats.concat(cats.filter(v => v.leaf)))
-      .do(cats => this.jawbone.setNumberOfRows(this.leafCats.length))
-      .do(cats => this.nonLeafCats = cats.filter(v => !v.leaf))
+  private getRows() {
+
+    this.busy = this.home.getHomeRowsContent()
+      .do(v=>this.allRows=v)
+      .do(rows => this.jawbone.setNumberOfRows(this.allRows.length))
       .do(v => this.jawboneOpened = v.map(() => false))
+      .do(()=>this.projectedRows = this.allRows.slice(0,this.currentLeafWin))
       .subscribe(
-        ()=>this.projectedCats = this.leafCats.slice(0,this.currentLeafWin),
-        error => this.errorMessage = <any>error,
-        () => this.nonLeafCats.forEach(c => this.getCategories(c))
+        (v)=>{},
+        (e)=>console.log("error",e),
+        ()=>{}
       );
+
+
+
   }
 
 }

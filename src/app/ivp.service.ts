@@ -1,8 +1,9 @@
 import "rxjs/Rx";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Rx";
-import {Http, Response, Headers, RequestOptions, URLSearchParams} from "@angular/http";
+import {Http, Response, RequestOptions, URLSearchParams} from "@angular/http";
 import {DebugService} from "./dago/debug.service";
+import {IvpAuth} from "./ivp-auth";
 
 export class Category{
   constructor(public id:string="",public name="",public _links=""){
@@ -17,9 +18,12 @@ export class IVPService {
   private categoryCache={};
 
   private ctapUrl = "https://apx.cisco.com/spvss/infinitehome/infinitetoolkit/v_sandbox_2/";
-  private LOCAL_STORAGE:string = "InfiniteUX-proto-token-v1";
 
-  constructor(private http: Http, private debug:DebugService) { }
+  private auth: IvpAuth;
+
+  constructor(private http: Http, private debug:DebugService) {
+    this.auth= new IvpAuth(http);
+  }
 
   getCategories(categoryId =""): Observable<any[]>{
     let cacheKey = categoryId?categoryId:"global";
@@ -46,11 +50,16 @@ export class IVPService {
     params.set('limit', limit); // the user's search value
     if (offset) params.set('offset', offset); // the user's search value
 
-    return this.normalizeContent(this.getHttpCall(params, "agg/content/"));
+    return this.convertContentDataToLolomo(this.getHttpCall(params, "agg/content/"));
 
   }
 
-  normalizeContent(obs:Observable<any>){
+  /**
+   * Converts data returned by agg/content or search to data understandable by Lolomo component
+   * @param obs
+   * @returns {Observable<R>}
+   */
+  private convertContentDataToLolomo(obs:Observable<any>){
     return obs
       // .do(content =>console.log("content before = ",content))
       .map((content:any) => {
@@ -72,7 +81,7 @@ export class IVPService {
     params.set('limit', limit); // the user's search value
     if (offset) params.set('offset', offset); // the user's search value
 
-    return this.normalizeContent(this.getHttpCall(params, "agg/content/"));
+    return this.convertContentDataToLolomo(this.getHttpCall(params, "agg/content/"));
   }
 
   getSuggestions(keyword){
@@ -93,7 +102,7 @@ export class IVPService {
     let params = new URLSearchParams();
     params.set("instanceId", instanceId);
 
-    return this.getHeadersWithAuth()
+    return this.auth.getHeadersWithAuth()
       .map((headers) => new RequestOptions({
         headers: headers,
         search: params
@@ -108,7 +117,7 @@ export class IVPService {
   }
 
   private getHttpCall(params, urls){
-    return this.getHeadersWithAuth()
+    return this.auth.getHeadersWithAuth()
       .map((headers) => new RequestOptions({
         headers: headers,
         search: params
@@ -116,48 +125,6 @@ export class IVPService {
       .switchMap((options) => this.http.get(this.getCtapUrl()+urls, options))
       .map((res:Response) => res.json())
       .catch(this.handleError);
-  }
-
-  private getHeadersWithAuth(){
-    return this.getAccessToken()
-      .map((token) => new Headers({"Authorization": "Bearer "+token}))
-
-  }
-
-  private login(){
-    return this.http.post("/api/login_ivp", null)
-      .map(res => this.saveToken(res.json()).access_token)
-      .catch(this.handleError);
-  }
-
-  private _isLoggedIn = function(){
-    var token = this.getToken();
-    if (token) {
-      return token.exp > Date.now() / 1000;
-    } else {
-      return false;
-    }
-  }
-
-  private getAccessToken = function(){
-    if (!this._isLoggedIn()){
-      return this.login();
-    }else{
-      return Observable.of(this.getToken().access_token);
-    }
-  }
-
-  private getToken(){
-    let t = window.localStorage[this.LOCAL_STORAGE];
-    if(t){
-      return JSON.parse(t);
-    }
-  }
-
-  private saveToken(token){
-    token.exp = Date.now()/1000 + token.expires_in;
-    window.localStorage[this.LOCAL_STORAGE] = JSON.stringify(token);
-    return token || { };
   }
 
   private handleError (error: Response | any) {
@@ -175,7 +142,42 @@ export class IVPService {
     return Observable.throw(errMsg);
   }
 
+  public getChannels(offset?, limit="6",){
+    let params = new URLSearchParams();
+    params.set('limit', limit); // the user's search value
+    if (offset) params.set('offset', offset); // the user's search value
 
+    return this.convertChannelDataToLolomo(this.getHttpCall(params, "channels"));
+  }
+
+  /**
+   * This method converts the Data from the IVP cloud into data that is understandable by the Lolomo component
+   * @param obs
+   * @returns {Observable<R>}
+   */
+  private convertChannelDataToLolomo(obs:Observable<any>){
+    return obs
+    .map(channels=>{
+      channels.content = channels.channels;
+      channels.content.forEach(ch=>{
+        ch.title = ch.name;
+        ch._links = [];
+        ch.media = Array(6).fill(ch.media[0]);
+        ch.bright = true;
+        ch.synopsis = {
+          longSynopsis:"This Channel does not have a synopsis",
+          shortSynopsis:"This Channel does not have a synopsis"
+        };
+        ch.genres = [{name:"NO CHANNEL GENRE"}];
+      })
+      return channels;
+    });
+  }
+
+
+
+
+  // Cache Management
   private contentCache = {};
   public setContentCache(categoryId, content, total){
     this.contentCache[categoryId] = {content:content,total:total};
