@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'iux-tab-more-like-this',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tab-more-like-this.component.css']
 })
 export class TabMoreLikeThisComponent implements OnInit {
-
+  @Input() program;
   constructor() { }
 
   ngOnInit() {
