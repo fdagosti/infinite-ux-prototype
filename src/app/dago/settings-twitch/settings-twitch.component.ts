@@ -10,35 +10,56 @@ import {TwitchService} from "../../twitch.service";
 export class
 SettingsTwitchComponent implements OnInit {
 
-  private code;
   private scope;
   private state;
   private error;
   private errorDescription;
+  private twitchAccountConnected = false;
+  private loginInProgress=null;
 
   constructor(private route:ActivatedRoute, private twitch:TwitchService) { }
 
   ngOnInit() {
+
+    this.readQueryParameters();
+    this.updateConnectionStatus();
+
+  }
+
+  private readQueryParameters(){
     this.route.queryParams.subscribe(
       params=>{
         this.error = params["error"];
         this.errorDescription = params["error_description"];
-        this.code = params["code"];
         this.state = params["state"];
         this.scope = params["scope"];
-        if (this.code){
-          this.twitch.setConnectStatus(this.code);
+        if (params["code"]){
+          this.login(params["code"]);
         }
-        console.log("v",params);
       },
-      (e)=>console.log("error",e),
+      e=>console.log("error",e),
       ()=>console.log("complete")
-
     );
+  }
+
+  private updateConnectionStatus(){
+    this.twitchAccountConnected = this.twitch.isTwitchConnected();
+  }
+
+  private login(code){
+    this.loginInProgress = this.twitch.login(code).subscribe(
+      ()=>{this.updateConnectionStatus()},
+      e=>this.loginInProgress=null,
+      ()=>this.loginInProgress=null
+    );
+  }
+
+  disconnectAccount(){
+    this.twitch.disconnectAccount();
+    this.updateConnectionStatus();
   }
 
   connectAccount(){
     this.twitch.connectAccount();
   }
-
 }

@@ -25,6 +25,10 @@ router.post('/login_twitch', function(req, res, next) {
   login_twitch(req, res);
 });
 
+router.get('/login_twitch', function(req, res, next) {
+  twitchOAuthUrl(req, res);
+});
+
 login_CTAP = function(req, res) {
 
     var clientId = process.env.IVP_CLIENT_ID;
@@ -64,6 +68,11 @@ login_twitter = function(req, res) {
         sendJSONresponse(res, response.statusCode, error);
     });
 };
+
+twitchOAuthUrl = function(req, res){
+  console.log("GETTWITCH URL ",process.env.TWITCH_OAUTH_URL);
+  sendJSONresponse(res, 200, process.env.TWITCH_OAUTH_URL);
+}
 
 login_twitch = function(req, res) {
 

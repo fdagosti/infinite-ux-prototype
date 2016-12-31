@@ -13,7 +13,7 @@ export class IvpAuth{
 
   }
 
-  public saveToken(token){
+  private saveToken(token){
     token.exp = Date.now()/1000 + token.expires_in;
     window.localStorage[this.LOCAL_STORAGE] = JSON.stringify(token);
     return token || { };

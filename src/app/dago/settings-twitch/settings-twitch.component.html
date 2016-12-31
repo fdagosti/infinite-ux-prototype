@@ -1,10 +1,18 @@
 <iux-settings-section title="Twitch" >
   <div class="col-sm-8">
+    <div [ngBusy]="{busy:loginInProgress,backdrop:false}"></div>
     <div *ngIf="error" class="alert alert-danger" role="alert">
-      <strong>{{error}}</strong>
-      <p>{{errorDescription}}</p>
+      <strong>{{error}}</strong><br>
+      {{errorDescription}}
     </div>
-    <button class="btn btn-primary" (click)="connectAccount()">Connect your Twitch Account</button>
+
+    <div *ngIf="twitchAccountConnected" class="alert alert-success" role="alert">
+      your Twitch Account is now connected
+    </div>
+
+
+    <button *ngIf="!twitchAccountConnected && !loginInProgress" class="btn btn-primary" (click)="connectAccount()">Connect your Twitch Account</button>
+    <button *ngIf="twitchAccountConnected" class="btn btn-danger" (click)="disconnectAccount()">Remove your twitch Connection</button>
 
 
   </div>
