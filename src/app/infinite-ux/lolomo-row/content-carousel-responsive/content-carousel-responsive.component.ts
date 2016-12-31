@@ -2,6 +2,7 @@ import {Component, Input, OnInit, Output, EventEmitter, ViewChild} from "@angula
 import {Subscription} from "rxjs";
 import {ContentRowResponsiveComponent} from "../content-row-responsive/content-row-responsive.component";
 import {IVPService} from "../../../ivp.service";
+import {TwitchService} from "../../../twitch.service";
 
 
 @Component({
@@ -44,7 +45,7 @@ export class ContentCarouselResponsiveComponent implements OnInit{
     this.jawboneEmitter.emit(b);
 }
 
-  constructor(public ctap:IVPService) {
+  constructor(public ctap:IVPService, private twitch:TwitchService) {
   }
 
   ngOnInit() {
@@ -63,15 +64,17 @@ export class ContentCarouselResponsiveComponent implements OnInit{
 
   private dataFullyLoaded = false;
 
-  private getCtapObservable(){
+  private getRowObservable(){
     if (this.categoryId === "live")
       return this.ctap.getChannels(this.contentOffset, "20");
+    else if (this.categoryId === "twitch")
+      return this.twitch.getTopGames(this.contentOffset, "20");
     else
       return this.ctap.getContent(this.categoryId, this.contentOffset, "20")
   }
 
   fetchContent(){
-    return this.getCtapObservable()
+    return this.getRowObservable()
       // .delay(50000)
       .subscribe(
         content => {

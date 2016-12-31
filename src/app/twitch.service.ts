@@ -7,17 +7,63 @@ export class TwitchService {
 
   private LOCAL_STORAGE:string = "InfiniteUX-twitch";
 
+  private TWITCH = "https://api.twitch.tv/kraken/";
+
   private oAuthUrl;
 
   constructor(private http:Http) {
     http.get("/api/login_twitch",null)
-
       .do(v=>console.log("v",v.json()))
       .map(res=>res.json())
       .subscribe(
       url=>this.oAuthUrl=url,
       (e)=>console.log("error",e)
     )
+  }
+
+
+  public getTopGames(offset?,limit?){
+    let params = new URLSearchParams();
+    if (limit) params.set('limit', limit); // the user's search value
+    if (offset) params.set('offset', offset); // the user's search value
+    return this.convertTwitchDataToLolomo(this.getHttpCall(params, "games/top"));
+  }
+
+  private getHttpCall(params, urls){
+    return this.getHeadersWithAuth()
+      .map((headers) => new RequestOptions({
+        headers: headers,
+        search: params
+      }))
+      .switchMap((options) => this.http.get(this.TWITCH+urls, options))
+      .map((res:Response) => res.json())
+      .catch(this.handleError);
+  }
+
+  /**
+   * This method converts the Data from the IVP cloud into data that is understandable by the Lolomo component
+   * @param obs
+   * @returns {Observable<R>}
+   */
+  private convertTwitchDataToLolomo(obs:Observable<any>){
+    return obs
+      .map(games=>{
+        games.total = games._total;
+        games.content = games.top;
+        games.content.forEach(g=>{
+
+          g.title = g.game.name;
+          g._links = g.game._links;
+          g.media = Array(6).fill({url: g.game.box.large});
+          g.media[2] = {url:g.game.logo.large};
+          g.synopsis = {
+            longSynopsis:"This game does not have a synopsis",
+            shortSynopsis:"This game does not have a synopsis"
+          };
+          g.genres = [{name:"NO game GENRE"}];
+        });
+        return games;
+      });
   }
 
   public connectAccount(){
@@ -28,18 +74,14 @@ export class TwitchService {
     window.localStorage[this.LOCAL_STORAGE] = null;
   }
 
-  public getHeadersWithAuth(){
+  private getHeadersWithAuth(){
     return this.getAccessToken()
       .map((token) => new Headers({"Authorization": "OAuth "+token}))
 
   }
 
   private getAccessToken = function(){
-    if (!this._isLoggedIn()){
-      return this.login();
-    }else{
-      return Observable.of(this.getToken().access_token);
-    }
+    return Observable.of(this.getToken().access_token);
   }
 
   public isTwitchConnected = function(){
