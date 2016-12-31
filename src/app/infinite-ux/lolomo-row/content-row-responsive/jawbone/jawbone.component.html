@@ -16,7 +16,7 @@
 		<div class="common">
 			<div class="jawBonePanes">
 				<iux-tab-overview *ngIf="currentContent===jawboneContent[0]" class="jawBonePane" [program]="program"></iux-tab-overview>
-				<iux-tab-more-like-this *ngIf="currentContent===jawboneContent[1]" class="jawBonePane" ></iux-tab-more-like-this >
+				<iux-tab-more-like-this *ngIf="currentContent===jawboneContent[1]" class="jawBonePane" [program]="program"></iux-tab-more-like-this >
 					<iux-tab-show-details *ngIf="currentContent===jawboneContent[2]" class="jawBonePane" [program]="program"></iux-tab-show-details>
 				</div>
 			</div>

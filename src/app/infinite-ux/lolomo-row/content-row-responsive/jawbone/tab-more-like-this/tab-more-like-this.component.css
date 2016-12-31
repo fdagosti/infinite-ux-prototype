@@ -1,0 +1,90 @@
+.simsWrapper {
+	padding: 56px 0 0;
+}
+
+.slider {
+	position: relative;
+	margin: 0;
+	/* padding: 0 4%; */
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+}
+
+.sliderMask {
+	overflow-x: hidden;
+	padding-bottom: 1px;
+	overflow-y: hidden;
+	margin-right: -30px;
+}
+
+.sliderContent {
+	white-space: nowrap;
+}
+
+.slider-item {
+	width: 50%;
+	z-index: 1;
+	display: inline-block;
+	position: relative;
+	white-space: normal;
+	vertical-align: top;
+}
+
+@media screen and (max-width: 499px) {
+	.slider-item{
+		width: 100%
+	}
+}
+
+@media screen and (max-width: 499px) {
+	.slider-item{
+		width: 100%
+	}
+}
+
+@media screen and (min-width: 500px) and (max-width: 799px) {
+	.slider-item{
+		width: 50%
+	}
+}
+
+@media screen and (min-width: 800px) and (max-width: 1099px) {
+	.slider-item{
+		width: 33.333333%
+	}
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1399px) {
+	.slider-item{
+		width: 25%
+	}
+}
+
+@media screen and (min-width: 1400px) {
+	.slider-item{
+		width: 20%
+	}
+}
+
+.sliderRefocus{
+	padding-right: 30px;
+	font-size: .83333vw;
+}
+.video-artwork{
+	background-color: #1a1a1a;
+	margin-bottom: .5vw;
+	position: relative;
+	z-index: 3;
+
+	width: 100%;
+	/* padding: 28.125% 0; */
+}
+
+.simsSynopsis {
+	width: auto;
+	color: #999;
+}
+
+.meta{
+	color: 'red'
+}
