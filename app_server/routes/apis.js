@@ -21,6 +21,10 @@ router.post('/login_twitter', function(req, res, next) {
   login_twitter(req, res);
 });
 
+router.post('/login_twitch', function(req, res, next) {
+  login_twitch(req, res);
+});
+
 login_CTAP = function(req, res) {
 
     var clientId = process.env.IVP_CLIENT_ID;
@@ -59,6 +63,29 @@ login_twitter = function(req, res) {
       console.log("failure");
         sendJSONresponse(res, response.statusCode, error);
     });
+};
+
+login_twitch = function(req, res) {
+
+  var code = req.query.code;
+  var clientId = process.env.TWITCH_CLIENT_ID;
+  var clientSecret = process.env.TWITCH_CLIENT_SECRET;
+
+  rest.post("https://api.twitch.tv/kraken/oauth2/token", {
+    data: {
+      "client_id": clientId,
+      "client_secret": clientSecret,
+      "grant_type": "authorization_code",
+      "redirect_uri":"http://localhost:4200/dago/settings",
+      "code":code
+    }}).on("success", function(token, response){
+    console.log("success");
+    token.client_id = clientId;
+    sendJSONresponse(res, 200, token);
+  }).on("fail", function(error, response){
+    console.log("failure");
+    sendJSONresponse(res, response.statusCode, error);
+  });
 };
 
 

@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
+import {TwitchService} from "../../twitch.service";
 
 @Component({
   selector: 'iux-settings-twitch',
   templateUrl: './settings-twitch.component.html',
   styleUrls: ['./settings-twitch.component.css']
 })
-export class SettingsTwitchComponent implements OnInit {
-
-  TWITCH_URL_PROD = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=s4n0z3xfgft0jxxpi2d5t93qv4lfq3&redirect_uri=http:%2F/infinite-ux.herokuapp.com/&state=toto";
-  TWITCH_URL_DEV = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=q0ngm1iu66nfi4zc0cs2ncakbn8xdh&redirect_uri=http%3A%2F%2Flocalhost%3A4200%2Fdago%2Fsettings&state=toto";
+export class
+SettingsTwitchComponent implements OnInit {
 
   private code;
   private scope;
@@ -17,7 +16,7 @@ export class SettingsTwitchComponent implements OnInit {
   private error;
   private errorDescription;
 
-  constructor(private route:ActivatedRoute) { }
+  constructor(private route:ActivatedRoute, private twitch:TwitchService) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(
@@ -27,6 +26,9 @@ export class SettingsTwitchComponent implements OnInit {
         this.code = params["code"];
         this.state = params["state"];
         this.scope = params["scope"];
+        if (this.code){
+          this.twitch.setConnectStatus(this.code);
+        }
         console.log("v",params);
       },
       (e)=>console.log("error",e),
@@ -36,6 +38,7 @@ export class SettingsTwitchComponent implements OnInit {
   }
 
   connectAccount(){
+    this.twitch.connectAccount();
   }
 
 }
