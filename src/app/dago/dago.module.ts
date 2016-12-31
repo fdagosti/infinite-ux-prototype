@@ -7,7 +7,6 @@ import {DagoPlaygroundComponent} from "./dago-playground/dago-playground.compone
 import {TwitterService} from "./twitter.service";
 import {TwitterTweetsComponent} from "./twitter-tweets/twitter-tweets.component";
 import {SettingsComponent} from "./settings/settings.component";
-import {SettingsSectionComponent} from "./settings/settings-section/settings-section.component";
 import {CtapSettingsPipe} from "./settings-ctap/ctap-settings.pipe";
 import {KeysPipe} from "./keys.pipe";
 import {SettingsCtapComponent} from "./settings-ctap/settings-ctap.component";
@@ -16,6 +15,7 @@ import {SettingsAdsuiteComponent} from "./settings-adsuite/settings-adsuite.comp
 import {BusyModule} from "angular2-busy";
 import {RouterModule} from "@angular/router";
 import {InfiniteUxModule} from "../infinite-ux/infinite-ux.module";
+import { SettingsTwitchComponent } from './settings-twitch/settings-twitch.component';
 
 @NgModule({
   imports: [
@@ -34,12 +34,12 @@ import {InfiniteUxModule} from "../infinite-ux/infinite-ux.module";
     DagoPlaygroundComponent,
     TwitterTweetsComponent,
     SettingsComponent,
-    SettingsSectionComponent,
     CtapSettingsPipe,
     KeysPipe,
     SettingsCtapComponent,
     SettingsDebugComponent,
     SettingsAdsuiteComponent,
+    SettingsTwitchComponent,
   ],
   exports: [
   ],
