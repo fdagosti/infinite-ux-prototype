@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {IVPService} from "../ivp.service";
+import {IVPService} from "../../ivp.service";
 
 @Component({
   selector: 'iux-settings-ctap',

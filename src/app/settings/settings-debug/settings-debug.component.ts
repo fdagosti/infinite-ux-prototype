@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DebugService} from "../debug.service";
+import {DebugService} from "../../debug.service";
 
 @Component({
   selector: 'iux-settings-debug',

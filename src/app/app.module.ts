@@ -13,15 +13,18 @@ import {BusyModule} from "angular2-busy";
 import {UsersService} from "./users.service";
 import {DebugService} from "./debug.service";
 import {HomeService} from "./home.service";
-import {TwitchService} from "./twitch.service";
+import {TwitchService} from "./twitch/twitch.service";
 import {SettingsComponent} from "./settings/settings.component";
-import {SettingsDebugComponent} from "./settings-debug/settings-debug.component";
-import {SettingsTwitchComponent} from "./settings-twitch/settings-twitch.component";
-import {SettingsCtapComponent} from "./settings-ctap/settings-ctap.component";
+import {SettingsDebugComponent} from "./settings/settings-debug/settings-debug.component";
+import {SettingsTwitchComponent} from "./twitch/settings-twitch/settings-twitch.component";
+import {SettingsCtapComponent} from "./settings/settings-ctap/settings-ctap.component";
 import {FormsModule} from "@angular/forms";
 import {KeysPipe} from "./keys.pipe";
-import {CtapSettingsPipe} from "./settings-ctap/ctap-settings.pipe";
-import {FullContentService} from "./full-content.service";
+import {CtapSettingsPipe} from "./settings/settings-ctap/ctap-settings.pipe";
+import {FullContentService} from "./infinite-ux/full-content/full-content.service";
+import {LolomoService} from "./infinite-ux/lolomo/lolomo.service";
+import { MyCustomFullContentComponent } from './my-custom-full-content/my-custom-full-content.component';
+import {TwitchModule} from "./twitch/twitch.module";
 
 
 @NgModule({
@@ -32,17 +35,18 @@ import {FullContentService} from "./full-content.service";
     HomeComponent,
     SettingsComponent,
     SettingsDebugComponent,
-    SettingsTwitchComponent,
-    SettingsCtapComponent
+    SettingsCtapComponent,
+    MyCustomFullContentComponent
   ],
   imports: [
     BusyModule,
+    TwitchModule,
     FormsModule,
     InfiniteUxModule,
     BrowserModule,
     RouterModule.forRoot([
-      {path: "full/:categoryId", component: FullContentComponent},
-      {path: "full/search/:contentName", component: FullContentComponent},
+      {path: "full/:categoryId", component: MyCustomFullContentComponent},
+      {path: "full/search/:contentName", component: MyCustomFullContentComponent},
       {path: "video/:contentId", component: PlayerComponent},
       {path: "video", component: PlayerComponent},
       {path: "peter", loadChildren: "app/peter/peter.module"},
@@ -58,7 +62,6 @@ import {FullContentService} from "./full-content.service";
     UsersService,
     DebugService,
     TwitchService,
-    HomeService,
     FullContentService,
   ],
   bootstrap: [AppComponent]

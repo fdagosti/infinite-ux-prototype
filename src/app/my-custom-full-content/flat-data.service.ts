@@ -1,11 +1,12 @@
+
 import { Injectable } from '@angular/core';
 import {Params} from "@angular/router";
 import {Observable} from "rxjs";
-import {IVPService} from "./ivp.service";
-import {TwitchService} from "./twitch.service";
+import {IVPService} from "../ivp.service";
+import {TwitchService} from "../twitch/twitch.service";
 
 @Injectable()
-export class FullContentService {
+export class FlatDataService {
 
   constructor(private ctap: IVPService,private twitch: TwitchService) { }
 
@@ -52,12 +53,12 @@ export class FullContentService {
 
   // TODO to merge with the previous method when needed
   public getScrollUpdateData(id, offset){
-  if (id === "twitch"){
-    return this.twitch.getTopGames(offset, "30");
-  }else{
-    return this.ctap.getContent(id, offset, "30");
+    if (id === "twitch"){
+      return this.twitch.getTopGames(offset, "30");
+    }else{
+      return this.ctap.getContent(id, offset, "30");
+    }
   }
-}
 
 
 }

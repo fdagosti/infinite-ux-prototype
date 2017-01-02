@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {IVPService} from "./ivp.service";
 import {Observable} from "rxjs";
-import {TwitchService} from "./twitch.service";
+import {TwitchService} from "./twitch/twitch.service";
 
 @Injectable()
 export class HomeService {

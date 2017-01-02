@@ -2,7 +2,7 @@ import {Component, Input, OnInit, Output, EventEmitter, ViewChild} from "@angula
 import {Subscription} from "rxjs";
 import {ContentRowResponsiveComponent} from "../content-row-responsive/content-row-responsive.component";
 import {IVPService} from "../../../ivp.service";
-import {TwitchService} from "../../../twitch.service";
+import {TwitchService} from "../../../twitch/twitch.service";
 import {CacheService} from "../../cache.service";
 
 

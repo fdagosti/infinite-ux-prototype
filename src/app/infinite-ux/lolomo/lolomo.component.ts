@@ -1,9 +1,7 @@
 import {Component, OnInit, Input} from "@angular/core";
 import {Subscription} from "rxjs";
-import {IVPService} from "../../ivp.service";
-import {DebugService} from "../../debug.service";
 import {JawboneService} from "../jawbone.service";
-import {HomeService} from "../../home.service";
+import {LolomoService} from "./lolomo.service";
 
 @Component({
   selector: 'iux-lolomo',
@@ -21,7 +19,7 @@ export class LolomoComponent implements OnInit {
   @Input() portrait = false;
   private jawboneOpened: any = [];
 
-  constructor(private lolomoService:HomeService, private jawbone:JawboneService) {
+  constructor(private lolomoService:LolomoService, private jawbone:JawboneService) {
   }
 
   jawboneOpen(b, i) {
