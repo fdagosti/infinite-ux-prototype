@@ -21,6 +21,7 @@ import {SettingsCtapComponent} from "./settings-ctap/settings-ctap.component";
 import {FormsModule} from "@angular/forms";
 import {KeysPipe} from "./keys.pipe";
 import {CtapSettingsPipe} from "./settings-ctap/ctap-settings.pipe";
+import {FullContentService} from "./full-content.service";
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import {CtapSettingsPipe} from "./settings-ctap/ctap-settings.pipe";
     DebugService,
     TwitchService,
     HomeService,
+    FullContentService,
   ],
   bootstrap: [AppComponent]
 })

@@ -50,33 +50,47 @@ export class FullContentComponent implements OnInit {
 
   private getObservable(params:Params){
     if (params["contentName"]){
-      this.categoryId = params['contentName'];
-      this.title = params['contentName'];
-      this.catBased= false;
-
       return this.ctap.getContentFromSearchedTerm(params['contentName'], 0, "200")
-        .do(result => this.content = result)
-    }else if (params['categoryId'] && params['categoryId']=="live"){
-      this.title = "Live";
-      this.catBased= false;
-      return this.ctap.getChannels( 0, "200")
-        .do(result => this.content = result);
-    }else if (params['categoryId'] && params['categoryId']=="twitch"){
-      this.categoryId = params['categoryId'];
-      this.title = "Twitch Top Games";
-      this.catBased = true;
-      return this.twitch.getTopGames(this.currentOffset, "30")
-        .do(result => this.content = result);
-    }else if (params['categoryId']) {
-      this.categoryId = params['categoryId'];
-      this.catBased= true;
-
-      return Observable.forkJoin(
-        this.ctap.getContent(this.categoryId, this.currentOffset, "30"),
-        this.ctap.getCategories(params['categoryId'])).take(1)
         .do(result => {
-          this.content = result[0];
-          this.title = result[1].name;
+          this.categoryId = params['contentName'];
+          this.content = result;
+          this.title = params['contentName'];
+          this.catBased= false;
+        })
+    }else if (params['categoryId'] && params['categoryId']=="live"){
+      return this.ctap.getChannels( 0, "200")
+        .do(result => {
+          this.categoryId = params['categoryId'];
+          this.content = result;
+          this.title = "Live";
+          this.catBased= false;
+        });
+    }else if (params['categoryId'] && params['categoryId']=="twitch"){
+      return this.twitch.getTopGames(this.currentOffset, "30")
+        .do(result => {
+          console.log("result twitch ",result);
+          this.categoryId = params['categoryId'];
+          this.content = result;
+          this.title = "Twitch Top Games";
+          this.catBased = true;
+        });
+    }else if (params['categoryId']) {
+      return Observable.forkJoin(
+        this.ctap.getContent(params['categoryId'], this.currentOffset, "30"),
+        this.ctap.getCategories(params['categoryId']))
+        .take(1)
+        .map(a=>({
+          id: params["categoryId"],
+          title: a[1].name,
+          content: a[0],
+          portrait: true
+        }))
+        .do(r=>console.log("r",r))
+        .do(result => {
+          this.categoryId = result.id;
+          this.content = result.content;
+          this.title = result.title;
+          this.catBased= result.portrait;
         })
     }
   }
@@ -116,11 +130,13 @@ export class FullContentComponent implements OnInit {
   jawboneChanged(ev,i){
     this.jawboneOpened.fill(false);
     this.jawboneOpened[i] = ev;
+    console.log("jawbone changed ",ev,i);
   }
 
   closeJawbone(i){
     this.jawboneOpened[i]=false
     this.jawbone.setJawboneStatus(i, false);
+    console.log("close jawbone ",i);
   }
 
   updateVisibleItems(ev, idx){
@@ -138,8 +154,13 @@ export class FullContentComponent implements OnInit {
     let temporaryArray = Array(this.pageNum).fill(1);
     this.pages = temporaryArray.map((x, i) => i*this.numberOfItemsPerPage);
     this.jawbone.setNumberOfRows(this.pageNum);
-    this.jawboneOpened = this.pages.map(() => false)
+    this.closeAllJawbones();
     this.projectedContent = this.pages.map((v)=>this.content.content.slice(v, v+this.numberOfItemsPerPage))
+  }
+
+  closeAllJawbones(){
+    this.jawboneOpened = this.pages.map(() => false);
+    this.jawbone.setJawboneStatus(-1, false);
   }
 
 }
