@@ -69,9 +69,20 @@ login_twitter = function(req, res) {
     });
 };
 
+/**
+ * OAuth 2.0 phase 1 : Send the Twitch redirect URL to point the browser to when connecting a Twitch Account
+ * @param req
+ * @param res
+ */
 twitchOAuthUrl = function(req, res){
-  console.log("GETTWITCH URL ",process.env.TWITCH_OAUTH_URL);
-  sendJSONresponse(res, 200, process.env.TWITCH_OAUTH_URL);
+
+  var url ="https://api.twitch.tv/kraken/oauth2/authorize"+'?';
+  url += "response_type=code"+'&';
+  url += "client_id="+process.env.TWITCH_CLIENT_ID+'&';
+  url += "redirect_uri="+process.env.TWITCH_REDIRECT_URL+'&';
+  url += "state=toto";
+
+  sendJSONresponse(res, 200, url);
 }
 
 login_twitch = function(req, res) {
