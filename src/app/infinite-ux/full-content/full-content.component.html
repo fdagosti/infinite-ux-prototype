@@ -1,7 +1,7 @@
 <iux-navbar></iux-navbar>
 <div class="galleryHeader">
 	<div class="title">
-		{{title | lowercase}}
+		{{fullContentData.title| lowercase}}
 	</div>
 </div>
 
@@ -16,7 +16,7 @@
   [class.jawboneOpen]="jawboneOpened[i]"
   *ngFor="let page of pages; let i = index;"
   [fullContent]="projectedContent[i]"
-  [portrait]="catBased"
+  [portrait]="fullContentData.portrait"
   (visibleItem)="updateVisibleItems($event, i)"
   (offset)="updateOffset($event)"
   (jawboneOpen)="jawboneChanged($event, i)"
