@@ -3,7 +3,7 @@ import {Observable} from "rxjs";
 import "rxjs/add/operator/debounceTime";
 import {NgbTypeaheadSelectItemEvent} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
-import {IVPService} from "../../../ivp.service";
+import {IVPService} from "../../../ivp/ivp.service";
 
 @Component({
   selector: 'iux-search',

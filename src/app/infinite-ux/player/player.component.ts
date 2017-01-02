@@ -2,7 +2,7 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {Location} from "@angular/common";
 import {Observable} from "rxjs/Observable";
-import {IVPService} from "../../ivp.service";
+import {IVPService} from "../../ivp/ivp.service";
 import {VideoService} from "../../video.service";
 
 

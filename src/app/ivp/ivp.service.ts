@@ -2,7 +2,7 @@ import "rxjs/Rx";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Rx";
 import {Http, Response, RequestOptions, URLSearchParams} from "@angular/http";
-import {DebugService} from "./debug.service";
+import {DebugService} from "../debug.service";
 import {IvpAuth} from "./ivp-auth";
 
 export class Category{

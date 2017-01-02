@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, EventEmitter, Output} from "@angular/core";
-import {IVPService} from "../../ivp.service";
+import {IVPService} from "../../ivp/ivp.service";
 
 @Component({
   selector: 'iux-lolomo-row',
