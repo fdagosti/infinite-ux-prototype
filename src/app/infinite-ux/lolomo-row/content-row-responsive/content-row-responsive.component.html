@@ -28,7 +28,7 @@
       <img [src]="getContentImage(item)" alt="" class="absolute-img">
        <iux-overlay-responsive [program]="item"></iux-overlay-responsive>
     </a>
-    <iux-progress *ngIf="item.bright"></iux-progress>
+    <iux-progress *ngIf="item.channel"></iux-progress>
   </div>
 </div>
 <ng-content></ng-content>
