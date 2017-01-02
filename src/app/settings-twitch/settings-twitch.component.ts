@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
-import {TwitchService} from "../../twitch.service";
+import {TwitchService} from "../twitch.service";
 
 @Component({
   selector: 'iux-settings-twitch',
-  templateUrl: './settings-twitch.component.html',
-  styleUrls: ['./settings-twitch.component.css']
+  templateUrl: 'settings-twitch.component.html',
+  styleUrls: ['settings-twitch.component.css']
 })
 export class
 SettingsTwitchComponent implements OnInit {

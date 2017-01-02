@@ -11,18 +11,32 @@ import {FullContentComponent} from "./infinite-ux/full-content/full-content.comp
 import {VideoService} from "./video.service";
 import {BusyModule} from "angular2-busy";
 import {UsersService} from "./users.service";
-import {DebugService} from "./dago/debug.service";
+import {DebugService} from "./debug.service";
 import {HomeService} from "./home.service";
 import {TwitchService} from "./twitch.service";
+import {SettingsComponent} from "./settings/settings.component";
+import {SettingsDebugComponent} from "./settings-debug/settings-debug.component";
+import {SettingsTwitchComponent} from "./settings-twitch/settings-twitch.component";
+import {SettingsCtapComponent} from "./settings-ctap/settings-ctap.component";
+import {FormsModule} from "@angular/forms";
+import {KeysPipe} from "./keys.pipe";
+import {CtapSettingsPipe} from "./settings-ctap/ctap-settings.pipe";
 
 
 @NgModule({
   declarations: [
+    KeysPipe,
+    CtapSettingsPipe,
     AppComponent,
     HomeComponent,
+    SettingsComponent,
+    SettingsDebugComponent,
+    SettingsTwitchComponent,
+    SettingsCtapComponent
   ],
   imports: [
     BusyModule,
+    FormsModule,
     InfiniteUxModule,
     BrowserModule,
     RouterModule.forRoot([
@@ -32,6 +46,7 @@ import {TwitchService} from "./twitch.service";
       {path: "video", component: PlayerComponent},
       {path: "peter", loadChildren: "app/peter/peter.module"},
       {path: "dago", loadChildren: "app/dago/dago.module"},
+      {path: "settings", component: SettingsComponent},
       {path: "", component: HomeComponent},
     ]),
 
@@ -42,7 +57,7 @@ import {TwitchService} from "./twitch.service";
     UsersService,
     DebugService,
     TwitchService,
-    HomeService
+    HomeService,
   ],
   bootstrap: [AppComponent]
 })

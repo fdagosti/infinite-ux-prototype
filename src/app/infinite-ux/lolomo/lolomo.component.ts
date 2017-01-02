@@ -1,7 +1,7 @@
 import {Component, OnInit, Input} from "@angular/core";
 import {Subscription} from "rxjs";
 import {IVPService} from "../../ivp.service";
-import {DebugService} from "../../dago/debug.service";
+import {DebugService} from "../../debug.service";
 import {JawboneService} from "../jawbone.service";
 import {HomeService} from "../../home.service";
 
