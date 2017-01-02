@@ -85,7 +85,7 @@ login_twitch = function(req, res) {
       "client_id": clientId,
       "client_secret": clientSecret,
       "grant_type": "authorization_code",
-      "redirect_uri":"http://localhost:4200/dago/settings",
+      "redirect_uri":process.env.TWITCH_REDIRECT_URL,
       "code":code
     }}).on("success", function(token, response){
     console.log("success");
