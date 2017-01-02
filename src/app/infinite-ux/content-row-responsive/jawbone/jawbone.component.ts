@@ -11,8 +11,8 @@ class ContentRow{
 
 @Component({
   selector: 'iux-jawbone',
-  templateUrl: './jawbone.component.html',
-  styleUrls: ['./jawbone.component.css'],
+  templateUrl: 'jawbone.component.html',
+  styleUrls: ['jawbone.component.css'],
   animations: [
   trigger('jawboneAppear', [
     state("*", style({
