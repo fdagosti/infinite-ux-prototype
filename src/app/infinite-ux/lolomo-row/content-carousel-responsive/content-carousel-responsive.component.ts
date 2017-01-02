@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {ContentRowResponsiveComponent} from "../content-row-responsive/content-row-responsive.component";
 import {IVPService} from "../../../ivp.service";
 import {TwitchService} from "../../../twitch.service";
+import {CacheService} from "../../cache.service";
 
 
 @Component({
@@ -17,7 +18,7 @@ import {TwitchService} from "../../../twitch.service";
 export class ContentCarouselResponsiveComponent implements OnInit{
 
 
-  @Input() categoryId;
+  @Input() row;
   @Input() portrait;
   @Input() showIndicator;
   @Input() rowIndex;
@@ -45,17 +46,16 @@ export class ContentCarouselResponsiveComponent implements OnInit{
     this.jawboneEmitter.emit(b);
 }
 
-  constructor(public ctap:IVPService, private twitch:TwitchService) {
+  constructor(public cache:CacheService) {
   }
 
   ngOnInit() {
-    if (this.ctap.getContentCache(this.categoryId).total >0){
+    if (this.cache.getContentCache(this.row.id).total >0){
       setTimeout(()=>{
-        this.content = this.ctap.getContentCache(this.categoryId).content;
-        this.totalNumberOfItems= this.ctap.getContentCache(this.categoryId).total;
+        this.content = this.cache.getContentCache(this.row.id).content;
+        this.totalNumberOfItems= this.cache.getContentCache(this.row.id).total;
         this.setContent();
       },0)
-
     }else{
       this.busy = this.fetchContent();
     }
@@ -64,23 +64,14 @@ export class ContentCarouselResponsiveComponent implements OnInit{
 
   private dataFullyLoaded = false;
 
-  private getRowObservable(){
-    if (this.categoryId === "live")
-      return this.ctap.getChannels(this.contentOffset, "20");
-    else if (this.categoryId === "twitch")
-      return this.twitch.getTopGames(this.contentOffset, "20");
-    else
-      return this.ctap.getContent(this.categoryId, this.contentOffset, "20")
-  }
-
   fetchContent(){
-    return this.getRowObservable()
+    return this.row.getObservable(this.contentOffset)
       // .delay(50000)
       .subscribe(
         content => {
           this.content = this.content.concat(content.content);
           this.totalNumberOfItems = content.total;
-          this.ctap.setContentCache(this.categoryId, this.content, content.total);
+          this.cache.setContentCache(this.row.id, this.content, content.total);
           this.setContent();
           this.busy = null;
         },
@@ -95,7 +86,6 @@ export class ContentCarouselResponsiveComponent implements OnInit{
   }
 
   private computePageSize(){
-
     this.pageNum = Math.ceil(this.totalNumberOfItems/this.itemWindow);
     this.pages = Array(this.pageNum).fill(1).map((_,i)=>i*this.itemWindow);
     this.multiPage.emit(this.pageNum > 1);

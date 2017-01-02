@@ -25,6 +25,7 @@ import { MetaComponent } from './meta/meta.component';
 import {InfiniteScrollModule} from "angular2-infinite-scroll";
 import { ProgressComponent } from './lolomo-row/content-row-responsive/progress/progress.component';
 import {SettingsSectionComponent} from "./settings/settings-section/settings-section.component";
+import {CacheService} from "./cache.service";
 
 @NgModule({
   imports: [
@@ -67,5 +68,8 @@ import {SettingsSectionComponent} from "./settings/settings-section/settings-sec
     LolomoComponent,
     SettingsSectionComponent
   ],
+  providers: [
+    CacheService
+  ]
 })
 export class InfiniteUxModule { }

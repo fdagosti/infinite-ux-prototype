@@ -9,16 +9,7 @@ export class TwitchService {
 
   private TWITCH = "https://api.twitch.tv/kraken/";
 
-  private oAuthUrl;
-
   constructor(private http:Http) {
-    http.get("/api/login_twitch",null)
-      .do(v=>console.log("v",v.json()))
-      .map(res=>res.json())
-      .subscribe(
-      url=>this.oAuthUrl=url,
-      (e)=>console.log("error",e)
-    )
   }
 
 
@@ -67,7 +58,13 @@ export class TwitchService {
   }
 
   public connectAccount(){
-    window.location.href = this.oAuthUrl;
+    this.http.get("/api/login_twitch",null)
+      .map(res=>res.json())
+      .subscribe(
+        url=>window.location.href = url,
+        (e)=>console.log("error",e)
+      )
+
   }
 
   public disconnectAccount(){

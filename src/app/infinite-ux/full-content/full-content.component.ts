@@ -4,6 +4,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 import "rxjs/add/operator/switchMap";
 import {Observable} from "rxjs";
 import {JawboneService} from "../jawbone.service";
+import {TwitchService} from "../../twitch.service";
 
 
 @Component({
@@ -31,6 +32,7 @@ export class FullContentComponent implements OnInit {
 
   constructor(
     private ctap:IVPService,
+    private twitch:TwitchService,
     private route:ActivatedRoute,
     private jawbone:JawboneService
   ) {}
@@ -38,7 +40,7 @@ export class FullContentComponent implements OnInit {
   ngOnInit() {
     this.inData = true;
     this.route.params
-      .switchMap((params:Params) => this.getCtapObservable(params))
+      .switchMap((params:Params) => this.getObservable(params))
       .subscribe(
         () => {this.inData = false;this.computePageSize()},
         error => console.log("ERRROR",error),
@@ -46,19 +48,8 @@ export class FullContentComponent implements OnInit {
       );
   }
 
-  private getCtapObservable(params:Params){
-    if (params['categoryId'] && params['categoryId']!="live") {
-      this.categoryId = params['categoryId'];
-      this.catBased= true;
-
-      return Observable.forkJoin(
-        this.ctap.getContent(this.categoryId, this.currentOffset, "30"),
-        this.ctap.getCategories(params['categoryId'])).take(1)
-        .do(result => {
-          this.content = result[0];
-          this.title = result[1].name;
-        })
-    } else if (params["contentName"]){
+  private getObservable(params:Params){
+    if (params["contentName"]){
       this.categoryId = params['contentName'];
       this.title = params['contentName'];
       this.catBased= false;
@@ -70,6 +61,23 @@ export class FullContentComponent implements OnInit {
       this.catBased= false;
       return this.ctap.getChannels( 0, "200")
         .do(result => this.content = result);
+    }else if (params['categoryId'] && params['categoryId']=="twitch"){
+      this.categoryId = params['categoryId'];
+      this.title = "Twitch Top Games";
+      this.catBased = true;
+      return this.twitch.getTopGames(this.currentOffset, "30")
+        .do(result => this.content = result);
+    }else if (params['categoryId']) {
+      this.categoryId = params['categoryId'];
+      this.catBased= true;
+
+      return Observable.forkJoin(
+        this.ctap.getContent(this.categoryId, this.currentOffset, "30"),
+        this.ctap.getCategories(params['categoryId'])).take(1)
+        .do(result => {
+          this.content = result[0];
+          this.title = result[1].name;
+        })
     }
   }
 
@@ -77,11 +85,19 @@ export class FullContentComponent implements OnInit {
 
   private inData = false;
 
+  private _getObservable(cat){
+    if (cat === "twitch"){
+      return this.twitch.getTopGames(this.currentOffset, "30");
+    }else{
+      return this.ctap.getContent(this.categoryId, this.currentOffset, "30");
+    }
+  }
+
   private fetchCategoryContent(){
     if (this.inData) return;
     this.currentOffset += 30;
     this.inData = true;
-    this.busy = this.ctap.getContent(this.categoryId, this.currentOffset, "30").subscribe(
+    this.busy = this._getObservable(this.categoryId).subscribe(
       v=>{this.content.content = this.content.content.concat(v.content)},
       e=>console.log("error",e),
       ()=>{this.inData = false;this.computePageSize()}
