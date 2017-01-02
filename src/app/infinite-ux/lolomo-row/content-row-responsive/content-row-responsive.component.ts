@@ -5,10 +5,10 @@ import {
   ViewChild,
   ElementRef,
   OnChanges,
-  SimpleChanges,
   Output,
   EventEmitter,
-  NgZone, AfterViewInit, trigger, transition, animate, style, state
+  NgZone,
+  AfterViewInit
 } from "@angular/core";
 import {horizontalScroll, animTable, zoomAnimation} from "./animations";
 import {Subject} from "rxjs";
@@ -204,7 +204,6 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
         },
         e=>console.log("error"),
         ()=>{
-          this.stopAnim();
           this.jawboneMoustListen();
         });
   }
