@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LolomoService} from "../infinite-ux/lolomo/lolomo.service";
+import {LolomoService} from "../../infinite-ux/lolomo/lolomo.service";
 import {HomeService} from "./home.service";
 
 @Component({

@@ -8,7 +8,7 @@
 	</div>
 	<div class="jawBone">
 		<h3 class="title">{{program.title}}</h3>
-		<a *ngIf="currentContent===jawboneContent[0]" class="overviewPlay playLink">
+		<a *ngIf="currentContent===jawboneContent[0] && program._links.playSession" [routerLink]="getPlayLink(program)" class="overviewPlay playLink">
 			<div class="playRing">
 				<div class="play icon-play"></div>
 			</div>

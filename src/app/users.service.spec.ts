@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { UsersService } from './infinite-ux/player/users.service';
+import { UsersService } from '../infinite-ux/player/users.service';
 
 describe('Service: Users', () => {
   beforeEach(() => {

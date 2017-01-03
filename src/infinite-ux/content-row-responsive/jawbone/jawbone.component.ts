@@ -63,6 +63,13 @@ export class JawboneComponent implements OnInit {
     this.closeJawboneEmitter.emit("close");
   }
 
+  private getPlayLink(program){
+    if (!program || !program._links || !program._links.playSession) return "./";
+
+    return '/video/'+program.id;
+  }
+
+
   getContentImage(program){
     if (program.media){
       return program.media[2].url;

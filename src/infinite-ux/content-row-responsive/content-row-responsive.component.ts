@@ -320,12 +320,6 @@ export class ContentRowResponsiveComponent implements OnInit, AfterViewInit, OnC
     this.fullContentOffsetEmitter.emit(this.fullContentOffset);
   }
 
-  private getPlayLink(program){
-    if (!program || !program._links || !program._links.playSession) return "./";
-
-    return '/video/'+program.id;
-  }
-
   getContentImage(item){
     if (item.media){
       return item.media[this.portrait?5:1].url;

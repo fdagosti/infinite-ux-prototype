@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FullContentService} from "../infinite-ux/full-content/full-content.service";
+import {FullContentService} from "../../infinite-ux/full-content/full-content.service";
 import {FlatDataService} from "./flat-data.service";
 
 @Component({
