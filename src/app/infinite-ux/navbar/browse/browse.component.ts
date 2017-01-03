@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {IVPService} from "../../../ivp/ivp.service";
+import {Component, OnInit} from "@angular/core";
+import {BrowseService} from "./browse.service";
 
 @Component({
   selector: 'iux-browse',
@@ -8,7 +8,7 @@ import {IVPService} from "../../../ivp/ivp.service";
 })
 export class BrowseComponent implements OnInit {
 
-  constructor(private ivp: IVPService) { }
+  constructor(private browse: BrowseService) { }
 
   private categories=[];
   private busy;
@@ -18,14 +18,11 @@ export class BrowseComponent implements OnInit {
     this.fetchCategories();
   }
 
-  private fetchCategories(catId=""){
-    this.busy = this.ivp.getCategories(catId)
+  private fetchCategories(){
+    this.busy = this.browse.getCategories()
       .subscribe(
         (cats:any )=> {
-          cats.categories.forEach(item => {
-            if (item.leaf){ this.categories.push(item);}
-           else {this.fetchCategories(item.id)}
-          })
+          this.categories = cats;
         },
         error => console.log("Error = ",error)
 

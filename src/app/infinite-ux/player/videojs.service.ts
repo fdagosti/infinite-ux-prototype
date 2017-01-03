@@ -3,17 +3,15 @@ import { Injectable } from '@angular/core';
 declare var videojs;
 
 @Injectable()
-export class VideoService {
+export class VideojsService {
 
   constructor() { }
 
   playVideo(videoSrc){
 
-    const PROXY = "https://cisco-itk-proxy.herokuapp.com/";
-
     let src = {
       "type": "application/x-mpegURL",
-      "src": PROXY+videoSrc
+      "src": videoSrc
     };
 
     var player = videojs('video-background');

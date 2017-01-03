@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UsersService} from "../../users.service";
+import {UsersService} from "../../infinite-ux/player/users.service";
 
 @Component({
   selector: 'iux-list-profiles',

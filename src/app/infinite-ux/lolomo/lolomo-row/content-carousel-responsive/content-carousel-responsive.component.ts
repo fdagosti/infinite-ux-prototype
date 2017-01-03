@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, Output, EventEmitter, ViewChild} from "@angular/core";
 import {Subscription} from "rxjs";
 import {ContentRowResponsiveComponent} from "../../../content-row-responsive/content-row-responsive.component";
-import {CacheService} from "../../../cache.service";
+import {CacheService} from "./cache.service";
 
 
 @Component({

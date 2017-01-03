@@ -1,5 +1,4 @@
 import {Component, OnInit, Input, EventEmitter, Output} from "@angular/core";
-import {IVPService} from "../../ivp/ivp.service";
 
 @Component({
   selector: 'iux-lolomo-row',
@@ -19,9 +18,6 @@ export class LolomoRowComponent implements OnInit {
 
   showChevron = false;
   multiPage = false;
-
-  private rowNb = 4;
-
 
   constructor() { }
 

@@ -25,7 +25,7 @@ import { MetaComponent } from './meta/meta.component';
 import {InfiniteScrollModule} from "angular2-infinite-scroll";
 import { ProgressComponent } from './content-row-responsive/progress/progress.component';
 import {SettingsSectionComponent} from "./settings/settings-section/settings-section.component";
-import {CacheService} from "./cache.service";
+import {CacheService} from "./lolomo/lolomo-row/content-carousel-responsive/cache.service";
 
 @NgModule({
   imports: [

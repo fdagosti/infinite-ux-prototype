@@ -5,27 +5,22 @@ import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {PlayerComponent} from "./infinite-ux/player/player.component";
 import {IVPService} from "./ivp/ivp.service";
-import {LolomoComponent} from "./infinite-ux/lolomo/lolomo.component";
 import {InfiniteUxModule} from "./infinite-ux/infinite-ux.module";
-import {FullContentComponent} from "./infinite-ux/full-content/full-content.component";
-import {VideoService} from "./video.service";
+import {VideoService} from "./infinite-ux/player/video.service";
 import {BusyModule} from "angular2-busy";
-import {UsersService} from "./users.service";
+import {UsersService} from "./infinite-ux/player/users.service";
 import {DebugService} from "./debug.service";
-import {HomeService} from "./home/home.service";
 import {TwitchService} from "./twitch/twitch.service";
 import {SettingsComponent} from "./settings/settings.component";
 import {SettingsDebugComponent} from "./settings/settings-debug/settings-debug.component";
-import {SettingsTwitchComponent} from "./twitch/settings-twitch/settings-twitch.component";
-import {SettingsCtapComponent} from "./ivp/settings-ctap/settings-ctap.component";
 import {FormsModule} from "@angular/forms";
-import {KeysPipe} from "./ivp/settings-ctap/keys.pipe";
-import {CtapSettingsPipe} from "./ivp/settings-ctap/ctap-settings.pipe";
 import {FullContentService} from "./infinite-ux/full-content/full-content.service";
-import {LolomoService} from "./infinite-ux/lolomo/lolomo.service";
-import { MyCustomFullContentComponent } from './my-custom-full-content/my-custom-full-content.component';
+import {MyCustomFullContentComponent} from "./my-custom-full-content/my-custom-full-content.component";
 import {TwitchModule} from "./twitch/twitch.module";
 import {IvpModule} from "./ivp/ivp.module";
+import {BrowseService} from "./infinite-ux/navbar/browse/browse.service";
+import {GlobalAppService} from "./global-app.service";
+import {SearchService} from "./infinite-ux/navbar/search/search.service";
 
 
 @NgModule({
@@ -56,8 +51,10 @@ import {IvpModule} from "./ivp/ivp.module";
 
   ],
   providers: [
+    {provide:BrowseService, useClass: GlobalAppService},
+    {provide:SearchService, useClass: GlobalAppService},
+    {provide:VideoService, useClass: GlobalAppService},
     IVPService,
-    VideoService,
     UsersService,
     DebugService,
     TwitchService,

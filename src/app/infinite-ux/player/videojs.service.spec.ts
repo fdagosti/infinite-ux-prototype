@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { UsersService } from './infinite-ux/player/users.service';
+import { VideojsService } from './videojs.service';
 
-describe('Service: Users', () => {
+describe('VideojsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [UsersService]
+      providers: [VideojsService]
     });
   });
 
-  it('should ...', inject([UsersService], (service: UsersService) => {
+  it('should ...', inject([VideojsService], (service: VideojsService) => {
     expect(service).toBeTruthy();
   }));
 });

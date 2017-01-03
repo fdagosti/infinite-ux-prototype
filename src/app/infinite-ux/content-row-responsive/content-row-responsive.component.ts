@@ -12,7 +12,7 @@ import {
 } from "@angular/core";
 import {horizontalScroll, animTable, zoomAnimation} from "./animations";
 import {Subject} from "rxjs";
-import {JawboneService} from "../jawbone.service";
+import {JawboneService} from "./jawbone.service";
 
 
 class ContentRow{

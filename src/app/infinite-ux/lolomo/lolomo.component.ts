@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from "@angular/core";
 import {Subscription} from "rxjs";
-import {JawboneService} from "../jawbone.service";
+import {JawboneService} from "../content-row-responsive/jawbone.service";
 import {LolomoService} from "./lolomo.service";
 
 @Component({

@@ -1,8 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Params} from "@angular/router";
 import "rxjs/add/operator/switchMap";
-import {JawboneService} from "../jawbone.service";
+import {JawboneService} from "../content-row-responsive/jawbone.service";
 import {FullContentService} from "./full-content.service";
+import {Observable} from "rxjs";
 
 
 @Component({

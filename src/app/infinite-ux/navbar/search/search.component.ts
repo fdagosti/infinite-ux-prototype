@@ -3,7 +3,7 @@ import {Observable} from "rxjs";
 import "rxjs/add/operator/debounceTime";
 import {NgbTypeaheadSelectItemEvent} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
-import {IVPService} from "../../../ivp/ivp.service";
+import {SearchService} from "./search.service";
 
 @Component({
   selector: 'iux-search',
@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
   private searchFailed;
 
   constructor(
-    private ctap:IVPService,
+    private search:SearchService,
     private router: Router) { }
 
   ngOnInit() {
@@ -25,13 +25,13 @@ export class SearchComponent implements OnInit {
     this.router.navigate(["/full/search", value.item.name.trim()]);
   }
 
-  search = (text$: Observable<string>) =>
+  searchTerm = (text$: Observable<string>) =>
     text$
       .debounceTime(300)
       .distinctUntilChanged()
       .do(() => this.searching = true)
       .switchMap(term =>
-        this.ctap.getSuggestions(term)
+        this.search.getSuggestions(term)
           .do((v) => {
             this.searchFailed = (v.length == 0 && term);
           })

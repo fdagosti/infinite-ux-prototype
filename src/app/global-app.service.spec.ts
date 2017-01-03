@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { UsersService } from './infinite-ux/player/users.service';
+import { GlobalAppService } from './global-app.service';
 
-describe('Service: Users', () => {
+describe('GlobalAppService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [UsersService]
+      providers: [GlobalAppService]
     });
   });
 
-  it('should ...', inject([UsersService], (service: UsersService) => {
+  it('should ...', inject([GlobalAppService], (service: GlobalAppService) => {
     expect(service).toBeTruthy();
   }));
 });
