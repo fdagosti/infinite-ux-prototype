@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import {Params} from "@angular/router";
 import {Observable} from "rxjs";
 import {IVPService} from "../ivp/ivp.service";
-import {TwitchService} from "../twitch/twitch.service";
+import {TwitchService} from "../../twitch/twitch.service";
 
 @Injectable()
 export class FlatDataService {
